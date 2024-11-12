@@ -46,7 +46,7 @@ class _ReportState extends State<Report> {
         appBar: customAppBar(title: "Report"),
         backgroundColor: AppColor.bgScaffold,
         body: con.loading.value
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 2.5,
                   color: mainColor,
@@ -62,7 +62,7 @@ class _ReportState extends State<Report> {
                         boxShadow: AppColor.boxShadow,
                       ),
                       clipBehavior: Clip.antiAlias,
-                      margin: EdgeInsets.all(20),
+                      margin: const EdgeInsets.all(20),
                       child: Stack(
                         children: [
                           Positioned.fill(
@@ -74,7 +74,9 @@ class _ReportState extends State<Report> {
                               ),
                             ),
                           ),
-                          Container(
+                          SizedBox(
+                            width: double.infinity,
+                            height: 230,
                             child: Echarts(
                               option: '''
                       {
@@ -115,8 +117,6 @@ class _ReportState extends State<Report> {
                         }
                     ''',
                             ),
-                            width: double.infinity,
-                            height: 230,
                           ),
                         ],
                       ),
@@ -145,7 +145,7 @@ class _ReportState extends State<Report> {
                         con.onRefresh();
                       },
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               Color(0xff4AB8F3),
@@ -158,7 +158,7 @@ class _ReportState extends State<Report> {
                           ),
                         ),
                         child: ListView.separated(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               left: 15, top: 15, right: 15, bottom: 10),
                           itemBuilder: (context, index) {
                             var data = con.listReport[index];

@@ -15,7 +15,7 @@ class ListShimmer extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         boxShadow: shadow,
       ),
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Shimmer.fromColors(
         baseColor: Colors.grey.shade200,
         highlightColor: Colors.grey.shade100,
@@ -29,7 +29,7 @@ class ListShimmer extends StatelessWidget {
                   raduis: 10,
                 ),
                 const SizedBox(width: 20),
-                Container(
+                SizedBox(
                   height: height ?? 100,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -51,14 +51,14 @@ class ListShimmer extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {},
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: mainColor,
                     shape: BoxShape.circle,
                     boxShadow: [],
                   ),
                   width: 45,
                   height: 45,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Image.asset(
                     'images/cart.png',
                     width: 13,

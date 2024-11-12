@@ -39,7 +39,7 @@ class ProductController extends GetxController {
         methode: METHODE.post,
       )
           .then((value) async {
-        log("data :${value}");
+        log("data :$value");
         if (value['code'] == 200) {
           success = true;
           // getProductDetail(pId: proId.toString());
@@ -70,7 +70,7 @@ class ProductController extends GetxController {
         methode: METHODE.post,
       )
           .then((value) async {
-        log("data :${value}");
+        log("data :$value");
         if (value['code'] == 200) {
           success = true;
           // getProductDetail(pId: proId.toString());
@@ -161,9 +161,9 @@ class ProductController extends GetxController {
         }
         productsRecommend = listPro;
         listSearch.clear();
-        listRecommentProduct.forEach((element) {
+        for (var element in listRecommentProduct) {
           listSearch.add(element.productName!);
-        });
+        }
       });
     } catch (error) {
       debugPrint(

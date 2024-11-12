@@ -5,11 +5,11 @@ class MenuIcons extends StatelessWidget {
   final String? label;
   final double? size;
   const MenuIcons({
-    Key? key,
+    super.key,
     this.icon,
     this.label,
     this.size = 35,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class MenuIcons extends StatelessWidget {
         ),
         Text(
           label!,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
             color: Colors.black54,
             fontWeight: FontWeight.w500,

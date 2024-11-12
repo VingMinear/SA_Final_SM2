@@ -12,7 +12,7 @@ import '../../../widgets/input_field.dart';
 import '../../../widgets/primary_button.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({this.isAdmin = false});
+  const RegisterScreen({super.key, this.isAdmin = false});
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
   final bool isAdmin;
@@ -77,7 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           : null,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 20),
+          padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -92,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           'Register new\naccount',
                           style: context.textTheme.headlineLarge,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
@@ -105,16 +105,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
-                    Logo(),
+                    const Spacer(),
+                    const Logo(),
                   ],
                 ),
               ),
               Visibility(
                 visible: widget.isAdmin,
-                child: Center(child: Logo()),
+                child: const Center(child: Logo()),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Form(
@@ -126,7 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: InputField(
                             hintText: 'User Name',
                             controller: nameCon,
-                            suffixIcon: SizedBox(),
+                            suffixIcon: const SizedBox(),
                             onChanged: (p0) {
                               checkBtn();
                             },
@@ -149,11 +149,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           filled: true,
                                           fillColor: grey.withOpacity(0.4),
                                           hintText: "User Type",
-                                          hintStyle: TextStyle(
+                                          hintStyle: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.w400,
                                           ),
-                                          contentPadding: EdgeInsets.symmetric(
+                                          contentPadding: const EdgeInsets.symmetric(
                                               vertical: 12, horizontal: 12),
                                           isDense: true,
                                           border: OutlineInputBorder(
@@ -173,7 +173,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             child: Text(
                                               listType[index].trim(),
                                               overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w400,
@@ -189,7 +189,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ))
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 23,
                     ),
                     InputField(
@@ -197,24 +197,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       hintText: 'Phone Number',
                       controller: phCon,
                       keyboardType: TextInputType.phone,
-                      suffixIcon: SizedBox(),
+                      suffixIcon: const SizedBox(),
                       onChanged: (p0) {
                         checkBtn();
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 23,
                     ),
                     InputField(
                       delay: 200,
                       hintText: 'Email',
                       controller: emailController,
-                      suffixIcon: SizedBox(),
+                      suffixIcon: const SizedBox(),
                       onChanged: (p0) {
                         checkBtn();
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 23,
                     ),
                     InputField(
@@ -237,7 +237,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         checkBtn();
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 23,
                     ),
                     InputField(
@@ -263,14 +263,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 22,
               ),
               Visibility(
                 visible: !widget.isAdmin,
                 child: FadeInDown(
                   from: 10,
-                  delay: Duration(milliseconds: 420),
+                  delay: const Duration(milliseconds: 420),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -292,7 +292,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           width: 20,
                           height: 20,
                           child: isChecked
-                              ? Icon(
+                              ? const Icon(
                                   Icons.check,
                                   size: 20,
                                   color: Colors.white,
@@ -300,10 +300,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               : null,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 12,
                       ),
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -318,12 +318,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 22,
               ),
               FadeInDown(
                 from: 10,
-                delay: Duration(milliseconds: 480),
+                delay: const Duration(milliseconds: 480),
                 child: CustomPrimaryButton(
                   buttonColor: showBtn ? mainColor : Colors.grey,
                   textValue: widget.isAdmin ? 'Create Account' : 'Register',
@@ -350,7 +350,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Visibility(
@@ -358,7 +358,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Already have an account? ",
                     ),
                     GestureDetector(
@@ -367,7 +367,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           context,
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Login',
                       ),
                     ),

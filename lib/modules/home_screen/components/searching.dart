@@ -6,7 +6,7 @@ import 'package:homework3/modules/home_screen/screens/list_product.dart';
 import 'package:homework3/utils/Utilty.dart';
 
 class Searching extends StatefulWidget {
-  Searching({super.key});
+  const Searching({super.key});
 
   @override
   State<Searching> createState() => _SearchingState();
@@ -47,7 +47,7 @@ class _SearchingState extends State<Searching> {
         appBar: AppBar(
           leadingWidth: 50,
           leading: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.only(top: 10),
             child: IconButton(
               onPressed: () {
                 Get.back();
@@ -60,7 +60,7 @@ class _SearchingState extends State<Searching> {
           ),
           title: Container(
             height: 50,
-            margin: EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 10),
             child: TextField(
               controller: txtCon.value,
               autocorrect: true,
@@ -94,7 +94,7 @@ class _SearchingState extends State<Searching> {
                 hintText: "Search...",
                 suffixIcon: txtCon.value.text.isNotEmpty
                     ? IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: const Icon(Icons.clear),
                         onPressed: () {
                           txtCon.value.clear();
                           setState(() {});
@@ -117,7 +117,7 @@ class _SearchingState extends State<Searching> {
                   itemCount: listProduct.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                       onTap: () {
                         txtCon.value.text = listProduct[index];
                         Future.delayed(

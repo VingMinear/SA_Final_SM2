@@ -36,7 +36,7 @@ class _CartScreenState extends State<CartScreen> {
               Expanded(
                 child: SizedBox(
                   child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     child: cartController.shoppingCart.isNotEmpty
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class _CartScreenState extends State<CartScreen> {
                                   SizedBox(
                                     height: size.height * 0.020,
                                   ),
-                                  Text(
+                                  const Text(
                                     "Your cart is empty!",
                                     style: TextStyle(
                                       color: Colors.grey,
@@ -156,43 +156,43 @@ class _CartScreenState extends State<CartScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Sub Total",
                         style: TextStyle(),
                       ),
                       Text(
                         "\$${cartController.cartSubTotal}",
-                        style: TextStyle(),
+                        style: const TextStyle(),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Shipping",
                         style: TextStyle(),
                       ),
                       Text(
                         "+\$${cartController.shippingCharge}",
-                        style: TextStyle(),
+                        style: const TextStyle(),
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -206,15 +206,15 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 20),
                     decoration: DottedDecoration(
-                      dash: [4],
+                      dash: const [4],
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Total",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
@@ -222,7 +222,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       Text(
                         "\$${cartController.cartTotal}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                         ),
                       ),

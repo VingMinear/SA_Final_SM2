@@ -37,15 +37,15 @@ ThemeData theme() {
         fontSize: 14,
         fontWeight: FontWeight.bold,
       ),
-      headlineSmall: TextStyle(
+      headlineSmall: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w400,
       ),
-      headlineMedium: TextStyle(
+      headlineMedium: const TextStyle(
         fontSize: 17,
         fontWeight: FontWeight.w400,
       ),
-      headlineLarge: TextStyle(
+      headlineLarge: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w400,
       ),
@@ -58,10 +58,10 @@ ThemeData theme() {
         color: textColor,
       ),
     ),
-    buttonTheme: ButtonThemeData(
+    buttonTheme: const ButtonThemeData(
       buttonColor: Colors.white,
     ),
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: mainColor,
     ).copyWith(secondary: mainColor),
   );

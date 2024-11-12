@@ -7,7 +7,7 @@ class OrderModel {
   String? status;
   String? date;
   String? time;
-  Color color = Color.fromARGB(255, 242, 216, 87);
+  Color color = const Color.fromARGB(255, 242, 216, 87);
   List<ProductModel>? products = [];
 
   OrderModel(
@@ -26,7 +26,7 @@ class OrderModel {
     if (json['products'] != null) {
       products = <ProductModel>[];
       json['products'].forEach((v) {
-        products!.add(new ProductModel.fromJson(v));
+        products!.add(ProductModel.fromJson(v));
       });
     }
     switch (status) {
@@ -34,8 +34,7 @@ class OrderModel {
         color = Colors.deepOrange.shade300;
         break;
       case 'Delivering':
-        color = Colors.blue.shade200;
-        ;
+        color = Colors.blue.shade200; {}
         break;
       case 'Completed':
         color = Colors.green.shade300;

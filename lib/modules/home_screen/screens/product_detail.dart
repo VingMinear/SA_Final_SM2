@@ -18,7 +18,7 @@ import '../../cart/models/cart_model.dart';
 import '../../cart/screens/cart_screen.dart';
 
 class ProductDetailsView extends StatefulWidget {
-  ProductDetailsView({Key? key, required this.product}) : super(key: key);
+  const ProductDetailsView({super.key, required this.product});
   final ProductModel product;
 
   @override
@@ -61,12 +61,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         actions: [
           GestureDetector(
             onTap: () {
-              Get.to(CartScreen(
+              Get.to(const CartScreen(
                 back: true,
               ));
             },
@@ -80,7 +80,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         shadowColor: Colors.white,
       ),
       body: loading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : RefreshIndicator(
@@ -92,15 +92,15 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                 });
               },
               child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       width: double.infinity,
                       height: appHeight() * 0.4,
-                      padding: EdgeInsets.all(25),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(25),
+                      decoration: const BoxDecoration(
                         boxShadow: [],
                       ),
                       child: FittedBox(
@@ -111,7 +111,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     ),
                     const SizedBox(height: 10),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
@@ -140,8 +140,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20.0),
                       child: Text(
                         "Similar Products :",
                         style: TextStyle(
@@ -160,12 +160,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           return AnimationLimiter(
                             child: GridView.builder(
                               itemCount: 5,
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   bottom: 20, left: 20, right: 20, top: 20),
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 15,
                                 crossAxisSpacing: 15,
@@ -176,7 +176,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                   columnCount: 2,
                                   position: index,
                                   duration: const Duration(milliseconds: 375),
-                                  child: FadeInAnimation(
+                                  child: const FadeInAnimation(
                                       child: GridShimmer(
                                     isAdmin: false,
                                   )),
@@ -192,12 +192,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           return AnimationLimiter(
                             child: GridView.builder(
                               itemCount: products.length,
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   bottom: 20, left: 20, right: 20, top: 20),
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 15,
                                 crossAxisSpacing: 15,
@@ -247,7 +247,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           ),
         ]),
         width: double.infinity,
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: _buldFloatBar(),
       ),
     );
@@ -256,30 +256,30 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   List<Widget> _buildTitle() {
     return <Widget>[
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25).copyWith(top: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25).copyWith(top: 25),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
               child: Text(
                 '${productDetail.productName}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               ),
             ),
             const SizedBox(width: 10),
             Text('\$${productDetail.priceOut}',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
           ],
         ),
       ),
       const SizedBox(height: 12),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25).copyWith(right: 19),
+        padding: const EdgeInsets.symmetric(horizontal: 25).copyWith(right: 19),
         child: Row(
           children: [
             Text(
               productDetail.categoryName ?? '',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: Colors.orangeAccent,
@@ -294,11 +294,11 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               ),
               child: Text(
                 '${productDetail.sold} sold',
-                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(width: 16),
-            Spacer(),
+            const Spacer(),
             IconButton(
               style: ElevatedButton.styleFrom(
                 elevation: 1,
@@ -360,16 +360,16 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
 
   List<Widget> _buildDescription() {
     return [
-      Text('Description',
+      const Text('Description',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
       const SizedBox(height: 8),
       ExpandableText(
-        '${productDetail.desc ?? 'No description'}',
+        productDetail.desc ?? 'No description',
         expandText: 'view more',
         collapseText: 'view less',
         maxLines: 5,
         linkStyle:
-            TextStyle(color: Color(0xFF424242), fontWeight: FontWeight.bold),
+            const TextStyle(color: Color(0xFF424242), fontWeight: FontWeight.bold),
       ),
     ];
   }
@@ -397,13 +397,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               );
             },
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: mainColor, width: 1.2),
               ),
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Buy Now',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -423,13 +423,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               Get.back();
             },
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: mainColor,
               ),
               alignment: Alignment.center,
-              child: Text(
+              child: const Text(
                 'Add to Cart',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,

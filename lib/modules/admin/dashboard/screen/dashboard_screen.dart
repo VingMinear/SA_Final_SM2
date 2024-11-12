@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/admin/dashboard/controller/dashboard_con.dart';
 import 'package:homework3/modules/admin/dashboard/screen/editing_category_screen.dart';
@@ -75,20 +73,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
     ];
     var gradient = <List<Color>>[
       [
-        Color(0xffA86FEB),
-        Color(0xff7724E4),
+        const Color(0xffA86FEB),
+        const Color(0xff7724E4),
       ],
       [
-        Color(0xffFC9F66),
-        Color(0xffFB7B30),
+        const Color(0xffFC9F66),
+        const Color(0xffFB7B30),
       ],
       [
-        Color(0xff6DA0FC),
-        Color(0xff3974D6),
+        const Color(0xff6DA0FC),
+        const Color(0xff3974D6),
       ],
       [
-        Color(0xff7CE566),
-        Color(0xff38B41F),
+        const Color(0xff7CE566),
+        const Color(0xff38B41F),
       ],
     ];
     var today = DateTime.now();
@@ -103,8 +101,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return 10;
     }
 
-    final _random = new Random();
-    var gredient = LinearGradient(
+    var gredient = const LinearGradient(
       colors: [
         Color(0xff4AB8F3),
         Color(0xff9ADFF5),
@@ -257,7 +254,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       ),
                                       const SizedBox(height: 5),
                                       DefaultTextStyle(
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: (26),
                                           fontWeight: FontWeight.bold,
@@ -275,7 +272,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                             ),
                                             Text(
                                               ' ${'orders'.tr}',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: (15),
                                                 fontWeight: FontWeight.normal,
@@ -298,14 +295,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     // body
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(15),
                         ),
                         gradient: gredient,
                       ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 6),
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 6),
+                      child: const Text(
                         "Menu",
                         style: TextStyle(color: Colors.white),
                       ),
@@ -316,12 +313,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         border: Border.all(color: mainColor, width: 0.5),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: GridView.builder(
                         itemCount: listMenu.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           mainAxisExtent: 120,
                           crossAxisSpacing: 10,
@@ -334,16 +332,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             vertical: 0,
                             // color: Colors.transparent,
                             gradient: gredient,
-                            boxShadow: [],
+                            boxShadow: const [],
                             onTap: () {
                               Get.to(() {
                                 switch (index) {
                                   case 0:
-                                    return AdminOrderScreen();
+                                    return const AdminOrderScreen();
                                   case 1:
-                                    return AdminProductScreen();
+                                    return const AdminProductScreen();
                                   case 2:
-                                    return AdminUser();
+                                    return const AdminUser();
                                   default:
                                     return Report(
                                       totalOrder: con.totalOrder.value,
@@ -366,7 +364,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       color: whiteColor,
                                       width: (30),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
@@ -399,7 +397,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       padding: const EdgeInsets.all(20),
                       child: GestureDetector(
                         onTap: () {
-                          Get.to(() => EditingCategoryScreen());
+                          Get.to(() => const EditingCategoryScreen());
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -412,16 +410,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               BoxShadow(
                                 color: Colors.grey.shade300,
                                 spreadRadius: 0,
-                                offset: Offset(3, 3),
+                                offset: const Offset(3, 3),
                                 blurRadius: 1,
                               ),
                             ],
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           alignment: Alignment.center,
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
@@ -429,7 +427,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 color: Colors.white,
                                 size: 20,
                               ),
-                              const SizedBox(width: 20),
+                              SizedBox(width: 20),
                               Flexible(
                                 child: Text(
                                   "Categorys",
@@ -468,8 +466,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           color: Colors.red.shade300,
                         ),
                       ),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 40),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -495,7 +493,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       bottomSheet: Container(
         height: kBottomNavigationBarHeight,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(20),
           ),
@@ -509,7 +507,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
         child: FadeIn(
-          child: Center(
+          child: const Center(
               child: Text(
             'App Version : 1.0 | Copyright © by SS5',
             style: TextStyle(fontSize: 13),
@@ -531,12 +529,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       badgeContent: Text(
         badgeCount,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontSize: 9,
         ),
       ),
-      badgeAnimation: badges.BadgeAnimation.slide(
+      badgeAnimation: const badges.BadgeAnimation.slide(
         slideTransitionPositionTween:
             badges.SlideTween(begin: Offset(-0.05, 0.1), end: Offset(0.0, 0.0)),
         animationDuration: Duration(seconds: 1),

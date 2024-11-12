@@ -53,7 +53,7 @@ class ImagePickerProvider extends GetxController {
       {required String path, required String userId}) async {
     loadingDialog();
     try {
-      final data = await ref.child('images').child('${userId}');
+      final data = ref.child('images').child(userId);
       final result = await data.putFile(File(path));
       final fileUrl = await result.ref.getDownloadURL();
       imageUrl.value = fileUrl;

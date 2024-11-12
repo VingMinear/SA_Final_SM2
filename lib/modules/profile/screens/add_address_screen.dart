@@ -46,8 +46,8 @@ class AddAddressScreen extends StatelessWidget {
         showNotification: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(15),
-        physics: AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(15),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             GetBuilder<MapController>(builder: (controller) {
@@ -139,11 +139,11 @@ class AddAddressScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: Colors.white,
               ),
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Receiver Information",
                     style: TextStyle(
                       fontSize: 16,
@@ -256,7 +256,7 @@ Widget buildField({
             Text(title),
             Text(
               required ? " *" : '',
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
             ),
           ],
         ),
@@ -264,7 +264,7 @@ Widget buildField({
       const SizedBox(height: 10),
       FadeInLeft(
         from: 5,
-        delay: Duration(milliseconds: 150),
+        delay: const Duration(milliseconds: 150),
         child: InputField(
           animate: false,
           readOnly: readOnly,

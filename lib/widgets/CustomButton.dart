@@ -42,11 +42,11 @@ class CustomButton extends StatelessWidget {
               color: whiteColor,
             ),
       ),
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Text(
         title ?? "",
         style: textStyle ??
-            TextStyle(
+            const TextStyle(
               fontWeight: FontWeight.w400,
               color: Colors.white,
             ),

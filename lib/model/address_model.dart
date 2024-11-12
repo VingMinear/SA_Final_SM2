@@ -30,15 +30,15 @@ class AddressModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['customer_id'] = this.customerId;
-    data['receiver_name'] = this.receiverName;
-    data['phone_number'] = this.phoneNumber;
-    data['province'] = this.province;
-    data['district'] = this.district;
-    data['commune'] = this.commune;
-    data['house'] = this.house;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['customer_id'] = customerId;
+    data['receiver_name'] = receiverName;
+    data['phone_number'] = phoneNumber;
+    data['province'] = province;
+    data['district'] = district;
+    data['commune'] = commune;
+    data['house'] = house;
     return data;
   }
 }

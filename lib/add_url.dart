@@ -25,12 +25,12 @@ class _AddServerUrlState extends State<AddServerUrl> {
         body: Obx(
           () => Stack(
             children: [
-              LitStarfieldContainer(),
+              const LitStarfieldContainer(),
               SafeArea(
                 child: Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(30),
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Column(
                     children: [
                       SizedBox(height: Get.height * 0.2),
@@ -48,7 +48,7 @@ class _AddServerUrlState extends State<AddServerUrl> {
                                 onPressed: () {
                                   txtCon.value.text = '';
                                 },
-                                icon: Icon(Icons.clear),
+                                icon: const Icon(Icons.clear),
                               )
                             : null,
                         inputController: txtCon.value,
@@ -65,7 +65,7 @@ class _AddServerUrlState extends State<AddServerUrl> {
                             );
                           } else {
                             SnackBar snackBar = SnackBar(
-                              content: Text(
+                              content: const Text(
                                 "Please input IP",
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -100,7 +100,7 @@ class MyTextField extends StatelessWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final TextInputType? keyboardType;
   const MyTextField({
-    Key? key,
+    super.key,
     required this.inputController,
     this.hintText,
     this.keyboardType,
@@ -109,7 +109,7 @@ class MyTextField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.onFieldSubmitted,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

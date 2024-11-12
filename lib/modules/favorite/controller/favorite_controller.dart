@@ -28,7 +28,7 @@ class FavoriteController extends GetxController {
         methode: METHODE.post,
       )
           .then((value) {
-        log("data :${value}");
+        log("data :$value");
         if (value['code'] == 200) {
           for (var item in value['data']) {
             listFav.add(ProductModel.fromJson(item));

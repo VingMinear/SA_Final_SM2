@@ -147,5 +147,5 @@ class CategoryModel {
   String id = '';
 
   CategoryModel();
-  CategoryModel.fromJson(Map json, String id) {}
+  CategoryModel.fromJson(Map json, String id);
 }

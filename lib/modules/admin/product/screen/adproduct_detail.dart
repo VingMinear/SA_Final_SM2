@@ -22,16 +22,16 @@ import '../../../../widgets/CustomButton.dart';
 import '../../../../widgets/CustomDropdownFormField.dart';
 import '../controller/adproduct_con.dart';
 
-class adminProductDetail extends StatefulWidget {
-  const adminProductDetail(
+class AdminProductDetail extends StatefulWidget {
+  const AdminProductDetail(
       {super.key, required this.isEdit, required this.pId});
   final int pId;
   final bool isEdit;
   @override
-  State<adminProductDetail> createState() => _adminProductDetailState();
+  State<AdminProductDetail> createState() => _AdminProductDetailState();
 }
 
-class _adminProductDetailState extends State<adminProductDetail> {
+class _AdminProductDetailState extends State<AdminProductDetail> {
   var txtProNameCon = TextEditingController();
   var txtPricein = TextEditingController();
   var txtPriceOut = TextEditingController();
@@ -53,9 +53,9 @@ class _adminProductDetailState extends State<adminProductDetail> {
   ProductModel result = ProductModel();
   @override
   void initState() {
-    proCon.listCategory.forEach((element) {
+    for (var element in proCon.listCategory) {
       if (element.id != 0) listCategory.add(element);
-    });
+    }
     if (widget.isEdit) {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
         loading(true);
@@ -95,14 +95,14 @@ class _adminProductDetailState extends State<adminProductDetail> {
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
         body: loading.value
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 2.5,
                   color: mainColor,
                 ),
               )
             : SingleChildScrollView(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     __buildField(
@@ -112,7 +112,7 @@ class _adminProductDetailState extends State<adminProductDetail> {
                     ),
                     FadeInLeft(
                       from: 10,
-                      child: Row(
+                      child: const Row(
                         children: [
                           Text('Category'),
                           Text(
@@ -131,7 +131,7 @@ class _adminProductDetailState extends State<adminProductDetail> {
                         },
                         cate: cate,
                         list: listCategory,
-                        hint: '${'Category'}',
+                        hint: 'Category',
                         backgroundColor: grey.withOpacity(0.4),
                       ),
                     ),
@@ -207,7 +207,7 @@ class _adminProductDetailState extends State<adminProductDetail> {
                                         color: Colors.grey.shade100,
                                       ),
                                       alignment: Alignment.center,
-                                      child: Icon(CupertinoIcons.add),
+                                      child: const Icon(CupertinoIcons.add),
                                     ),
                                   )
                                 : GestureDetector(
@@ -272,7 +272,7 @@ class _adminProductDetailState extends State<adminProductDetail> {
                                             padding: EdgeInsets.zero,
                                             visualDensity:
                                                 VisualDensity.compact,
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.clear,
                                               color: Colors.white,
                                               size: 19,
@@ -330,9 +330,9 @@ class _adminProductDetailState extends State<adminProductDetail> {
                       );
                     },
                     elevation: 4,
-                    child: Icon(Iconsax.trash),
-                    shape: CircleBorder(),
+                    shape: const CircleBorder(),
                     backgroundColor: Colors.red.shade600,
+                    child: const Icon(Iconsax.trash),
                   )
                 : null,
         bottomNavigationBar: loading.value
@@ -357,7 +357,7 @@ class _adminProductDetailState extends State<adminProductDetail> {
                     const SizedBox(width: 20),
                     Expanded(
                       child: CustomButton(
-                        borderSide: BorderSide(color: mainColor),
+                        borderSide: const BorderSide(color: mainColor),
                         title: widget.isEdit ? 'Save' : 'Add',
                         textStyle: context.textTheme.bodyLarge!
                             .copyWith(color: Colors.white),
@@ -436,7 +436,7 @@ Widget __buildField({
             Text(title),
             Text(
               required ? " *" : '',
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
             ),
           ],
         ),
@@ -444,7 +444,7 @@ Widget __buildField({
       const SizedBox(height: 10),
       FadeInLeft(
         from: 5,
-        delay: Duration(milliseconds: 150),
+        delay: const Duration(milliseconds: 150),
         child: InputField(
           autofocus: focus,
           keyboardType: keyboardType,
@@ -464,7 +464,7 @@ Widget __buildField({
 
 Widget cupertinoModal(BuildContext context, void Function(int) callBack,
     {bool isEdit = false}) {
-  List<CupertinoItem> _cupertino = [
+  List<CupertinoItem> cupertino = [
     CupertinoItem(
       title: 'Upload Photo',
       icon: const Icon(CupertinoIcons.cloud_upload),
@@ -476,7 +476,7 @@ Widget cupertinoModal(BuildContext context, void Function(int) callBack,
   ];
 
   if (isEdit) {
-    _cupertino.insert(
+    cupertino.insert(
       0,
       CupertinoItem(
         title: 'view_photo'.tr,
@@ -486,17 +486,17 @@ Widget cupertinoModal(BuildContext context, void Function(int) callBack,
   }
 
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 20),
+    padding: const EdgeInsets.symmetric(vertical: 20),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
-      children: List.generate(_cupertino.length, (index) {
+      children: List.generate(cupertino.length, (index) {
         return ListTile(
           onTap: () async {
             callBack(index);
           },
-          title: Text(_cupertino[index].title!),
-          leading: _cupertino[index].icon,
+          title: Text(cupertino[index].title!),
+          leading: cupertino[index].icon,
         );
       }),
     ),

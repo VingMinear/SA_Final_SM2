@@ -40,7 +40,7 @@ class Loading extends StatelessWidget {
                         ? Platform.isIOS
                             ? const CupertinoActivityIndicator()
                             : const CircularProgressIndicator()
-                        : SizedBox()),
+                        : const SizedBox()),
               ),
             ),
           ),

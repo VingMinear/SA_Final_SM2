@@ -48,7 +48,7 @@ Widget buildListCard({
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${item.orderCode}",
+                              item.orderCode,
                               style: AppText.txt14.copyWith(
                                 fontWeight: FontWeight.w500,
                               ),
@@ -160,7 +160,7 @@ Widget amount({
                   '\$$amount',
                 ),
                 const Text(' | '),
-                Text(
+                const Text(
                   'accept',
                 ),
               ],

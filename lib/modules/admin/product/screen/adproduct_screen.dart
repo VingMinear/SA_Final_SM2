@@ -17,8 +17,8 @@ import '../controller/adproduct_con.dart';
 
 class AdminProductScreen extends StatefulWidget {
   const AdminProductScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<AdminProductScreen> createState() => _AdminProductScreenState();
@@ -39,7 +39,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
     super.initState();
   }
 
-  var gredient = LinearGradient(
+  var gredient = const LinearGradient(
     colors: [
       Color(0xff4AB8F3),
       Color(0xff9ADFF5),
@@ -49,8 +49,8 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
   );
   var categoryCon = Get.put(CategoryController());
   var con = Get.put(AdminProductController());
-  var debouce = Debouncer(delay: Duration(milliseconds: 300));
-  var divider = Expanded(
+  var debouce = Debouncer(delay: const Duration(milliseconds: 300));
+  var divider = const Expanded(
       child: Divider(
     color: mainColor,
   ));
@@ -61,7 +61,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(() {
-            return adminProductDetail(
+            return const AdminProductDetail(
               isEdit: false,
               pId: 0,
             );
@@ -94,7 +94,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       boxShadow: AppColor.boxShadow,
-                      borderRadius: BorderRadius.vertical(
+                      borderRadius: const BorderRadius.vertical(
                         bottom: Radius.circular(15),
                       )),
                   child: Column(
@@ -121,15 +121,16 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                             divider,
                             Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
+                                borderRadius: const BorderRadius.all(
                                   Radius.circular(15),
                                 ),
                                 gradient: gredient,
                               ),
-                              margin: EdgeInsets.symmetric(horizontal: 10),
-                              padding: EdgeInsets.symmetric(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 40, vertical: 6),
-                              child: Text(
+                              child: const Text(
                                 'Category',
                                 style: TextStyle(
                                   fontSize: 18,
@@ -154,12 +155,12 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                 ),
                 Expanded(
                   child: con.allProducts.isEmpty
-                      ? CustomNoContent(
+                      ? const CustomNoContent(
                           title: 'No product found',
                           isScroll: true,
                         )
                       : ListView(
-                          physics: AlwaysScrollableScrollPhysics(),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           children: [
                             Padding(
                               padding:
@@ -167,7 +168,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   conPro.loading.value
@@ -175,16 +176,17 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                                       : GridView.builder(
                                           itemCount: conPro.allProducts.length,
                                           gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                              const SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
                                             mainAxisSpacing: 15,
                                             crossAxisSpacing: 15,
                                             mainAxisExtent: 265,
                                           ),
                                           shrinkWrap: true,
-                                          padding: EdgeInsets.only(bottom: 20),
+                                          padding:
+                                              const EdgeInsets.only(bottom: 20),
                                           physics:
-                                              NeverScrollableScrollPhysics(),
+                                              const NeverScrollableScrollPhysics(),
                                           itemBuilder: (context, index) {
                                             var data =
                                                 conPro.allProducts[index];
@@ -193,7 +195,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                                               isAdmin: true,
                                               ontap: (data) {
                                                 Get.to(() {
-                                                  return adminProductDetail(
+                                                  return AdminProductDetail(
                                                     isEdit: true,
                                                     pId: data.productId ?? 0,
                                                   );
@@ -224,7 +226,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
     var conPro = Get.put(AdminProductController());
     return Obx(
       () => loading.value
-          ? Container(
+          ? SizedBox(
               height: 40,
               width: double.infinity,
               child: ListView.builder(
@@ -234,7 +236,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                   highlightColor: Colors.grey.shade100,
                   child: Container(
                     width: 70,
-                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(12),
@@ -247,7 +249,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
           : DefaultTabController(
               length: conPro.listCategory.length,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 height: 40,
                 child: TabBar(
                   isScrollable: true,
@@ -258,12 +260,12 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                     conPro.selectCateIndex = index;
                     await con.fetchProduct();
                   },
-                  labelPadding: EdgeInsets.symmetric(horizontal: 25),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 25),
                   tabs: conPro.listCategory.map((e) {
                     return Tab(
                       child: Text(
                         e.title,
-                        style: TextStyle(fontSize: 15),
+                        style: const TextStyle(fontSize: 15),
                       ),
                     );
                   }).toList(),
@@ -276,17 +278,17 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
   Widget buildShimmerGrid() {
     return GridView.builder(
       itemCount: 6,
-      padding: EdgeInsets.only(bottom: 20),
-      physics: NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.only(bottom: 20),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 15,
         crossAxisSpacing: 15,
         mainAxisExtent: 265,
       ),
       itemBuilder: (context, index) {
-        return GridShimmer(
+        return const GridShimmer(
           isAdmin: true,
         );
       },
@@ -296,10 +298,10 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({
-    Key? key,
+    super.key,
     this.onChanged,
     this.controller,
-  }) : super(key: key);
+  });
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   @override

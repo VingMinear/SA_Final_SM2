@@ -13,7 +13,7 @@ import '../components/card_favorite.dart';
 import '../controller/favorite_controller.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({Key? key}) : super(key: key);
+  const FavoriteScreen({super.key});
 
   @override
   State<FavoriteScreen> createState() => _FavoritScreenState();
@@ -48,13 +48,13 @@ class _FavoritScreenState extends State<FavoriteScreen>
                       ? AnimationLimiter(
                           child: ListView.separated(
                             itemCount: 4,
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            physics: AlwaysScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            physics: const AlwaysScrollableScrollPhysics(),
                             itemBuilder: (context, index) =>
                                 AnimationConfiguration.staggeredList(
                               position: index,
                               duration: const Duration(milliseconds: 600),
-                              child: FadeInAnimation(
+                              child: const FadeInAnimation(
                                 duration: Duration(milliseconds: 200),
                                 child: SizedBox(
                                   child: ListShimmer(
@@ -69,7 +69,7 @@ class _FavoritScreenState extends State<FavoriteScreen>
                         )
                       : AnimationLimiter(
                           child: con.listFav.isEmpty
-                              ? EmptyProduct(
+                              ? const EmptyProduct(
                                   desc: "No Product Favorite found.",
                                 )
                               : RefreshIndicator(
@@ -78,7 +78,7 @@ class _FavoritScreenState extends State<FavoriteScreen>
                                   },
                                   child: ListView.separated(
                                     itemCount: con.listFav.length,
-                                    physics: AlwaysScrollableScrollPhysics(),
+                                    physics: const AlwaysScrollableScrollPhysics(),
                                     padding: const EdgeInsets.only(
                                       top: 20,
                                       left: 15,
@@ -92,11 +92,12 @@ class _FavoritScreenState extends State<FavoriteScreen>
                                         duration:
                                             const Duration(milliseconds: 600),
                                         child: FadeInAnimation(
-                                          duration: Duration(milliseconds: 600),
+                                          duration: const Duration(milliseconds: 600),
                                           child: Slidable(
                                             key: GlobalKey(),
                                             endActionPane: ActionPane(
-                                              motion: DrawerMotion(),
+                                              motion: const DrawerMotion(),
+                                              extentRatio: 0.3,
                                               children: [
                                                 SlidableAction(
                                                   spacing: 5,
@@ -135,7 +136,6 @@ class _FavoritScreenState extends State<FavoriteScreen>
                                                       BorderRadius.circular(15),
                                                 )
                                               ],
-                                              extentRatio: 0.3,
                                             ),
                                             child: Container(
                                               child: CardFavorite(

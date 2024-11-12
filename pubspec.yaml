@@ -41,7 +41,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   expandable_text: ^2.3.0
   shared_preferences: ^2.2.1
-  intl: ^0.18.1
+  intl: ^0.19.0
   firebase_auth: ^4.9.0
   firebase_core: ^2.15.1
   cloud_firestore: ^4.9.1
@@ -74,7 +74,9 @@ dependencies:
   flutter_echarts: ^2.5.0
   flutter_stripe: ^10.2.0
   flutter_dotenv: ^5.1.0
+  flutter_lints: ^4.0.0
 
+  path: any
 flutter_native_splash:
   android: true
   ios: true
@@ -85,8 +87,6 @@ flutter_native_splash:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true

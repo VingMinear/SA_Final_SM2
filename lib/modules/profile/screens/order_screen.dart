@@ -24,22 +24,22 @@ class OrderScreen extends StatelessWidget {
           showNotification: false,
         ),
         body: con.loading.value
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 2.5,
                   color: mainColor,
                 ),
               )
             : con.listOrder.isEmpty
-                ? EmptyProduct(desc: 'No Orders')
+                ? const EmptyProduct(desc: 'No Orders')
                 : RefreshIndicator(
                     onRefresh: () async {
                       con.getOrders();
                     },
                     child: AnimationLimiter(
                       child: ListView.separated(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        padding: EdgeInsets.all(20),
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        padding: const EdgeInsets.all(20),
                         itemCount: con.listOrder.length,
                         itemBuilder: (context, index) {
                           var item = con.listOrder[index];
@@ -69,7 +69,7 @@ class OrderScreen extends StatelessWidget {
         color: Colors.white,
         boxShadow: shadow,
       ),
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -77,21 +77,21 @@ class OrderScreen extends StatelessWidget {
             children: [
               Text(
                 'Order Date: ${data.date}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w300,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   color: data.color,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                padding: EdgeInsets.all(5).copyWith(left: 10, right: 10),
+                padding: const EdgeInsets.all(5).copyWith(left: 10, right: 10),
                 child: Text(
                   '${data.status}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     color: Colors.white,
                   ),
@@ -130,7 +130,7 @@ class OrderScreen extends StatelessWidget {
                             children: [
                               Text(
                                 '${product.productName}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -171,10 +171,10 @@ class OrderScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   color: mainColor,
                 ),
-                padding: EdgeInsets.all(5).copyWith(left: 15, right: 15),
+                padding: const EdgeInsets.all(5).copyWith(left: 15, right: 15),
                 child: Text(
                   "Total : \$${data.totalAmount}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,

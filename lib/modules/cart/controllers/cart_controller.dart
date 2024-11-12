@@ -59,7 +59,7 @@ class CartController extends GetxController {
         if (value['code'] == 200) {
           shoppingCart.clear();
           update();
-          Get.off(SuccessScreenOrder());
+          Get.off(const SuccessScreenOrder());
         } else {
           alertDialog(desc: value['product'] ?? '');
         }

@@ -82,20 +82,20 @@ loadingDialog() async {
   await Get.dialog(
     AlertDialog(
       surfaceTintColor: Colors.transparent,
-      contentPadding: EdgeInsets.symmetric(horizontal: 110),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 110),
       backgroundColor: Colors.transparent,
       elevation: 0,
       content: Container(
         height: 50,
         width: 10,
         alignment: Alignment.center,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: shadow,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: FittedBox(
+        child: const FittedBox(
           child: CircularProgressIndicator(
             strokeWidth: 2.5,
             color: mainColor,
@@ -193,7 +193,7 @@ void logOut() async {
   LocalStorage.removeData(key: "user_id");
   GlobalClass().user.value = UserModel();
   await Authentication().signOut();
-  Get.offAll(SplashScreen());
+  Get.offAll(const SplashScreen());
 }
 
 Future<void> alertDialog({
@@ -234,7 +234,7 @@ Future<void> alertDialog({
                     children: [
                       Text(
                         title ?? 'Ops',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -244,7 +244,7 @@ Future<void> alertDialog({
                       ),
                       Text(
                         desc,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                         ),
                         textAlign: TextAlign.center,
@@ -315,7 +315,7 @@ customalertDialogConfirmation({
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular((14)),
           ),
-          insetPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 24.0),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -354,7 +354,7 @@ customalertDialogConfirmation({
                             Expanded(
                               child: CustomButton(
                                 backgroundColor: Colors.transparent,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.red,
                                 ),
                                 textStyle: btnTextStyle(
@@ -393,6 +393,6 @@ customalertDialogConfirmation({
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }

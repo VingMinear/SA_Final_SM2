@@ -39,17 +39,17 @@ class HomeAppBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Welcome Back 👋',
                       style: TextStyle(
                         color: Color(0xFF757575),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       user.value.name ?? 'Unknown',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF212121),
                         fontWeight: FontWeight.bold,
                       ),

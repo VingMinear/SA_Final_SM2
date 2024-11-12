@@ -75,7 +75,7 @@ class _ListProductsState extends State<ListProducts> {
                 showNotification: false,
                 action: GestureDetector(
                   onTap: () {
-                    Get.to(CartScreen(
+                    Get.to(const CartScreen(
                       back: true,
                     ));
                   },
@@ -86,7 +86,7 @@ class _ListProductsState extends State<ListProducts> {
                 spaceLeft: 15,
               ),
         body: loading.value
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : Column(
@@ -98,10 +98,10 @@ class _ListProductsState extends State<ListProducts> {
                           await getProducts();
                         },
                         child: listProducts.isEmpty
-                            ? EmptyProduct(desc: 'No product found in stocks')
+                            ? const EmptyProduct(desc: 'No product found in stocks')
                             : ListView.separated(
                                 itemCount: listProducts.length,
-                                physics: AlwaysScrollableScrollPhysics(),
+                                physics: const AlwaysScrollableScrollPhysics(),
                                 padding:
                                     const EdgeInsets.only(top: 20, bottom: 20),
                                 itemBuilder: (context, index) =>
@@ -109,10 +109,10 @@ class _ListProductsState extends State<ListProducts> {
                                   position: index,
                                   duration: const Duration(milliseconds: 600),
                                   child: FadeInAnimation(
-                                    duration: Duration(milliseconds: 600),
+                                    duration: const Duration(milliseconds: 600),
                                     child: Container(
                                       margin:
-                                          EdgeInsets.symmetric(horizontal: 15),
+                                          const EdgeInsets.symmetric(horizontal: 15),
                                       child: CardListProduct(
                                         product: listProducts[index],
                                       ),
@@ -135,7 +135,7 @@ class _ListProductsState extends State<ListProducts> {
     return AppBar(
       leadingWidth: 50,
       leading: Padding(
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         child: IconButton(
           onPressed: () {
             Get.back();
@@ -149,7 +149,7 @@ class _ListProductsState extends State<ListProducts> {
       actions: [
         GestureDetector(
           onTap: () {
-            Get.to(CartScreen(
+            Get.to(const CartScreen(
               back: true,
             ));
           },
@@ -165,7 +165,7 @@ class _ListProductsState extends State<ListProducts> {
         },
         child: Container(
           height: 50,
-          margin: EdgeInsets.only(top: 10),
+          margin: const EdgeInsets.only(top: 10),
           child: TextField(
             readOnly: true,
             enabled: false,

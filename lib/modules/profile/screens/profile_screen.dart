@@ -77,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: ListView(
         children: [
           FadeIn(
-            child: Padding(
+            child: const Padding(
               padding:
                   EdgeInsets.only(top: 30, left: 20, right: 10, bottom: 40),
               child: ProfileHeader(),
@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _buildBody(),
           const SizedBox(height: 40),
           FadeIn(
-            child: Center(
+            child: const Center(
                 child: Text(
               'App Version : 1.0 | Copyright © by SS5',
               style: TextStyle(fontSize: 13),
@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildBody() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.only(top: 10.0),
       child: Material(
         color: Colors.white,
@@ -113,9 +113,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             (index) {
               final data = datas[index];
               return FadeInLeft(
-                child: _buildOption(context, index, data),
                 from: 14,
                 delay: Duration(milliseconds: 50 * index),
+                child: _buildOption(context, index, data),
               );
             },
           ),
@@ -140,21 +140,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
       onTap: () {
         switch (index) {
           case 0:
-            Get.to(EditProfileScreen());
+            Get.to(const EditProfileScreen());
             break;
           case 1:
-            Get.to(OrderScreen());
+            Get.to(const OrderScreen());
             break;
           case 2:
             Get.to(AddressScreen());
             break;
           case 3:
-            Get.to(ForgetPasswordScreen(
+            Get.to(const ForgetPasswordScreen(
               isChanged: true,
             ));
             break;
           case 4:
-            Get.to(ContactUsScreen());
+            Get.to(const ContactUsScreen());
             break;
           case 5:
             alertDialogConfirmation(

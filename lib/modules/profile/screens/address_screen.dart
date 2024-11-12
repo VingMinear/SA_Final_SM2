@@ -25,32 +25,24 @@ class AddressScreen extends StatelessWidget {
       body: Obx(
         () {
           return con.loading.value
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : con.listAddress.isEmpty
-                  ? Center(child: Text('No Address found.'))
+                  ? const Center(child: Text('No Address found.'))
                   : SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       child: Column(
                         children: [
                           ListView.separated(
                             shrinkWrap: true,
-                            padding: EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(20),
                             itemCount: con.listAddress.length,
                             itemBuilder: (context, index) {
                               var item = con.listAddress[index];
                               return Slidable(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    if (selectAddress) {
-                                      Navigator.pop(context, item);
-                                    }
-                                  },
-                                  child: buildAddress(item),
-                                ),
                                 endActionPane: ActionPane(
-                                  motion: ScrollMotion(),
+                                  motion: const ScrollMotion(),
                                   children: [
                                     SlidableAction(
                                       onPressed: (context) {
@@ -68,7 +60,7 @@ class AddressScreen extends StatelessWidget {
                                       foregroundColor: Colors.white,
                                       icon: Icons.delete,
                                       label: 'Delete',
-                                      borderRadius: BorderRadius.horizontal(
+                                      borderRadius: const BorderRadius.horizontal(
                                         left: Radius.circular(10),
                                       ),
                                     ),
@@ -83,11 +75,19 @@ class AddressScreen extends StatelessWidget {
                                       foregroundColor: Colors.white,
                                       icon: Icons.edit,
                                       label: 'Edit',
-                                      borderRadius: BorderRadius.horizontal(
+                                      borderRadius: const BorderRadius.horizontal(
                                         right: Radius.circular(10),
                                       ),
                                     ),
                                   ],
+                                ),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (selectAddress) {
+                                      Navigator.pop(context, item);
+                                    }
+                                  },
+                                  child: buildAddress(item),
                                 ),
                               );
                             },
@@ -124,7 +124,7 @@ class AddressScreen extends StatelessWidget {
         boxShadow: shadow,
         color: Colors.white,
       ),
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -142,7 +142,7 @@ class AddressScreen extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "${address}",
+              address,
             ),
           )
         ],

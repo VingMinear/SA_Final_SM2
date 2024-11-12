@@ -37,10 +37,7 @@ class ReportController extends GetxController {
       )
           .then((value) {
         if (value['code'] == 200) {
-          stock = 0;
-          for (var item in value['data']) {
-            stock += 1;
-          }
+          stock = value['data'].length;
         }
       });
     } catch (error) {

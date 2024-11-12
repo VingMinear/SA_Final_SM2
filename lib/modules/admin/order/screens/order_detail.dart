@@ -43,7 +43,7 @@ class _OrderDetailState extends State<OrderDetail> {
       icon: appMarker,
       markerId: const MarkerId("marker"),
       position: con.orderDetail.value.latLng ??
-          LatLng(11.569563004287103, 104.90264560955421),
+          const LatLng(11.569563004287103, 104.90264560955421),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await customMarkerIcon();
@@ -65,7 +65,7 @@ class _OrderDetailState extends State<OrderDetail> {
       icon: appMarker,
       markerId: const MarkerId("marker"),
       position: con.orderDetail.value.latLng ??
-          LatLng(11.569563004287103, 104.90264560955421),
+          const LatLng(11.569563004287103, 104.90264560955421),
     );
     setState(() {});
   }
@@ -84,9 +84,9 @@ class _OrderDetailState extends State<OrderDetail> {
           },
         ),
         body: loading.value
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: Column(
                   children: [
                     Container(
@@ -115,7 +115,7 @@ class _OrderDetailState extends State<OrderDetail> {
                             padding: const EdgeInsets.all(10),
                             initialCameraPosition: CameraPosition(
                               target: con.orderDetail.value.latLng ??
-                                  LatLng(
+                                  const LatLng(
                                       11.569563004287103, 104.90264560955421),
                               zoom: 15,
                             ),
@@ -130,7 +130,7 @@ class _OrderDetailState extends State<OrderDetail> {
                   ],
                 ),
               ),
-        bottomNavigationBar: loading.value ? SizedBox.shrink() : button(),
+        bottomNavigationBar: loading.value ? const SizedBox.shrink() : button(),
       ),
     );
   }
@@ -202,7 +202,7 @@ class _OrderDetailState extends State<OrderDetail> {
           loading(false);
         },
         child: Container(
-          margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+          margin: const EdgeInsets.only(bottom: 10, left: 15, right: 15),
           decoration: BoxDecoration(
             color: mainColor,
             borderRadius: BorderRadius.circular(10),
@@ -250,7 +250,7 @@ class _OrderDetailState extends State<OrderDetail> {
               suggestionsCallback: (p0) {
                 return ['Not Availible'];
               },
-              listReasons: ['Not Availible'],
+              listReasons: const ['Not Availible'],
             ),
             if (isValidate.value) ...[
               const SizedBox(height: 8),
@@ -301,7 +301,7 @@ class _OrderDetailState extends State<OrderDetail> {
         color: Colors.white,
         boxShadow: shadow,
       ),
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -309,21 +309,21 @@ class _OrderDetailState extends State<OrderDetail> {
             children: [
               Text(
                 'Order Date: ${con.orderDetail.value.date}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w300,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   color: con.orderDetail.value.colorStatus,
                   borderRadius: BorderRadius.circular(5),
                 ),
-                padding: EdgeInsets.all(5).copyWith(left: 10, right: 10),
+                padding: const EdgeInsets.all(5).copyWith(left: 10, right: 10),
                 child: Text(
                   '${con.orderDetail.value.status.name.capitalizeFirst}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     color: Colors.white,
                   ),
@@ -362,7 +362,7 @@ class _OrderDetailState extends State<OrderDetail> {
                           children: [
                             Text(
                               '${product.productName}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -402,10 +402,10 @@ class _OrderDetailState extends State<OrderDetail> {
                   borderRadius: BorderRadius.circular(15),
                   color: mainColor,
                 ),
-                padding: EdgeInsets.all(5).copyWith(left: 15, right: 15),
+                padding: const EdgeInsets.all(5).copyWith(left: 15, right: 15),
                 child: Text(
                   "Total : \$${con.orderDetail.value.totalAmount}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
@@ -422,7 +422,7 @@ class _OrderDetailState extends State<OrderDetail> {
   Widget cardAddress(AdminOrderModel item) {
     return Container(
       decoration: cardDecoration(),
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

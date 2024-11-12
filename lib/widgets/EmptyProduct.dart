@@ -17,7 +17,7 @@ class EmptyProduct extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               desc,
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
             ),
           ],
         ),

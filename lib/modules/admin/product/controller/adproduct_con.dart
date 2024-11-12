@@ -156,7 +156,7 @@ class AdminProductController extends GetxController {
         await uploadPhoto(image.image.value).then((value) {
           img = value;
         });
-      } else if (!image.image.contains("$baseurl")) {}
+      } else if (!image.image.contains(baseurl)) {}
 
       await _apiBaseHelper
           .onNetworkRequesting(

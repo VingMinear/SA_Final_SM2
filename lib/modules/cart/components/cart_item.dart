@@ -73,7 +73,7 @@ class _CartItemState extends State<CartItem> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Text(
               'x ${widget.cartItem.quantity}',
             ),
@@ -83,7 +83,7 @@ class _CartItemState extends State<CartItem> {
     } else {
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        margin: EdgeInsets.only(bottom: 15),
+        margin: const EdgeInsets.only(bottom: 15),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -157,7 +157,7 @@ class _CartItemState extends State<CartItem> {
                       ),
                       Text(
                         widget.cartItem.quantity.toString(),
-                        style: TextStyle(),
+                        style: const TextStyle(),
                       ),
                       const SizedBox(
                         width: 13,
@@ -191,7 +191,7 @@ class _CartItemState extends State<CartItem> {
               onTap: () {
                 cartController.removeItem(widget.cartItem);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                  const SnackBar(
                     behavior: SnackBarBehavior.floating,
                     backgroundColor: Color(0xffff3333),
                     duration: Duration(milliseconds: 550),

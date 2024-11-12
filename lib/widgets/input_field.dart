@@ -15,7 +15,7 @@ class InputField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
   const InputField({
-    Key? key,
+    super.key,
     required this.hintText,
     this.obscureText = false,
     this.suffixIcon,
@@ -29,7 +29,7 @@ class InputField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.inputFormatters,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class InputField extends StatelessWidget {
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(15),
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
         suffixIcon: suffixIcon,
       ),
     );

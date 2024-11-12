@@ -42,10 +42,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
       body: Obx(
         () => ListView(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Column(
                 children: [
                   FadeIn(
@@ -71,13 +71,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Text("Tap to update your profile here.")
+                  const Text("Tap to update your profile here.")
                 ],
               ),
             ),
             const SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),

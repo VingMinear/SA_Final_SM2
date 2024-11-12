@@ -49,7 +49,7 @@ class PhotoViewDetail extends StatelessWidget {
                     ? CachedNetworkImageProvider(
                         imageUrl,
                       )
-                    : CachedNetworkImageProvider(
+                    : const CachedNetworkImageProvider(
                         defualtImage,
                       ),
               )

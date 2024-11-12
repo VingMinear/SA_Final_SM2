@@ -27,28 +27,28 @@ void main() async {
   if (!kDebugMode) {
     await CloudFireStore.getServerURl().then((value) {
       if (value.isNotEmpty) {
-        baseurl = "http://${value}:8080/";
+        baseurl = "http://$value:8080/";
       }
     });
   }
   FlutterNativeSplash.remove();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 late BuildContext globalContext;
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     globalContext = context;
     return DismissKeyboard(
       child: GetMaterialApp(
         defaultTransition: Transition.fadeIn,
-        transitionDuration: Duration(milliseconds: 300),
+        transitionDuration: const Duration(milliseconds: 300),
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

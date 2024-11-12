@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../constants/Color.dart';
 
 class CustomCheckbox extends StatefulWidget {
+  const CustomCheckbox({super.key});
+
   @override
   _CustomCheckboxState createState() => _CustomCheckboxState();
 }
@@ -28,7 +30,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         width: 20,
         height: 20,
         child: isChecked
-            ? Icon(
+            ? const Icon(
                 Icons.check,
                 size: 20,
                 color: Colors.white,

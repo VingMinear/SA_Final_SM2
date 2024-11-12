@@ -44,7 +44,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(15.0),
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
               buildAddress(),
@@ -102,7 +102,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -113,7 +113,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   width: 25,
                 ),
                 const SizedBox(width: 10),
-                Flexible(
+                const Flexible(
                   child: Text(
                     'Deliver address',
                     style: TextStyle(
@@ -124,8 +124,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(top: 10),
-              padding: EdgeInsets.all(15),
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 color: Colors.grey.shade100,
@@ -133,7 +133,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
               child: Row(
                 children: [
                   address.value.id == null
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Image.asset(
                           'assets/icons/map.png',
                           width: 30,
@@ -143,14 +143,14 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     child: Container(
                       child: Text(
                         address.value.id == null ? 'Address' : txtAddress,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 15),
-                  Icon(Icons.arrow_forward_ios_rounded, size: 15),
+                  const Icon(Icons.arrow_forward_ios_rounded, size: 15),
                 ],
               ),
             ),
@@ -166,12 +166,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
       ),
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 15),
-          Text(
+          const Text(
             "Order Details",
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -200,7 +200,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
         ),
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -211,7 +211,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   scale: 1.5,
                 ),
                 const SizedBox(width: 15),
-                Text(
+                const Text(
                   "Payment Methods",
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
@@ -231,12 +231,12 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     children: [
                       Text(
                         pymOptions[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Image.asset(
                         index == 0
                             ? 'assets/icons/cash.png'
@@ -266,43 +266,43 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Sub Total",
                         style: TextStyle(),
                       ),
                       Text(
                         "\$${widget.subTotal}",
-                        style: TextStyle(),
+                        style: const TextStyle(),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Shipping",
                         style: TextStyle(),
                       ),
                       Text(
                         "+\$${cartController.shippingCharge}",
-                        style: TextStyle(),
+                        style: const TextStyle(),
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -316,15 +316,15 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 20),
                     decoration: DottedDecoration(
-                      dash: [4],
+                      dash: const [4],
                     ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "Total",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
@@ -332,7 +332,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       ),
                       Text(
                         "\$${widget.total}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                         ),
                       ),

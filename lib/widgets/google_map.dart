@@ -71,7 +71,7 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
                 ),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.all(15).copyWith(left: 20, right: 20),
+                  padding: const EdgeInsets.all(15).copyWith(left: 20, right: 20),
                   child: Column(
                     children: [
                       InputField(
@@ -80,9 +80,9 @@ class _MyGoogleMapState extends State<MyGoogleMap> {
                         controller: con.txtLocationDetail.value,
                       ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         width: double.infinity,
-                        margin: EdgeInsets.only(top: 10),
+                        margin: const EdgeInsets.only(top: 10),
                         child: CustomPrimaryButton(
                           textValue: "Confirm Address",
                           textColor: Colors.white,

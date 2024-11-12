@@ -24,7 +24,7 @@ Color textColor = HexColor('#444444');
 Color warningColor = Colors.amber;
 Color bgColor = HexColor('#F5F5F5');
 Color whiteColor = Colors.white;
-var gradient = LinearGradient(
+var gradient = const LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomCenter,
   colors: [
@@ -32,7 +32,7 @@ var gradient = LinearGradient(
     Color(0xffFBE9D7),
   ],
 );
-var gradientBtn = LinearGradient(
+var gradientBtn = const LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomCenter,
   colors: [

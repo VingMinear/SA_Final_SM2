@@ -16,6 +16,8 @@ import '../../../widgets/primary_button.dart';
 import '../controller/authentication_google_account.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -45,9 +47,9 @@ class _LoginScreenState extends State<LoginScreen> {
             elevation: 2,
             tooltip: "Click to contact us",
             backgroundColor: Colors.black.withOpacity(0.6),
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             onPressed: () async {
-              Get.to(ContactUsScreen());
+              Get.to(const ContactUsScreen());
             },
             child: const Icon(
               Icons.question_mark_rounded,
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 0),
+          padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Login to your\naccount',
                           style: context.textTheme.headlineLarge,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         SizedBox(
@@ -87,12 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    Spacer(),
-                    Logo(),
+                    const Spacer(),
+                    const Logo(),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48,
               ),
               Form(
@@ -101,10 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     InputField(
                       hintText: 'Email',
                       autofocus: false,
-                      suffixIcon: SizedBox(),
+                      suffixIcon: const SizedBox(),
                       controller: emailController,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 32,
                     ),
                     InputField(
@@ -136,18 +138,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: GestureDetector(
                     onTap: () {
                       Get.to(
-                        ForgetPasswordScreen(
+                        const ForgetPasswordScreen(
                           isChanged: false,
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'Forget Password?',
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               FadeInDown(
@@ -176,15 +178,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'OR',
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               FadeInDown(
@@ -198,7 +200,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     elevation: 3,
                     surfaceTintColor: Colors.transparent,
                     backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
@@ -225,20 +227,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Don't have an account? ",
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(RegisterScreen());
+                      Get.to(const RegisterScreen());
                     },
-                    child: Text(
+                    child: const Text(
                       'Register',
                     ),
                   ),

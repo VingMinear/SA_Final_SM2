@@ -48,10 +48,10 @@ class _EditAdminUserState extends State<EditAdminUser> {
       ),
       body: Obx(
         () => ListView(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Column(
                 children: [
                   FadeIn(
@@ -94,13 +94,13 @@ class _EditAdminUserState extends State<EditAdminUser> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Text("Tap to update profile user here.")
+                  const Text("Tap to update profile user here.")
                 ],
               ),
             ),
             const SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
@@ -129,7 +129,7 @@ class _EditAdminUserState extends State<EditAdminUser> {
                                   children: [
                                     FadeInLeft(
                                       from: 10,
-                                      child: Row(
+                                      child: const Row(
                                         children: [
                                           Text("User Type :"),
                                         ],
@@ -145,11 +145,11 @@ class _EditAdminUserState extends State<EditAdminUser> {
                                         filled: true,
                                         fillColor: grey.withOpacity(0.4),
                                         hintText: "User Type",
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w400,
                                         ),
-                                        contentPadding: EdgeInsets.symmetric(
+                                        contentPadding: const EdgeInsets.symmetric(
                                             vertical: 12, horizontal: 12),
                                         isDense: true,
                                         border: OutlineInputBorder(
@@ -168,7 +168,7 @@ class _EditAdminUserState extends State<EditAdminUser> {
                                           child: Text(
                                             listType[index].trim(),
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 16,
                                               color: Colors.black,
                                               fontWeight: FontWeight.w400,

@@ -4,12 +4,12 @@ import '../components/mainbody.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: MainBody(),
       ),

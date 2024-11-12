@@ -4,15 +4,15 @@ import 'package:homework3/modules/home_screen/screens/list_product.dart';
 
 class MidleText extends StatelessWidget {
   const MidleText({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
+        const Row(
           children: [
             Text(
               "I",
@@ -34,9 +34,9 @@ class MidleText extends StatelessWidget {
         GestureDetector(
           // ignore: avoid_returning_null_for_void
           onTap: () {
-            Get.to(() => ListProducts(title: 'All Products'));
+            Get.to(() => const ListProducts(title: 'All Products'));
           },
-          child: Row(
+          child: const Row(
             children: [
               Text(
                 "See all",

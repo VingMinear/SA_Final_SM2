@@ -16,9 +16,9 @@ class ForgetPasswordScreen extends StatefulWidget {
   _ForgetPasswordScreenState createState() => _ForgetPasswordScreenState();
   final bool isChanged;
   const ForgetPasswordScreen({
-    Key? key,
+    super.key,
     required this.isChanged,
-  }) : super(key: key);
+  });
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
@@ -37,15 +37,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 0),
+          padding: const EdgeInsets.fromLTRB(24.0, 10.0, 24.0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 22,
               ),
               FadeInDown(
-                delay: Duration(milliseconds: 120),
+                delay: const Duration(milliseconds: 120),
                 from: 10,
                 child: Align(
                   alignment: Alignment.center,
@@ -58,7 +58,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 ),
               ),
               FadeInDown(
-                delay: Duration(milliseconds: 120),
+                delay: const Duration(milliseconds: 120),
                 from: 10,
                 child: Align(
                   alignment: Alignment.center,
@@ -72,24 +72,24 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               Form(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
                     InputField(
                       hintText: 'Email',
                       autofocus: false,
                       controller: emailController,
-                      suffixIcon: SizedBox(),
+                      suffixIcon: const SizedBox(),
                       onChanged: (p0) {},
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               FadeInDown(
-                delay: Duration(milliseconds: 190),
+                delay: const Duration(milliseconds: 190),
                 from: 10,
                 child: CustomPrimaryButton(
                   textValue: 'Send',
@@ -120,7 +120,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   },
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],

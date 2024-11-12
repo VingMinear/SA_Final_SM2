@@ -17,7 +17,7 @@ import '../home_screen/screens/home_screen.dart';
 import '../profile/screens/profile_screen.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
-  const BottomNavigationBarScreen({Key? key}) : super(key: key);
+  const BottomNavigationBarScreen({super.key});
 
   @override
   State<BottomNavigationBarScreen> createState() =>
@@ -47,7 +47,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
 
   // ignore: unused_field
   static TextStyle optionStyle =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
+      const TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         //---------bottom---------//
 
         bottomNavigationBar: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             boxShadow: [
@@ -87,17 +87,17 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
             activeColor: Colors.white,
             color: Colors.black54,
             tabBackgroundColor: mainColor,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            duration: Duration(milliseconds: 400),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            duration: const Duration(milliseconds: 400),
             onTabChange: (index) {
               con.selectedIndex(index);
             },
             tabs: [
-              GButton(
+              const GButton(
                 icon: Iconsax.home,
                 text: 'Home',
               ),
-              GButton(
+              const GButton(
                 icon: Iconsax.heart,
                 text: 'Favorites',
               ),
@@ -108,7 +108,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                   con.selectedIndex.value == 2 ? Colors.white : Colors.black54,
                 ),
               ),
-              GButton(
+              const GButton(
                 icon: Iconsax.user,
                 text: 'Profile',
               )
@@ -133,12 +133,12 @@ cartIcon(Color iconColor) {
     ),
     badgeContent: Text(
       badgeCount,
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white,
         fontSize: 9,
       ),
     ),
-    badgeAnimation: badges.BadgeAnimation.slide(
+    badgeAnimation: const badges.BadgeAnimation.slide(
       slideTransitionPositionTween:
           SlideTween(begin: Offset(-0.05, 0.1), end: Offset(0.0, 0.0)),
       animationDuration: Duration(seconds: 1),

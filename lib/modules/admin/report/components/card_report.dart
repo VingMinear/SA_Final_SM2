@@ -36,7 +36,7 @@ class CustomTransactionCard extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: (14),
               color: Colors.grey,
             ),
@@ -47,7 +47,7 @@ class CustomTransactionCard extends StatelessWidget {
             value,
             textAlign: TextAlign.right,
             overflow: TextOverflow.fade,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: (14),
               color: Colors.black,
             ),
@@ -71,8 +71,8 @@ class CustomTransactionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "${eachItem.customerName}",
-            style: TextStyle(
+            eachItem.customerName,
+            style: const TextStyle(
               fontSize: (16),
               fontWeight: FontWeight.w500,
               color: Colors.black87,
@@ -80,7 +80,7 @@ class CustomTransactionCard extends StatelessWidget {
           ),
           Text(
             eachItem.paymentType,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: (14),
               color: Colors.grey,
             ),
@@ -98,10 +98,10 @@ class CustomTransactionCard extends StatelessWidget {
                 fontSize: 15,
               ),
               children: [
-                TextSpan(
+                const TextSpan(
                   text: "+",
                 ),
-                TextSpan(
+                const TextSpan(
                   text: "\$",
                 ),
                 TextSpan(
@@ -112,8 +112,8 @@ class CustomTransactionCard extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            "${eachItem.date}",
-            style: TextStyle(
+            eachItem.date,
+            style: const TextStyle(
               fontSize: 12,
               color: Colors.grey,
             ),

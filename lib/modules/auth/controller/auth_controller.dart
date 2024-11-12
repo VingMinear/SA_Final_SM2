@@ -75,7 +75,7 @@ class AuthController extends GetxController {
                 showTaost("Account has been created successfully 🎉✅");
                 Get.back();
               } else {
-                Get.off(SuccessScreen(
+                Get.off(const SuccessScreen(
                   desc:
                       '''Your account has been successfully created, and we're excited to have you join our platform.\nThank you for choosing us, and we look forward to serving you!''',
                 ));
@@ -93,7 +93,7 @@ class AuthController extends GetxController {
 
   Future<void> loginSuccess(bool login, {GoogleSignInAccount? account}) async {
     if (login) {
-      var user_id = Authentication().currentUser?.uid;
+      var userId = Authentication().currentUser?.uid;
 
       Authentication obj = Authentication();
       var uid = obj.currentUser?.uid;
@@ -101,7 +101,7 @@ class AuthController extends GetxController {
       await CloudFireStore.getUser(docId: obj.currentUser!.uid)
           .then((value) async {
         if (value.id == null) {
-          log("User ${account}");
+          log("User $account");
           if (account != null) {
             await CloudFireStore().addUserInformation(
               docId: account.id,
@@ -124,7 +124,7 @@ class AuthController extends GetxController {
       if (GlobalClass().user.value.isActive) {
         LocalStorage.storeData(
           key: "user_id",
-          value: user_id,
+          value: userId,
         );
 
         updatePhoto();
@@ -135,9 +135,9 @@ class AuthController extends GetxController {
           () async {
             if (GlobalClass().user.value.isAdmin) {
               await FirebaseMessaging.instance.subscribeToTopic('order');
-              Get.offAll(() => DashboardScreen());
+              Get.offAll(() => const DashboardScreen());
             } else {
-              Get.offAll(BottomNavigationBarScreen());
+              Get.offAll(const BottomNavigationBarScreen());
             }
           },
         );

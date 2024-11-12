@@ -8,7 +8,7 @@ class CustomPrimaryButton extends StatelessWidget {
   final Function() onPressed;
   final double? space;
   final Widget? prefix;
-  CustomPrimaryButton({
+  const CustomPrimaryButton({super.key, 
     this.buttonColor,
     this.textValue,
     this.textColor,
@@ -37,7 +37,7 @@ class CustomPrimaryButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  prefix ?? SizedBox(),
+                  prefix ?? const SizedBox(),
                   SizedBox(width: space),
                   Text(
                     textValue ?? '',

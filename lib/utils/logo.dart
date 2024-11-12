@@ -5,7 +5,7 @@ class Logo extends StatelessWidget {
   final double? width, height;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width ?? 140,
       height: height ?? 140,
       child: Image.asset(

@@ -83,7 +83,7 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
             Obx(() {
               return Expanded(
                 child: con.loading.value
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           strokeWidth: 2.5,
                           color: mainColor,
@@ -94,7 +94,7 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                           con.onRefresh();
                         },
                         child: con.isEmptyOrder.value
-                            ? CustomNoContent(
+                            ? const CustomNoContent(
                                 isScroll: true,
                               )
                             : ListView.separated(
@@ -139,7 +139,7 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
     bool ignorePointer = false,
   }) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 6.5, horizontal: 14),
+      padding: const EdgeInsets.symmetric(vertical: 6.5, horizontal: 14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         color: isSelected ? mainColor : AppColor.greyBtn,

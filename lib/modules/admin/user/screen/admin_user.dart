@@ -68,19 +68,19 @@ class _AdminUserState extends State<AdminUser> {
                   con.fetchCustomer();
                 },
                 child: con.loading.value
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(
                           strokeWidth: 2.5,
                           color: mainColor,
                         ),
                       )
                     : con.listUser.isEmpty
-                        ? EmptyProduct(
+                        ? const EmptyProduct(
                             desc: "No User found",
                           )
                         : AnimationLimiter(
                             child: ListView.separated(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10),
                               itemBuilder: (context, index) {
                                 var data = con.listUser[index];
@@ -122,8 +122,9 @@ class _AdminUserState extends State<AdminUser> {
                                                   ),
                                                   Container(
                                                     width: 50,
-                                                    margin: EdgeInsets.only(
-                                                        left: 15),
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 15),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -164,7 +165,8 @@ class _AdminUserState extends State<AdminUser> {
                                                                 width: 5),
                                                             Text(
                                                               ": ${data.name}",
-                                                              style: TextStyle(
+                                                              style:
+                                                                  const TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
@@ -301,7 +303,7 @@ class _AdminUserState extends State<AdminUser> {
                                                             );
                                                           });
                                                         },
-                                                        icon: Icon(
+                                                        icon: const Icon(
                                                           CupertinoIcons
                                                               .ellipsis_vertical,
                                                           color: Colors.black,
@@ -360,7 +362,7 @@ class _AdminUserState extends State<AdminUser> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(RegisterScreen(
+          Get.to(const RegisterScreen(
             isAdmin: true,
           ))!
               .then((value) {

@@ -27,7 +27,7 @@ class CustomDropdownFormField extends StatelessWidget {
   final void Function(Category?) onChanged;
   @override
   Widget build(BuildContext context) {
-    var hintStyle = TextStyle(
+    var hintStyle = const TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w400,
     );
@@ -42,7 +42,7 @@ class CustomDropdownFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         hintStyle: hintStyle,
         label: label,
-        contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
         labelText: labelText,
         isDense: true,
         labelStyle: hintStyle,
@@ -59,7 +59,7 @@ class CustomDropdownFormField extends StatelessWidget {
           child: Text(
             list[index].title.trim(),
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Colors.black,
               fontWeight: FontWeight.w400,

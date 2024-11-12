@@ -102,7 +102,7 @@ class CloudFireStore extends GetxController {
       Authentication.snackBarError("Something went wrong");
       LocalStorage.clearData();
       await Authentication().signOut();
-      Get.to(LoginScreen());
+      Get.to(const LoginScreen());
     }
     return _data;
   }
@@ -122,7 +122,7 @@ class CloudFireStore extends GetxController {
       Authentication.snackBarError("Something went wrong");
       LocalStorage.clearData();
       await Authentication().signOut();
-      Get.to(LoginScreen());
+      Get.to(const LoginScreen());
     }
     return data;
   }

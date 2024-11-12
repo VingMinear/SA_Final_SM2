@@ -11,10 +11,10 @@ import '../../../widgets/CustomCachedNetworkImage.dart';
 
 class CardFavorite extends StatefulWidget {
   const CardFavorite({
-    Key? key,
+    super.key,
     required this.product,
     this.showShadow = true,
-  }) : super(key: key);
+  });
   final ProductModel product;
   final bool showShadow;
   @override
@@ -57,7 +57,7 @@ class _CartWidgetState extends State<CardFavorite>
                       BoxShadow(
                         blurRadius: 4,
                         color: Colors.black26.withOpacity(0.1),
-                        offset: Offset(2, 2),
+                        offset: const Offset(2, 2),
                         spreadRadius: -1,
                       ),
                     ],
@@ -74,7 +74,7 @@ class _CartWidgetState extends State<CardFavorite>
                       Text(
                         widget.product.productName ?? '',
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87),
@@ -85,13 +85,13 @@ class _CartWidgetState extends State<CardFavorite>
                       Text(
                         widget.product.categoryName.toString(),
                         style:
-                            TextStyle(fontSize: 13, color: Color(0xff8F8F8F)),
+                            const TextStyle(fontSize: 13, color: Color(0xff8F8F8F)),
                       ),
                       Row(
                         children: [
                           Text(
                             "${widget.product.qty}",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.redAccent,
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500),
@@ -124,14 +124,14 @@ class _CartWidgetState extends State<CardFavorite>
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 0,
-                        offset: Offset(2, 2),
+                        offset: const Offset(2, 2),
                         blurRadius: 2,
                       ),
                     ],
                   ),
                   width: 45,
                   height: 45,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Image.asset(
                     'images/cart.png',
                     width: 13,

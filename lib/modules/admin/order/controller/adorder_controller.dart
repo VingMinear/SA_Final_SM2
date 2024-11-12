@@ -54,7 +54,7 @@ class AdminOrderModel {
     }
     switch (status) {
       case OrderStatus.pending:
-        colorStatus = Color.fromARGB(255, 242, 216, 87);
+        colorStatus = const Color.fromARGB(255, 242, 216, 87);
 
         break;
       case OrderStatus.processing:
@@ -81,7 +81,7 @@ class AdminOrderModel {
     if (json['products'] != null) {
       products = <ProductModel>[];
       json['products'].forEach((v) {
-        products.add(new ProductModel.fromJson(v));
+        products.add(ProductModel.fromJson(v));
       });
     }
     if (json['latlng'] != null) {
@@ -200,7 +200,7 @@ class AdOrderController extends GetxController {
           .onNetworkRequesting(url: 'order', methode: METHODE.post, body: {
         'status_id': statusOrder,
       });
-      log("Result ${res}");
+      log("Result $res");
       listOrders.clear();
       if (res['code'] == 200) {
         for (var item in res['data']) {

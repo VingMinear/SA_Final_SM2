@@ -43,9 +43,9 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
 
   onSet() {
     listCategory.clear();
-    GlobalClass().homeCategries.forEach((e) {
+    for (var e in GlobalClass().homeCategries) {
       listCategory.add(e);
-    });
+    }
   }
 
   var con = Get.put(CategoryController());
@@ -64,7 +64,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
               onSet();
             },
             child: ListView.separated(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               itemCount: listCategory.length,
               itemBuilder: (context, index) {
                 var cate = listCategory[index];
@@ -72,7 +72,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                   position: index,
                   child: FadeInAnimation(
                     child: SlideAnimation(
-                      duration: Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 400),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 10)
@@ -95,18 +95,18 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                             const SizedBox(width: 10),
                             Text(
                               cate.title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 17,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             FloatingActionButton.small(
                               heroTag: null,
                               onPressed: () {
                                 onEdit(context, cate, isEdit: true);
                               },
-                              child: Icon(Iconsax.edit_2),
                               elevation: 2,
+                              child: const Icon(Iconsax.edit_2),
                             ),
                             FloatingActionButton.small(
                               onPressed: () {
@@ -131,8 +131,8 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                               },
                               heroTag: null,
                               backgroundColor: Colors.red.shade600,
-                              child: Icon(Iconsax.trash),
                               elevation: 2,
+                              child: const Icon(Iconsax.trash),
                             )
                           ],
                         ),
@@ -147,15 +147,15 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
         ),
       ),
       floatingActionButton: ZoomIn(
-        duration: Duration(milliseconds: 180),
+        duration: const Duration(milliseconds: 180),
         child: FloatingActionButton(
           heroTag: 'cute',
           onPressed: () {
             onEdit(context, Category.instance(), isEdit: false);
           },
           tooltip: "Edit",
-          child: Icon(Iconsax.edit_2),
           elevation: 2,
+          child: const Icon(Iconsax.edit_2),
         ),
       ),
     );
@@ -166,7 +166,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
     var img = cate.icon;
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
       ),
       isScrollControlled: true,
@@ -189,7 +189,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                         onPressed: () {
                           Get.back();
                         },
-                        icon: Icon(Icons.clear_rounded, size: 30),
+                        icon: const Icon(Icons.clear_rounded, size: 30),
                       ),
                       title: "${isEdit ? 'Edit' : "Add"} Category",
                     ),
@@ -243,7 +243,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                           color: Colors.grey.shade100,
                                         ),
                                         alignment: Alignment.center,
-                                        child: Icon(CupertinoIcons.add),
+                                        child: const Icon(CupertinoIcons.add),
                                       ),
                                     )
                                   : GestureDetector(
@@ -292,12 +292,12 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                                 rebuild(() {});
                                               },
                                               child: Container(
-                                                padding: EdgeInsets.all(5),
-                                                decoration: BoxDecoration(
+                                                padding: const EdgeInsets.all(5),
+                                                decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: Colors.red,
                                                 ),
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.clear,
                                                   color: Colors.white,
                                                   size: 12,
@@ -341,7 +341,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                 child: FadeInLeft(
                                   from: 5,
                                   child: CustomButton(
-                                    borderSide: BorderSide(color: mainColor),
+                                    borderSide: const BorderSide(color: mainColor),
                                     title: 'Save',
                                     onPress: () async {
                                       var txt = txtCategory.text.trim();

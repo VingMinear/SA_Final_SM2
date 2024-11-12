@@ -97,7 +97,7 @@ class AppText {
   static TextStyle get txt15 => _txtTheme.bodyMedium!; // font size (15),
   static TextStyle get txt14 => _txtTheme.bodySmall!; // font size (14),
   static TextStyle get txt13 =>
-      TextStyle(fontSize: 14, color: Colors.black); // font size (13),
+      const TextStyle(fontSize: 14, color: Colors.black); // font size (13),
   static TextStyle get txt16 => _txtTheme.bodyLarge!; // font size (16),
   static TextStyle get txt12 => _txtTheme.displaySmall!; // font size (12),
   static TextStyle get txt21 => _txtTheme.displayLarge!; // font size (21),

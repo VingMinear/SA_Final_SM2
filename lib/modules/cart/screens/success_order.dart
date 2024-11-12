@@ -66,7 +66,7 @@ class SuccessScreenOrder extends StatelessWidget {
                         textValue: 'Home',
                         onPressed: () {
                           Get.put(BottomController()).selectedIndex(0);
-                          Get.offAll(BottomNavigationBarScreen());
+                          Get.offAll(const BottomNavigationBarScreen());
                         },
                       ),
                     ),
@@ -77,7 +77,7 @@ class SuccessScreenOrder extends StatelessWidget {
                         buttonColor: Colors.green,
                         textValue: 'My Orders',
                         onPressed: () {
-                          Get.off(OrderScreen());
+                          Get.off(const OrderScreen());
                         },
                       ),
                     ),

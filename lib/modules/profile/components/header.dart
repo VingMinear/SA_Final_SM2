@@ -44,7 +44,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
               ),
             ),
-            VerticalDivider(
+            const VerticalDivider(
               color: Colors.grey,
               width: 30,
             ),
@@ -55,7 +55,7 @@ class ProfileHeader extends StatelessWidget {
                 children: [
                   Text(
                     user.value.name ?? 'Unkown',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
                       color: Colors.black,
@@ -64,12 +64,12 @@ class ProfileHeader extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     user.value.email ?? "SS5@example.com",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                   ),
                   const SizedBox(height: 5),
                   Text(
                     user.value.phone ?? "",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                    style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                   ),
                 ],
               ),
@@ -90,7 +90,7 @@ class ProfileHeader extends StatelessWidget {
 Widget cupertinoModal(BuildContext context) {
   var user = GlobalClass().user.value;
   return Padding(
-    padding: EdgeInsets.symmetric(vertical: 20),
+    padding: const EdgeInsets.symmetric(vertical: 20),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,

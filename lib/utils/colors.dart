@@ -18,7 +18,7 @@ class AppColor {
     return Get.context!.theme;
   }
 
-  static Color primaryColor = Color.fromARGB(255, 85, 181, 223);
+  static Color primaryColor = const Color.fromARGB(255, 85, 181, 223);
   static Color get whiteColor {
     return Colors.white;
   }

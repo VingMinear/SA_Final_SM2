@@ -18,9 +18,9 @@ class Authentication {
     Get.snackbar(
       backgroundColor: Colors.red,
       colorText: Colors.white,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       "Ops Sorry",
-      "${message}",
+      message,
     );
   }
 
@@ -28,7 +28,7 @@ class Authentication {
     Get.snackbar(
       backgroundColor: Colors.green,
       colorText: Colors.white,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       title,
       message,
     );
@@ -132,7 +132,7 @@ class Authentication {
 
   Future<bool> updateEmial({required String email}) async {
     try {
-      var firebaseuser = await _firebaseAuth.currentUser;
+      var firebaseuser = _firebaseAuth.currentUser;
       await firebaseuser!.updateEmail(email);
       return true;
     } on FirebaseAuthException catch (error) {

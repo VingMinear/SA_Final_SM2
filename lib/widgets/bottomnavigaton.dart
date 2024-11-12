@@ -9,8 +9,8 @@ class BotttomNavation extends StatefulWidget {
   BotttomNavation(
     thispage,
     selected, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   // ignore: no_logic_in_create_state
@@ -35,7 +35,7 @@ class _BotttomNavationState extends State<BotttomNavation> {
   int _selectedIndex = 0;
   // ignore: unused_field
   static TextStyle optionStyle =
-      TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
+      const TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;

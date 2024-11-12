@@ -10,7 +10,7 @@ import '../modules/home_screen/controller/product_controller.dart';
 import '../modules/home_screen/screens/list_product.dart';
 
 class MyBanner extends StatefulWidget {
-  const MyBanner({Key? key}) : super(key: key);
+  const MyBanner({super.key});
 
   @override
   State<MyBanner> createState() => _MyBannerState();
@@ -60,7 +60,7 @@ class _MyBannerState extends State<MyBanner> {
                                   top: 15, left: 10, right: 10),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomCenter,
                                   colors: [
@@ -85,7 +85,7 @@ class _MyBannerState extends State<MyBanner> {
                                         children: [
                                           Text(
                                             banner[index].text,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 25,
                                               fontWeight: FontWeight.w600,
                                               color: Colors.white,
@@ -136,7 +136,7 @@ class _MyBannerState extends State<MyBanner> {
                                               child: Center(
                                                   child: Text(
                                                 banner[index].btn,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.white),
                                               )),
                                             ),
@@ -195,7 +195,7 @@ class _MyBannerState extends State<MyBanner> {
                                   top: 15, left: 10, right: 10),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomCenter,
                                   colors: [
@@ -222,7 +222,7 @@ class _MyBannerState extends State<MyBanner> {
                                             banner[index].text,
                                             maxLines: 2,
                                             overflow: TextOverflow.fade,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 25,
                                               fontWeight: FontWeight.w600,
                                               color: Colors.white,
@@ -261,7 +261,7 @@ class _MyBannerState extends State<MyBanner> {
                                             child: Center(
                                                 child: Text(
                                               banner[index].btn,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white),
                                             )),
                                           ),
@@ -298,7 +298,7 @@ class _MyBannerState extends State<MyBanner> {
             effect: WormEffect(
               dotWidth: 13,
               dotHeight: 13,
-              activeDotColor: Color(0xffFBE9D7),
+              activeDotColor: const Color(0xffFBE9D7),
               dotColor: Colors.grey.shade200,
             ),
           )

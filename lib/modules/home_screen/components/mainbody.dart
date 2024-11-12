@@ -23,8 +23,8 @@ import 'hearder.dart';
 
 class MainBody extends StatefulWidget {
   const MainBody({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<MainBody> createState() => _MainBodyState();
@@ -62,19 +62,19 @@ class _MainBodyState extends State<MainBody> {
           children: [
             Expanded(
               child: ListView(
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.only(top: 0),
                 children: [
                   FadeInDown(
                     from: 5,
                     child: Column(
                       children: [
-                        HomeAppBar(),
+                        const HomeAppBar(),
                         GestureDetector(
                           onTap: () {
                             debugPrint('Tap');
                             Get.to(
-                              Searching(),
+                              const Searching(),
                             );
                           },
                           child: const SearchBarWidget(),
@@ -93,7 +93,7 @@ class _MainBodyState extends State<MainBody> {
 
                         const MyBanner(),
 
-                        Text(
+                        const Text(
                           "New Collections",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -109,25 +109,25 @@ class _MainBodyState extends State<MainBody> {
                               ? ListView.separated(
                                   itemCount: 4,
                                   scrollDirection: Axis.horizontal,
-                                  physics: AlwaysScrollableScrollPhysics(),
+                                  physics: const AlwaysScrollableScrollPhysics(),
                                   itemBuilder: (context, index) => SizedBox(
                                     width: context.width * 0.85,
-                                    child: ListShimmer(),
+                                    child: const ListShimmer(),
                                   ),
                                   separatorBuilder: (context, index) =>
                                       const SizedBox(width: 10),
                                 )
                               : conPro.listCollectionProduct.isEmpty
-                                  ? Center(child: Text("No Product found"))
+                                  ? const Center(child: Text("No Product found"))
                                   : FadeInDown(
                                       from: 5,
-                                      duration: Duration(milliseconds: 400),
+                                      duration: const Duration(milliseconds: 400),
                                       child: ListView.separated(
                                         itemCount:
                                             conPro.listCollectionProduct.length,
                                         scrollDirection: Axis.horizontal,
                                         physics:
-                                            AlwaysScrollableScrollPhysics(),
+                                            const AlwaysScrollableScrollPhysics(),
                                         itemBuilder: (context, index) =>
                                             AnimationConfiguration
                                                 .staggeredList(
@@ -146,7 +146,7 @@ class _MainBodyState extends State<MainBody> {
                                     ),
                         ),
                         const SizedBox(height: 20),
-                        Text(
+                        const Text(
                           "Categories",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _MainBodyState extends State<MainBody> {
 
                         // menu icons
                         GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: categoryCon.homeCategries.length,
                           scrollDirection: Axis.vertical,
@@ -204,7 +204,7 @@ class _MainBodyState extends State<MainBody> {
                                       child: FadeIn(
                                         child: FadeInDown(
                                           from: 5,
-                                          duration: Duration(milliseconds: 200),
+                                          duration: const Duration(milliseconds: 200),
                                           delay: Duration(
                                               milliseconds: 100 * index),
                                           child: GestureDetector(
@@ -246,7 +246,7 @@ class _MainBodyState extends State<MainBody> {
                                                 FittedBox(
                                                   child: Text(
                                                     data.title,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 16,
@@ -274,21 +274,21 @@ class _MainBodyState extends State<MainBody> {
                         conPro.loadingNewCollection.value
                             ? buildShimmerGrid()
                             : conPro.listRecommentProduct.isEmpty
-                                ? Center(child: Text("No Product found"))
+                                ? const Center(child: Text("No Product found"))
                                 : AnimationLimiter(
                                     child: GridView.builder(
                                       itemCount:
                                           conPro.listRecommentProduct.length,
                                       gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                         mainAxisSpacing: 15,
                                         crossAxisSpacing: 15,
                                         mainAxisExtent: 245,
                                       ),
                                       shrinkWrap: true,
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      physics: NeverScrollableScrollPhysics(),
+                                      padding: const EdgeInsets.only(bottom: 20),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index) {
                                         var data =
                                             conPro.listRecommentProduct[index];
@@ -329,17 +329,17 @@ class _MainBodyState extends State<MainBody> {
   GridView buildShimmerGrid() {
     return GridView.builder(
       itemCount: 6,
-      padding: EdgeInsets.only(bottom: 20),
-      physics: NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.only(bottom: 20),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 15,
         crossAxisSpacing: 15,
         mainAxisExtent: 245,
       ),
       itemBuilder: (context, index) {
-        return GridShimmer(
+        return const GridShimmer(
           isAdmin: false,
         );
       },

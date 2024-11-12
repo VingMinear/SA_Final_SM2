@@ -32,7 +32,7 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 130,
               child: Stack(
@@ -58,7 +58,7 @@ class ProductCard extends StatelessWidget {
                         Center(
                           child: Text(
                             data.categoryName ?? '',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: mainColor,
                               fontSize: 14,
                             ),
@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
                           data.productName ?? '',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF212121),
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -80,7 +80,7 @@ class ProductCard extends StatelessWidget {
                           children: [
                             Text(
                               '\$${data.priceOut?.toStringAsFixed(2)}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Color(0xFF212121),
@@ -92,7 +92,7 @@ class ProductCard extends StatelessWidget {
                           children: [
                             Text(
                               "${data.qty}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.redAccent,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
@@ -118,13 +118,13 @@ class ProductCard extends StatelessWidget {
                           );
                         },
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(15),
                             ),
                             color: mainColor,
                           ),
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Image.asset(
                             'images/cart.png',
                             width: 22,
@@ -150,14 +150,14 @@ class ProductCard extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           '$star',
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF616161),
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
         ),
         const SizedBox(width: 8),
-        Text(
+        const Text(
           '|',
           style: TextStyle(
               fontWeight: FontWeight.w500,
@@ -173,7 +173,7 @@ class ProductCard extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           child: Text(
             '$sold sold',
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xFF35383F),
               fontWeight: FontWeight.w500,
               fontSize: 10,

@@ -59,13 +59,13 @@ class GridShimmer extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {},
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(15),
                             ),
                             color: Colors.white,
                           ),
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           child: Image.asset(
                             'images/cart.png',
                             width: 22,

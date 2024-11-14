@@ -91,9 +91,8 @@ class ProductController extends GetxController {
     try {
       await _apiBaseHelper
           .onNetworkRequesting(
-        url: 'products',
-        body: {"customer_id": GlobalClass().userId},
-        methode: METHODE.post,
+        url: 'products?customer_id=${GlobalClass().userId}',
+        methode: METHODE.get,
       )
           .then((value) {
         if (value['code'] == 200) {
@@ -133,9 +132,8 @@ class ProductController extends GetxController {
     try {
       await _apiBaseHelper
           .onNetworkRequesting(
-        url: 'products',
-        body: {"customer_id": GlobalClass().userId},
-        methode: METHODE.post,
+        url: 'products?customer_id=${GlobalClass().userId}',
+        methode: METHODE.get,
       )
           .then((value) {
         if (value['code'] == 200) {
@@ -146,7 +144,7 @@ class ProductController extends GetxController {
         listPro.shuffle();
 
         for (int i = 0; i < listPro.length; i++) {
-          if (listPro[i].sold > 10) {
+          if (listPro[i].sold > 1) {
             listRecommentProduct.add(listPro[i]);
           }
           if (listPro.length >= 5) {
@@ -167,7 +165,7 @@ class ProductController extends GetxController {
       });
     } catch (error) {
       debugPrint(
-        'CatchError when getAllProducts this is error : >> $error',
+        'CatchError when get recomment product this is error : >> $error',
       );
     }
     loadingNewCollection(false);
@@ -183,11 +181,11 @@ class ProductController extends GetxController {
           url: 'products-detail',
           methode: METHODE.post,
           body: {
-            "p_id": pId,
+            "product_id": pId,
             "customer_id": GlobalClass().userId,
           }).then((value) {
         if (value['code'] == 200) {
-          result = ProductModel.fromJson(value['data'][0]);
+          result = ProductModel.fromJson(value['data']);
         }
       });
     } catch (error) {
@@ -208,7 +206,7 @@ class ProductController extends GetxController {
           url: 'products-category',
           methode: METHODE.post,
           body: {
-            "categoryId": categoryId,
+            "category_id": categoryId,
             "customer_id": GlobalClass().userId,
           }).then((value) {
         if (value['code'] == 200) {
@@ -232,12 +230,10 @@ class ProductController extends GetxController {
     try {
       loading(true);
       await _apiBaseHelper.onNetworkRequesting(
-          url: 'products-search',
-          methode: METHODE.post,
-          body: {
-            "productName": productName,
-            "customer_id": GlobalClass().userId,
-          }).then((value) {
+          url:
+              'products?customer_id=${GlobalClass().userId}&&search=${productName.trim()}',
+          methode: METHODE.get,
+          body: {}).then((value) {
         if (value['code'] == 200) {
           for (var item in value['data']) {
             result.add(ProductModel.fromJson(item));

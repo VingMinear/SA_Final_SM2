@@ -60,7 +60,8 @@ class AddressScreen extends StatelessWidget {
                                       foregroundColor: Colors.white,
                                       icon: Icons.delete,
                                       label: 'Delete',
-                                      borderRadius: const BorderRadius.horizontal(
+                                      borderRadius:
+                                          const BorderRadius.horizontal(
                                         left: Radius.circular(10),
                                       ),
                                     ),
@@ -75,7 +76,8 @@ class AddressScreen extends StatelessWidget {
                                       foregroundColor: Colors.white,
                                       icon: Icons.edit,
                                       label: 'Edit',
-                                      borderRadius: const BorderRadius.horizontal(
+                                      borderRadius:
+                                          const BorderRadius.horizontal(
                                         right: Radius.circular(10),
                                       ),
                                     ),
@@ -85,6 +87,11 @@ class AddressScreen extends StatelessWidget {
                                   onTap: () {
                                     if (selectAddress) {
                                       Navigator.pop(context, item);
+                                    } else {
+                                      Get.to(AddAddressScreen(
+                                        addNew: false,
+                                        address: item,
+                                      ));
                                     }
                                   },
                                   child: buildAddress(item),

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:homework3/model/user_model.dart';
-import 'package:homework3/modules/auth/controller/cloud_fire_store.dart';
 
 class AdminUserCon extends GetxController {
   var listUser = <UserModel>[].obs;
@@ -10,7 +9,7 @@ class AdminUserCon extends GetxController {
   var loading = false.obs;
   Future<void> removeUser({required String docId}) async {
     try {
-      await CloudFireStore().removeUser(docId: docId);
+      // await CloudFireStore().removeUser(docId: docId);
     } catch (error) {
       log(
         'CatchError while removeUser ( error message ) : >> $error',
@@ -39,11 +38,7 @@ class AdminUserCon extends GetxController {
   }
 
   Future<void> enableUser({required String docId, required bool enable}) async {
-    try {
-      await CloudFireStore().updateUser(docId: docId, data: {
-        "active": enable,
-      });
-    } catch (error) {
+    try {} catch (error) {
       log(
         'CatchError while enableUser ( error message ) : >> $error',
       );
@@ -56,10 +51,7 @@ class AdminUserCon extends GetxController {
       const Duration(milliseconds: 300),
       () {},
     );
-    await CloudFireStore.getAllUser().then((value) {
-      listUser.value = value.toList();
-      backuplist = value.toList();
-    });
+
     loading(false);
     return listUser;
   }

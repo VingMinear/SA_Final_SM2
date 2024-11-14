@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:homework3/main.dart';
 import 'package:homework3/modules/auth/screens/splash_screen.dart';
 import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/utils/style.dart';
 import 'package:intl/intl.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../constants/color.dart';
 import '../model/user_model.dart';
-import '../modules/auth/controller/authentication.dart';
 import '../widgets/CustomButton.dart';
 import '../widgets/primary_button.dart';
 import 'LocalStorage.dart';
@@ -79,33 +79,13 @@ extension Format on double {
 }
 
 loadingDialog() async {
-  await Get.dialog(
-    AlertDialog(
-      surfaceTintColor: Colors.transparent,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 110),
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      content: Container(
-        height: 50,
-        width: 10,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: shadow,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const FittedBox(
-          child: CircularProgressIndicator(
-            strokeWidth: 2.5,
-            color: mainColor,
-          ),
-        ),
-      ),
-    ),
-    barrierColor: Colors.transparent,
-    barrierDismissible: false,
-  );
+  print('loading');
+  Get.context!.loaderOverlay.show();
+}
+
+popLoadingDialog() {
+  print('off');
+  Get.context!.loaderOverlay.hide();
 }
 
 double appHeight({double percent = 1}) {
@@ -190,9 +170,9 @@ alertDialogConfirmation({
 }
 
 void logOut() async {
-  LocalStorage.removeData(key: "user_id");
+  LocalStorage.removeData(key: "token");
   GlobalClass().user.value = UserModel();
-  await Authentication().signOut();
+
   Get.offAll(const SplashScreen());
 }
 
@@ -315,7 +295,8 @@ customalertDialogConfirmation({
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular((14)),
           ),
-          insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24.0),
+          insetPadding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 24.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,

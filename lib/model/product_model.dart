@@ -30,12 +30,12 @@ class ProductModel {
     categoryId = json['category_id'];
     categoryName = json['category_name'];
     if (json['image'] != null && json['image'].isNotEmpty) {
-      image = "${baseurl}image/${json['image']}";
+      image = "$baseurl${json['image']}";
     }
 
     priceIn = (json['price_in'] ?? 0).toDouble();
     priceOut = (json['price_out'] ?? 0).toDouble();
-    isFav = json['isFav'] == 0 ? false : true;
+    isFav = (json['isfav'] ?? 0) == 0 ? false : true;
     sold = json['sold'] ?? 0;
     if (json['amount'] != null) {
       amount = json['amount'].toDouble();

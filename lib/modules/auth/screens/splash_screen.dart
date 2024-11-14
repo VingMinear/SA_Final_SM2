@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:homework3/model/category.dart';
+import 'package:homework3/modules/auth/controller/auth_controller.dart';
 import 'package:homework3/utils/LocalStorage.dart';
 import 'package:lottie/lottie.dart';
 
@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   checkUser() async {
     var token = LocalStorage.getStringData(key: 'token');
     if (token.isNotEmpty) {
-      Get.put(CategoryController()).fetchCategory();
+      await AuthController().getUser();
       scale = 0;
       setState(() {});
       Future.delayed(

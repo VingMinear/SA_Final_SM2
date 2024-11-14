@@ -55,7 +55,6 @@ class CartController extends GetxController {
           };
         }).toList(),
       }).then((value) {
-        Get.back();
         if (value['code'] == 200) {
           shoppingCart.clear();
           update();

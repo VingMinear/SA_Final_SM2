@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/auth/controller/auth_controller.dart';
 import 'package:homework3/modules/auth/screens/ForgetPassord.dart';
@@ -13,7 +12,6 @@ import '../../../utils/Utilty.dart';
 import '../../../utils/logo.dart';
 import '../../../widgets/input_field.dart';
 import '../../../widgets/primary_button.dart';
-import '../controller/authentication_google_account.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -173,62 +171,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         name: email,
                         pwd: pwd,
                       );
-                      Get.back();
+                      popLoadingDialog();
                     }
                   },
                 ),
               ),
               const SizedBox(
                 height: 14,
-              ),
-              const Center(
-                child: Text(
-                  'OR',
-                ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              FadeInDown(
-                from: 10,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    loadingDialog();
-                    await GoogleSignInProvider().googleLogin();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 3,
-                    surfaceTintColor: Colors.transparent,
-                    backgroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 25,
-                        height: 25,
-                        child: Image.asset(
-                          'images/google.png',
-                        ),
-                      ),
-                      const SizedBox(width: 15),
-                      Text(
-                        'Sign in with Google',
-                        style: GoogleFonts.roboto(
-                          color: Colors.black87,
-                          fontSize: 17,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

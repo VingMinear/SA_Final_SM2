@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
+import 'package:homework3/model/category.dart';
 import 'package:homework3/modules/admin/dashboard/controller/dashboard_con.dart';
 import 'package:homework3/modules/admin/dashboard/screen/editing_category_screen.dart';
 import 'package:homework3/modules/admin/product/screen/adproduct_screen.dart';
@@ -41,6 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       fetchData();
+      Get.put(CategoryController()).fetchCategory();
     });
     super.initState();
   }

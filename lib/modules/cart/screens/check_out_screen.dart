@@ -66,12 +66,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             onPressed: () async {
               if (address.value.id != null) {
                 loadingDialog();
-                cartController.checkOutOrder(
+                await cartController.checkOutOrder(
                   pymType: currentOpt.value,
                   addressId: address.value.id ?? 0,
                   total: cartController.cartTotal,
                   products: cartController.shoppingCart,
                 );
+                popLoadingDialog();
               }
             },
           ),
@@ -140,12 +141,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         ),
                   const SizedBox(width: 15),
                   Expanded(
-                    child: Container(
-                      child: Text(
-                        address.value.id == null ? 'Address' : txtAddress,
-                        style: const TextStyle(
-                          fontSize: 16,
-                        ),
+                    child: Text(
+                      address.value.id == null ? 'Address' : txtAddress,
+                      style: const TextStyle(
+                        fontSize: 16,
                       ),
                     ),
                   ),

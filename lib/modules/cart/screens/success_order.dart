@@ -77,7 +77,9 @@ class SuccessScreenOrder extends StatelessWidget {
                         buttonColor: Colors.green,
                         textValue: 'My Orders',
                         onPressed: () {
-                          Get.off(const OrderScreen());
+                          Get.off(const OrderScreen(
+                            isFromSuccess: true,
+                          ));
                         },
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:get/get_connect.dart';
 import 'package:homework3/utils/SingleTon.dart';
@@ -33,29 +34,28 @@ class ApiBaseHelper extends GetConnect {
     if (GlobalClass().user.value.isAdmin && isEndpoinAdmin) {
       addOn = 'admin-';
     }
-    if (baseurl.startsWith("http://10.0.2.2:8080/")) {
-      await Future.delayed(
-        const Duration(milliseconds: 300),
-        () {},
-      );
-    }
-    final fullUrl = baseurl + 'api/' + "$addOn$url";
-
+    final fullUrl = "${baseurl}api/$addOn$url";
+    log(fullUrl);
     try {
       switch (methode) {
         case METHODE.get:
           final response = await get(
             fullUrl,
+            headers: header,
           );
           return _returnResponse(response);
         case METHODE.post:
-          if (body != null) {
-            final response = await post(fullUrl, json.encode(body));
-            return _returnResponse(response);
-          }
-          return Future.error(
-              const ErrorModel(bodyString: 'Body must be included'));
+          final response =
+              await post(fullUrl, headers: header, json.encode(body));
+          return _returnResponse(response);
+
+        case METHODE.update:
+          final response =
+              await put(fullUrl, headers: header, json.encode(body));
+          return _returnResponse(response);
+
         default:
+          // TODO: Handle this case.
           break;
       }
     } catch (e) {
@@ -74,7 +74,7 @@ class ApiBaseHelper extends GetConnect {
     var request = http.MultipartRequest('POST', Uri.parse(url));
     request.files.add(
       await http.MultipartFile.fromPath(
-        'image',
+        'photo',
         dataImage,
       ),
     );
@@ -90,35 +90,7 @@ class ApiBaseHelper extends GetConnect {
   }
 
   dynamic _returnResponse(Response response) {
-    switch (response.statusCode) {
-      case 200:
-        var responseJson = json.decode(response.bodyString!);
-        return responseJson;
-      case 201:
-        var responseJson = json.decode(response.bodyString!);
-        return responseJson;
-      case 202:
-        var responseJson = json.decode(response.bodyString!);
-        return responseJson;
-      case 404:
-        return Future.error(ErrorModel(
-            statusCode: response.statusCode,
-            bodyString: json.decode(response.bodyString!)));
-      case 400:
-        return Future.error(ErrorModel(
-            statusCode: response.statusCode,
-            bodyString: json.decode(response.bodyString!)));
-      case 401:
-      case 403:
-        return Future.error(ErrorModel(
-            statusCode: response.statusCode,
-            bodyString: json.decode(response.bodyString!)));
-      case 500:
-        break;
-      default:
-        return Future.error(ErrorModel(
-            statusCode: response.statusCode,
-            bodyString: json.decode(response.bodyString!)));
-    }
+    log("status code ${response.statusCode}");
+    return json.decode(response.bodyString ?? '');
   }
 }

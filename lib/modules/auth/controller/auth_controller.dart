@@ -1,32 +1,75 @@
-import 'dart:developer';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:homework3/modules/admin/dashboard/screen/dashboard_screen.dart';
 import 'package:homework3/modules/auth/screens/success_screen.dart';
 import 'package:homework3/modules/bottom_navigation_bar/bottom_navigatin_bar.dart';
+import 'package:homework3/utils/LocalStorage.dart';
+import 'package:homework3/utils/ReponseApiHandler.dart';
 import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/utils/Utilty.dart';
 
 import '../../../model/user_model.dart';
-import '../../../utils/LocalStorage.dart';
+import '../../../utils/api_base_helper.dart';
 import '../../../utils/image_picker.dart';
-import '../../admin/dashboard/screen/dashboard_screen.dart';
-import 'authentication.dart';
-import 'cloud_fire_store.dart';
 
 class AuthController extends GetxController {
+  final _apiBaseHelper = ApiBaseHelper();
   Future<void> login({
     required String name,
     required String pwd,
   }) async {
-    bool login = await Authentication().signInWithEmailAndPassword(
-      email: name,
-      password: pwd,
-    );
+    try {
+      var data = await _apiBaseHelper.onNetworkRequesting(
+        url: 'login',
+        methode: METHODE.post,
+        body: {
+          "email": name.trim(),
+          "password": pwd.trim(),
+        },
+      );
+      var res = checkResponse(data);
+      if (res.isSuccess) {
+        GlobalClass().user.value = UserModel.fromJson(res.data);
+        await LocalStorage.storeData(
+          key: 'token',
+          value: data['token'] ?? '',
+        );
+        print('store token ${LocalStorage.getStringData(key: 'token')}');
+        if (GlobalClass().user.value.isAdmin) {
+          await FirebaseMessaging.instance.subscribeToTopic('order');
+          Get.offAll(() => const DashboardScreen());
+        } else {
+          Get.offAll(const BottomNavigationBarScreen());
+        }
+      }
+    } catch (e) {
+      debugPrint("error login $e");
+    }
+  }
 
-    await loginSuccess(login);
+  Future<void> getUser() async {
+    try {
+      print(LocalStorage.getStringData(key: 'token'));
+      var data = await _apiBaseHelper.onNetworkRequesting(
+        url: 'user',
+        methode: METHODE.get,
+        header: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ${LocalStorage.getStringData(key: 'token')}',
+        },
+      );
+      var res = checkResponse(data);
+      if (res.isSuccess) {
+        GlobalClass().user.value = UserModel.fromJson(res.data);
+      } else if (res.statusCode == 404) {
+        LocalStorage.removeData(key: 'token');
+      }
+    } catch (error) {
+      debugPrint(
+        'CatchError while getUser ( error message ) : >> $error',
+      );
+    }
   }
 
   var txtEmail = TextEditingController();
@@ -57,109 +100,40 @@ class AuthController extends GetxController {
           isTypeAdmin = true;
         }
       }
-      await Authentication()
-          .createUserWithEmailAndPassword(
-        userName: userName,
-        email: email,
-        userTypeAdmin: isTypeAdmin,
-        password: password,
-        ph: ph,
-      )
-          .then((value) {
-        if (value) {
-          Get.back();
-          Future.delayed(
-            const Duration(milliseconds: 250),
-            () {
-              if (isAdmin) {
-                showTaost("Account has been created successfully 🎉✅");
-                Get.back();
-              } else {
-                Get.off(const SuccessScreen(
-                  desc:
-                      '''Your account has been successfully created, and we're excited to have you join our platform.\nThank you for choosing us, and we look forward to serving you!''',
-                ));
-              }
-            },
-          );
-        }
-      });
+      var res = await _apiBaseHelper.onNetworkRequesting(
+        url: 'create',
+        methode: METHODE.post,
+        body: {
+          "name": userName.trim(),
+          "email": email.trim(),
+          "phone": ph.trim(),
+          "is_admin": false,
+          "active": true,
+          "password": password.trim(),
+        },
+      );
+
+      if (res['code'] == 200) {
+        Future.delayed(
+          const Duration(milliseconds: 250),
+          () {
+            if (isAdmin) {
+              showTaost("Account has been created successfully 🎉✅");
+            } else {
+              Get.off(const SuccessScreen(
+                desc:
+                    '''Your account has been successfully created, and we're excited to have you join our platform.\nThank you for choosing us, and we look forward to serving you!''',
+              ));
+            }
+          },
+        );
+      } else {
+        alertDialog(desc: res['message'] ?? 'Create account faild!');
+      }
     } catch (error) {
       debugPrint(
         'CatchError when register this is error : >> $error',
       );
     }
-  }
-
-  Future<void> loginSuccess(bool login, {GoogleSignInAccount? account}) async {
-    if (login) {
-      var userId = Authentication().currentUser?.uid;
-
-      Authentication obj = Authentication();
-      var uid = obj.currentUser?.uid;
-      log("Uid $uid");
-      await CloudFireStore.getUser(docId: obj.currentUser!.uid)
-          .then((value) async {
-        if (value.id == null) {
-          log("User $account");
-          if (account != null) {
-            await CloudFireStore().addUserInformation(
-              docId: account.id,
-              userInfo: UserModel(
-                email: account.email,
-                id: account.id,
-                name: account.displayName,
-                photo: account.photoUrl!,
-                provide: 'google',
-              ),
-            );
-            await CloudFireStore.getUser(docId: account.id).then((value) {
-              GlobalClass().user(value);
-            });
-          }
-        } else {
-          GlobalClass().user.value = value;
-        }
-      });
-      if (GlobalClass().user.value.isActive) {
-        LocalStorage.storeData(
-          key: "user_id",
-          value: userId,
-        );
-
-        updatePhoto();
-        onClear();
-        Get.back();
-        Future.delayed(
-          const Duration(milliseconds: 250),
-          () async {
-            if (GlobalClass().user.value.isAdmin) {
-              await FirebaseMessaging.instance.subscribeToTopic('order');
-              Get.offAll(() => const DashboardScreen());
-            } else {
-              Get.offAll(const BottomNavigationBarScreen());
-            }
-          },
-        );
-      } else {
-        Get.back();
-        await alertDialog(
-          desc: "Your account has been lock! Please contact to admin",
-        );
-      }
-    } else {
-      debugPrint("cannot login");
-    }
-  }
-
-  static UserModel getUserInforAfterLogin() {
-    Authentication obj = Authentication();
-    return UserModel(
-      email: obj.currentUser?.email ?? "",
-      id: obj.currentUser?.uid ?? "",
-      name: obj.currentUser?.displayName ?? "",
-      photo: obj.currentUser?.photoURL ?? "",
-      provide: "- -",
-    );
   }
 }

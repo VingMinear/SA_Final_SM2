@@ -15,9 +15,9 @@ class Category {
   Category.fromJson(Map json) {
     title = json["category_name"] ?? '';
     id = json['id'] ?? '';
-    if (json['image'].isNotEmpty && json['image'] != null) {
+    if (json['image'] != null && json['image'].isNotEmpty) {
       icon = ImageModel(
-          image: RxString("${baseurl}image/${json['image']}"),
+          image: RxString("$baseurl${json['image']}"),
           name: 'icon',
           photoViewBy: PhotoViewBy.network);
     }

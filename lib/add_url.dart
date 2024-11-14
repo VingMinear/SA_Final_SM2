@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework3/widgets/CustomButton.dart';
 import 'package:lit_starfield/lit_starfield.dart';
-import 'modules/auth/controller/cloud_fire_store.dart';
 
 class AddServerUrl extends StatefulWidget {
   const AddServerUrl({super.key});
@@ -60,9 +59,6 @@ class _AddServerUrlState extends State<AddServerUrl> {
                         onPress: () {
                           if (txtCon.value.text.isNotEmpty) {
                             FocusManager.instance.primaryFocus!.unfocus();
-                            CloudFireStore.addServerURl(
-                              url: txtCon.value.text.trim(),
-                            );
                           } else {
                             SnackBar snackBar = SnackBar(
                               content: const Text(

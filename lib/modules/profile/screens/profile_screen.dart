@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework3/modules/auth/screens/ForgetPassord.dart';
+import 'package:homework3/modules/auth/screens/change_pwd.dart';
 import 'package:homework3/modules/profile/screens/edit_profile_screen.dart';
 import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
@@ -149,9 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Get.to(AddressScreen());
             break;
           case 3:
-            Get.to(const ForgetPasswordScreen(
-              isChanged: true,
-            ));
+            Get.to(const ChangePwdScreen());
             break;
           case 4:
             Get.to(const ContactUsScreen());

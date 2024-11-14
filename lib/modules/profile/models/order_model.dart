@@ -34,7 +34,8 @@ class OrderModel {
         color = Colors.deepOrange.shade300;
         break;
       case 'Delivering':
-        color = Colors.blue.shade200; {}
+        color = Colors.blue.shade200;
+        {}
         break;
       case 'Completed':
         color = Colors.green.shade300;

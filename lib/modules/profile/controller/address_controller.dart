@@ -57,7 +57,7 @@ class AddressController extends GetxController {
       ).then((value) async {
         if (value['code'] == 200) {
           await getAddress();
-          Get.back();
+          showTaost('Address has been added');
           Get.back();
         }
       });
@@ -86,8 +86,8 @@ class AddressController extends GetxController {
         },
       ).then((value) async {
         if (value['code'] == 200) {
+          showTaost('Address has been updated');
           await getAddress();
-          Get.back();
           Get.back();
         }
       });
@@ -109,7 +109,7 @@ class AddressController extends GetxController {
           body: {"id": id}).then((value) async {
         if (value['code'] == 200) {
           await getAddress();
-          Get.back();
+          showTaost('Address has been deleted');
         }
       });
     } catch (error) {

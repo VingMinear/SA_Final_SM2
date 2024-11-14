@@ -1,15 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homework3/modules/profile/controller/profile_controller.dart';
 
-import '../../../model/user_model.dart';
 import '../../../utils/SingleTon.dart';
 import '../../../utils/Utilty.dart';
 import '../../../widgets/CustomCachedNetworkImage.dart';
 import '../../../widgets/custom_appbar.dart';
 import '../../../widgets/primary_button.dart';
-import '../../auth/controller/authentication.dart';
-import '../../auth/controller/cloud_fire_store.dart';
 import '../components/header.dart';
 import 'add_address_screen.dart';
 
@@ -25,6 +23,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   var emailCon = TextEditingController();
   var phCon = TextEditingController();
   var user = GlobalClass().user;
+  var con = Get.put(ProfileController());
   @override
   void initState() {
     nameCon.text = user.value.name ?? '';
@@ -53,7 +52,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
-                          builder: cupertinoModal,
+                          builder: (context) {
+                            return cupertinoModal(context, setState: () {
+                              setState(() {});
+                            });
+                          },
                         );
                       },
                       child: Container(
@@ -116,7 +119,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 var phone = phCon.text.trim();
                 var email = emailCon.text.trim();
                 if (name.isNotEmpty && phone.isNotEmpty && email.isNotEmpty) {
-                  await updateProfile(email, name, phone);
+                  if (email.isEmail) {
+                    loadingDialog();
+                    await con.updateProfile(
+                      name: name,
+                      email: email,
+                      phone: phone,
+                    );
+                    popLoadingDialog();
+                  } else {
+                    alertDialog(desc: 'Invalid email please try again');
+                  }
                 } else {
                   alertDialog(desc: 'Please input all fields !');
                 }
@@ -126,33 +139,5 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> updateProfile(String email, String name, String phone) async {
-    loadingDialog();
-    UserModel userInfo = GlobalClass().user.value;
-    await Authentication().updateEmial(email: email).then((v) async {
-      if (v) {
-        await CloudFireStore()
-            .addUserInformation(
-          docId: userInfo.id!,
-          userInfo: UserModel(
-            email: email,
-            id: userInfo.id,
-            name: name,
-            phone: phone,
-            photo: userInfo.photo,
-            provide: 'email',
-          ),
-        )
-            .then((value) async {
-          await CloudFireStore.getUser(docId: userInfo.id!).then((value) {
-            GlobalClass().user(value);
-          });
-          Get.back();
-          Get.back();
-        });
-      }
-    });
   }
 }

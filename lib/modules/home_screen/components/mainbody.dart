@@ -109,7 +109,8 @@ class _MainBodyState extends State<MainBody> {
                               ? ListView.separated(
                                   itemCount: 4,
                                   scrollDirection: Axis.horizontal,
-                                  physics: const AlwaysScrollableScrollPhysics(),
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(),
                                   itemBuilder: (context, index) => SizedBox(
                                     width: context.width * 0.85,
                                     child: const ListShimmer(),
@@ -118,10 +119,12 @@ class _MainBodyState extends State<MainBody> {
                                       const SizedBox(width: 10),
                                 )
                               : conPro.listCollectionProduct.isEmpty
-                                  ? const Center(child: Text("No Product found"))
+                                  ? const Center(
+                                      child: Text("No Product found"))
                                   : FadeInDown(
                                       from: 5,
-                                      duration: const Duration(milliseconds: 400),
+                                      duration:
+                                          const Duration(milliseconds: 400),
                                       child: ListView.separated(
                                         itemCount:
                                             conPro.listCollectionProduct.length,
@@ -204,7 +207,8 @@ class _MainBodyState extends State<MainBody> {
                                       child: FadeIn(
                                         child: FadeInDown(
                                           from: 5,
-                                          duration: const Duration(milliseconds: 200),
+                                          duration:
+                                              const Duration(milliseconds: 200),
                                           delay: Duration(
                                               milliseconds: 100 * index),
                                           child: GestureDetector(
@@ -287,8 +291,10 @@ class _MainBodyState extends State<MainBody> {
                                         mainAxisExtent: 245,
                                       ),
                                       shrinkWrap: true,
-                                      padding: const EdgeInsets.only(bottom: 20),
-                                      physics: const NeverScrollableScrollPhysics(),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 20),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index) {
                                         var data =
                                             conPro.listRecommentProduct[index];

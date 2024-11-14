@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
+import 'package:homework3/modules/bottom_navigation_bar/bottom_controller.dart';
+import 'package:homework3/modules/bottom_navigation_bar/bottom_navigatin_bar.dart';
 import 'package:homework3/modules/profile/controller/order_controller.dart';
 import 'package:homework3/modules/profile/models/order_model.dart';
 import 'package:homework3/widgets/CustomCachedNetworkImage.dart';
@@ -10,8 +12,8 @@ import 'package:homework3/widgets/custom_appbar.dart';
 import '../../../widgets/EmptyProduct.dart';
 
 class OrderScreen extends StatelessWidget {
-  const OrderScreen({super.key});
-
+  const OrderScreen({super.key, this.isFromSuccess = false});
+  final bool isFromSuccess;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,6 +24,21 @@ class OrderScreen extends StatelessWidget {
         appBar: customAppBar(
           title: 'Order',
           showNotification: false,
+          useLeadingCustom: false,
+          leading: IconButton(
+            onPressed: () {
+              if (isFromSuccess) {
+                Get.put(BottomController()).selectedIndex(0);
+                Get.offAll(const BottomNavigationBarScreen());
+              } else {
+                Get.back();
+              }
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_rounded,
+            ),
+            color: Colors.black,
+          ),
         ),
         body: con.loading.value
             ? const Center(

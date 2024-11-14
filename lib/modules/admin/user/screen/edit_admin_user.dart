@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/model/user_model.dart';
 import 'package:homework3/modules/admin/product/screen/adproduct_detail.dart';
-import 'package:homework3/modules/auth/controller/cloud_fire_store.dart';
 import 'package:homework3/modules/profile/screens/add_address_screen.dart';
 import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/utils/image_picker.dart';
@@ -149,8 +148,9 @@ class _EditAdminUserState extends State<EditAdminUser> {
                                           fontSize: 15,
                                           fontWeight: FontWeight.w400,
                                         ),
-                                        contentPadding: const EdgeInsets.symmetric(
-                                            vertical: 12, horizontal: 12),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 12, horizontal: 12),
                                         isDense: true,
                                         border: OutlineInputBorder(
                                           borderSide: BorderSide.none,
@@ -236,26 +236,26 @@ class _EditAdminUserState extends State<EditAdminUser> {
     loadingDialog();
     var userInfo = user.value;
 
-    await CloudFireStore()
-        .addUserInformation(
-      docId: userInfo.id!,
-      userInfo: UserModel(
-        email: email,
-        id: userInfo.id,
-        name: name,
-        phone: phone,
-        isAdmin: (userType.toLowerCase() == "admin"),
-        photo: userInfo.photo,
-        provide: 'email',
-      ),
-    )
-        .then((value) async {
-      await CloudFireStore.getUser(docId: userInfo.id!).then((value) {
-        user(value);
-      });
-      showTaost("Account has been updated successfully 🎉✅");
-      Get.back();
-      Get.back();
-    });
+    // await CloudFireStore()
+    //     .addUserInformation(
+    //   docId: userInfo.id!,
+    //   userInfo: UserModel(
+    //     email: email,
+    //     id: userInfo.id,
+    //     name: name,
+    //     phone: phone,
+    //     isAdmin: (userType.toLowerCase() == "admin"),
+    //     photo: userInfo.photo,
+    //     provide: 'email',
+    //   ),
+    // )
+    //     .then((value) async {
+    //   await CloudFireStore.getUser(docId: userInfo.id!).then((value) {
+    //     user(value);
+    //   });
+    //   showTaost("Account has been updated successfully 🎉✅");
+    //   Get.back();
+    //   Get.back();
+    // });
   }
 }

@@ -153,8 +153,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             fontSize: 15,
                                             fontWeight: FontWeight.w400,
                                           ),
-                                          contentPadding: const EdgeInsets.symmetric(
-                                              vertical: 12, horizontal: 12),
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 12, horizontal: 12),
                                           isDense: true,
                                           border: OutlineInputBorder(
                                             borderSide: BorderSide.none,
@@ -335,6 +336,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           desc:
                               'Your password and confirm password is not match!',
                         );
+                      } else if (!emailController.text.trim().isEmail) {
+                        alertDialog(desc: "Your email is invalid!");
                       } else {
                         loadingDialog();
                         authCon.register(
@@ -345,6 +348,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           password: pwdCon.text,
                           ph: phCon.text,
                         );
+                        popLoadingDialog();
                       }
                     }
                   },

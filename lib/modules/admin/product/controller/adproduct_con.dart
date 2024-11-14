@@ -77,12 +77,15 @@ class AdminProductController extends GetxController {
   Future<String> uploadPhoto(String image) async {
     var url = '';
     try {
-      await _apiBaseHelper.postAsyncImage(
-          header: {},
-          url: baseurl + 'api/' + "upload",
-          dataImage: image).then((value) {
+      await _apiBaseHelper
+          .postAsyncImage(
+        header: null,
+        url: "$baseurl/api/upload-photo",
+        dataImage: image,
+      )
+          .then((value) {
         if (value['code'] == 200) {
-          url = value['profile'];
+          url = value['file_path'];
         }
       });
     } catch (error) {

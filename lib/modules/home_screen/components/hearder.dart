@@ -16,20 +16,16 @@ class HomeAppBar extends StatelessWidget {
             .copyWith(right: 0, top: 10),
         child: Row(
           children: [
-            InkWell(
-              borderRadius: const BorderRadius.all(Radius.circular(24)),
-              onTap: () {},
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey.shade200,
-                ),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: CustomCachedNetworkImage(
-                  imgUrl: user.value.photo,
-                ),
+            Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey.shade200,
+              ),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: CustomCachedNetworkImage(
+                imgUrl: user.value.photo,
               ),
             ),
             Expanded(

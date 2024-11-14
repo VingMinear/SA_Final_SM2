@@ -1,10 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:homework3/modules/auth/controller/auth_controller.dart';
-import 'package:homework3/modules/auth/controller/authentication.dart';
-import 'package:homework3/modules/auth/screens/success_screen.dart';
 import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
 
@@ -97,23 +94,23 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   onPressed: () async {
                     dismissKeyboard(context);
                     if (emailController.text.isNotEmpty) {
-                      loadingDialog();
-                      await Authentication()
-                          .resetPassword(
-                        email: emailController.text.trim(),
-                      )
-                          .then((value) {
-                        if (value) {
-                          Get.back();
-                          Get.to(
-                            SuccessScreen(
-                              desc:
-                                  'We had already sent you a link for reset your password.\nPlease check in your mail',
-                              titleBtn: widget.isChanged ? 'Back' : null,
-                            ),
-                          );
-                        }
-                      });
+                      // loadingDialog();
+                      // await Authentication()
+                      //     .resetPassword(
+                      //   email: emailController.text.trim(),
+                      // )
+                      //     .then((value) {
+                      //   if (value) {
+                      //     Get.back();
+                      //     Get.to(
+                      //       SuccessScreen(
+                      //         desc:
+                      //             'We had already sent you a link for reset your password.\nPlease check in your mail',
+                      //         titleBtn: widget.isChanged ? 'Back' : null,
+                      //       ),
+                      //     );
+                      //   }
+                      // });
                     } else {
                       alertDialog(desc: 'Please enter your email address');
                     }

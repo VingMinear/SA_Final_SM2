@@ -244,6 +244,8 @@ Widget buildField({
   String hintText = '',
   int? delay,
   bool readOnly = false,
+  bool obSecure = false,
+  Widget? suffixIcon,
   bool required = true,
 }) {
   return Column(
@@ -268,8 +270,10 @@ Widget buildField({
         child: InputField(
           animate: false,
           readOnly: readOnly,
+          obscureText: obSecure,
           keyboardType: keyboardType,
           hintText: hintText,
+          suffixIcon: suffixIcon,
           controller: controller,
         ),
       ),

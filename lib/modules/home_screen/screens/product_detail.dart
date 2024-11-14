@@ -89,6 +89,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     .getProductDetail(pId: widget.product.productId!)
                     .then((value) {
                   productDetail = value;
+                  setState(() {});
                 });
               },
               child: SingleChildScrollView(
@@ -263,12 +264,14 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             Flexible(
               child: Text(
                 '${productDetail.productName}',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
               ),
             ),
             const SizedBox(width: 10),
             Text('\$${productDetail.priceOut}',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
           ],
         ),
       ),
@@ -294,7 +297,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               ),
               child: Text(
                 '${productDetail.sold} sold',
-                style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
               ),
             ),
             const SizedBox(width: 16),
@@ -368,8 +372,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         expandText: 'view more',
         collapseText: 'view less',
         maxLines: 5,
-        linkStyle:
-            const TextStyle(color: Color(0xFF424242), fontWeight: FontWeight.bold),
+        linkStyle: const TextStyle(
+            color: Color(0xFF424242), fontWeight: FontWeight.bold),
       ),
     ];
   }

@@ -7,7 +7,9 @@ import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/auth/screens/splash_screen.dart';
 import 'package:homework3/theme/Theme.dart';
 import 'package:homework3/utils/DismissKeyboard.dart';
+import 'package:homework3/utils/LocalNotificationHandler.dart';
 import 'package:homework3/utils/LocalStorage.dart';
+import 'package:homework3/utils/NotificationHandler.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import 'firebase_options.dart';
@@ -17,8 +19,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await LocalNotificationHandler.initLocalNotification();
-  // await NotificationHandler().initNotification();
+  await LocalNotificationHandler.initLocalNotification();
+  await NotificationHandler().initNotification();
   await LocalStorage.init();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

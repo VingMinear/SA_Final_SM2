@@ -57,6 +57,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: customAppBar(title: 'Product', backgroundColor: Colors.white),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -109,38 +110,6 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                               con.fetchProduct();
                             });
                           },
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          children: [
-                            divider,
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(15),
-                                ),
-                                gradient: gredient,
-                              ),
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 6),
-                              child: const Text(
-                                'Category',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            divider,
-                          ],
                         ),
                       ),
                       const SizedBox(
@@ -252,6 +221,7 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 height: 40,
                 child: TabBar(
+                  tabAlignment: TabAlignment.start,
                   isScrollable: true,
                   dividerColor: Colors.transparent,
                   indicatorSize: TabBarIndicatorSize.tab,

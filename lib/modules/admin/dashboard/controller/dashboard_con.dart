@@ -14,9 +14,12 @@ class DashboardCon extends GetxController {
     try {
       //
       var res = await _apiBaseHelper.onNetworkRequesting(
-          url: '/admin-home', methode: METHODE.post, body: {});
+        url: 'admin-home',
+        methode: METHODE.post,
+        body: {},
+      );
       if (res['code'] == 200) {
-        totalAmount.value = res['order_count'];
+        newOrder.value = res['order_count'];
       }
     } catch (error) {
       log(
@@ -26,19 +29,23 @@ class DashboardCon extends GetxController {
   }
 
   Future<void> fetchDataHome() async {
-    totalAmount.value = 0;
-    totalOrder.value = 0;
-    newOrder.value = 0;
+    var tmpTotalOrder = 0;
+
+    var tmpAmount = 0.0;
+    var tmpOrder = 0;
     var con = AdOrderController();
     getOrder(con, 0).then((value) {
-      newOrder += value.length;
+      tmpOrder += value.length;
+      newOrder(tmpOrder);
     });
     await fetchOrderTotal();
     getOrder(con, 3).then((value) {
       for (var item in value) {
-        totalAmount.value += item.totalAmount;
+        tmpAmount += item.totalAmount;
       }
-      totalOrder += value.length;
+      totalAmount(tmpAmount);
+      tmpTotalOrder += value.length;
+      totalOrder(tmpTotalOrder);
     });
   }
 

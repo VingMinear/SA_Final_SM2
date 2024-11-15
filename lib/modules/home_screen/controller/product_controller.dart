@@ -190,7 +190,7 @@ class ProductController extends GetxController {
       });
     } catch (error) {
       debugPrint(
-        'CatchError when getProductDetail this is error : >> $error',
+        'CatchError when this is error : >> $error',
       );
     }
     loading(false);

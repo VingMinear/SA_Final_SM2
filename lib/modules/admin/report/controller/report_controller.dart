@@ -32,7 +32,6 @@ class ReportController extends GetxController {
           .onNetworkRequesting(
         url: url,
         body: body,
-        isEndpoinAdmin: false,
         methode: METHODE.post,
       )
           .then((value) {
@@ -63,9 +62,8 @@ class ReportController extends GetxController {
   Future<void> fetchReportList() async {
     try {
       await _apiBaseHelper.onNetworkRequesting(
-        url: 'report',
+        url: 'admin-report',
         methode: METHODE.post,
-        isEndpoinAdmin: true,
         body: {},
       ).then((value) {
         listReport.clear();

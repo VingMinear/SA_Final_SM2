@@ -324,7 +324,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                               Get.back();
                             }
                           });
-                          Get.back();
+                          popLoadingDialog();
                         },
                         txtBtnCfn: 'Confirm',
                       );
@@ -394,7 +394,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                                   categoryId: cate?.id ?? 0,
                                 );
                               }
-                              Get.back();
+                              popLoadingDialog();
                               Get.back();
                             } else {
                               alertDialog(desc: 'Invalid Input Price');

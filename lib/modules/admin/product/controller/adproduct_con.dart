@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:homework3/model/category.dart';
 import 'package:homework3/model/imagemodel.dart';
+import 'package:homework3/utils/Utilty.dart';
 
 import '../../../../model/image_model.dart';
 import '../../../../model/product_model.dart';
@@ -32,7 +33,6 @@ class AdminProductController extends GetxController {
       await _apiBaseHelper.onNetworkRequesting(
           url: 'delete-products',
           methode: METHODE.post,
-          isEndpoinAdmin: false,
           body: {
             "product_id": pid,
           }).then((value) {
@@ -57,17 +57,16 @@ class AdminProductController extends GetxController {
       await _apiBaseHelper.onNetworkRequesting(
           url: 'products-detail',
           methode: METHODE.post,
-          isEndpoinAdmin: false,
           body: {
-            "p_id": pId,
+            "product_id": pId,
           }).then((value) {
         if (value['code'] == 200) {
-          result = ProductModel.fromJson(value['data'][0]);
+          result = ProductModel.fromJson(value['data']);
         }
       });
     } catch (error) {
       debugPrint(
-        'CatchError when getProductDetail this is error : >> $error',
+        'CatchError when this is error : >> $error',
       );
     }
     loading(false);
@@ -131,11 +130,12 @@ class AdminProductController extends GetxController {
                 "price_in": priceIn,
                 "price_out": priceout
               },
-        isEndpoinAdmin: false,
         methode: METHODE.post,
       )
           .then((value) {
-        if (value['code'] == 200) {}
+        if (value['code'] == 200) {
+          showTaost('Product has been added');
+        }
       });
     } catch (error) {
       log(
@@ -173,11 +173,12 @@ class AdminProductController extends GetxController {
           "price_in": priceIn,
           "price_out": priceout
         },
-        isEndpoinAdmin: false,
         methode: METHODE.post,
       )
           .then((value) {
-        if (value['code'] == 200) {}
+        if (value['code'] == 200) {
+          showTaost('Product has been updated');
+        }
       });
     } catch (error) {
       log(
@@ -192,16 +193,17 @@ class AdminProductController extends GetxController {
     try {
       var body = <String, dynamic>{"search": txtSearch.text.trim()};
       var url = 'products';
+      METHODE methode = METHODE.get;
       if (selectCate.id != 0) {
         url = "products-category";
-        body = {"categoryId": selectCate.id, "search": txtSearch.text.trim()};
+        body = {"category_id": selectCate.id, "search": txtSearch.text.trim()};
+        methode = METHODE.post;
       }
       await _apiBaseHelper
           .onNetworkRequesting(
         url: url,
         body: body,
-        isEndpoinAdmin: false,
-        methode: METHODE.post,
+        methode: methode,
       )
           .then((value) {
         if (value['code'] == 200) {

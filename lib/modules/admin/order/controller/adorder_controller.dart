@@ -30,9 +30,9 @@ class AdminOrderModel {
   AdminOrderModel.fromJson(Map<String, dynamic> json) {
     orderId = (json['ord_id'] ?? 0);
     String formattedNumber = orderId.toString().padLeft(5, '0');
-    print(formattedNumber);
+
     orderCode = "#$formattedNumber";
-    totalAmount = json['total_amount'] ?? '';
+    totalAmount = (json['total_amount'] ?? 0).toDouble();
 
     switch (json['status'] ?? '') {
       case 'Pending':
@@ -85,8 +85,23 @@ class AdminOrderModel {
       });
     }
     if (json['latlng'] != null) {
-      latLng = LatLng(json['latlng']['x'], json['latlng']['y']);
+      latLng = parseLatLng(json['latlng']);
     }
+  }
+  LatLng parseLatLng(String latlng) {
+    // Remove parentheses and split by comma
+    latlng = latlng.replaceAll('(', '').replaceAll(')', '');
+    var latLngParts = latlng.split(',');
+
+    if (latLngParts.length != 2) {
+      throw const FormatException("Invalid latlng format");
+    }
+
+    // Convert each part to a double
+    double latitude = double.parse(latLngParts[0]);
+    double longitude = double.parse(latLngParts[1]);
+
+    return LatLng(latitude, longitude);
   }
 }
 
@@ -153,10 +168,12 @@ class AdOrderController extends GetxController {
 
   Future<void> fetchOrderDetail(int orderId) async {
     try {
-      var res = await _apiBaseHelper
-          .onNetworkRequesting(url: 'order', methode: METHODE.post, body: {
-        'order_id': orderId,
-      });
+      var res = await _apiBaseHelper.onNetworkRequesting(
+          url: 'admin-order',
+          methode: METHODE.post,
+          body: {
+            'order_id': orderId,
+          });
       if (res['code'] == 200) {
         orderDetail.value = AdminOrderModel.fromJson(res['data'][0]);
       }
@@ -175,7 +192,7 @@ class AdOrderController extends GetxController {
     try {
       loading(true);
       var res = await _apiBaseHelper.onNetworkRequesting(
-          url: 'update-order',
+          url: 'admin-update-order',
           methode: METHODE.post,
           body: {
             'status_id': status.id,
@@ -196,10 +213,12 @@ class AdOrderController extends GetxController {
   Future<void> fetchOrder() async {
     loading(true);
     try {
-      var res = await _apiBaseHelper
-          .onNetworkRequesting(url: 'order', methode: METHODE.post, body: {
-        'status_id': statusOrder,
-      });
+      var res = await _apiBaseHelper.onNetworkRequesting(
+          url: 'admin-order',
+          methode: METHODE.post,
+          body: {
+            'status_id': statusOrder,
+          });
       log("Result $res");
       listOrders.clear();
       if (res['code'] == 200) {

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get_connect.dart';
-import 'package:homework3/utils/SingleTon.dart';
 import 'package:http/http.dart' as http;
 
 class ErrorModel {
@@ -28,14 +27,11 @@ class ApiBaseHelper extends GetConnect {
     Map<String, dynamic>? body,
     required METHODE? methode,
     bool isUploadImage = false,
-    bool isEndpoinAdmin = true,
   }) async {
     var addOn = '';
-    if (GlobalClass().user.value.isAdmin && isEndpoinAdmin) {
-      addOn = 'admin-';
-    }
     final fullUrl = "${baseurl}api/$addOn$url";
     log(fullUrl);
+    log('body ${jsonEncode(body)}');
     try {
       switch (methode) {
         case METHODE.get:

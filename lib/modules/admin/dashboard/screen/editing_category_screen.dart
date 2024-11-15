@@ -36,7 +36,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
       loadingDialog();
       await con.fetchCategory();
       onSet();
-      Get.back();
+      popLoadingDialog();
     });
     super.initState();
   }
@@ -125,7 +125,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                         onSet();
                                       }
                                     });
-                                    Get.back();
+                                    popLoadingDialog();
                                   },
                                 );
                               },
@@ -292,7 +292,8 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                                 rebuild(() {});
                                               },
                                               child: Container(
-                                                padding: const EdgeInsets.all(5),
+                                                padding:
+                                                    const EdgeInsets.all(5),
                                                 decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                   color: Colors.red,
@@ -341,7 +342,8 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                 child: FadeInLeft(
                                   from: 5,
                                   child: CustomButton(
-                                    borderSide: const BorderSide(color: mainColor),
+                                    borderSide:
+                                        const BorderSide(color: mainColor),
                                     title: 'Save',
                                     onPress: () async {
                                       var txt = txtCategory.text.trim();
@@ -369,7 +371,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                               : 'Category has been added',
                                         );
                                         onSet();
-                                        Get.back();
+                                        popLoadingDialog();
                                       } else {
                                         alertDialog(
                                           desc:

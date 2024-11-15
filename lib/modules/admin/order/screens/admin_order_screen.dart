@@ -51,6 +51,8 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                   isScrollable: true,
                   labelPadding: EdgeInsets.zero,
                   indicatorColor: Colors.transparent,
+                  dividerColor: Colors.transparent,
+                  tabAlignment: TabAlignment.start,
                   onTap: (index) async {
                     con.selected(index);
                     con.loading(true);

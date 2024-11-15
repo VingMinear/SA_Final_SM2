@@ -32,7 +32,6 @@ class CategoryController extends GetxController {
       await _apiBaseHelper.onNetworkRequesting(
         url: 'category',
         methode: METHODE.post,
-        isEndpoinAdmin: false,
         body: {},
       ).then((value) {
         if (value['code'] == 200) {
@@ -66,7 +65,6 @@ class CategoryController extends GetxController {
       await _apiBaseHelper.onNetworkRequesting(
         url: 'update-category',
         methode: METHODE.post,
-        isEndpoinAdmin: false,
         body: {'id': categoryId, "category_name": categoryName, "image": image},
       ).then((value) async {
         if (value['code'] == 200) {
@@ -88,7 +86,6 @@ class CategoryController extends GetxController {
       await _apiBaseHelper.onNetworkRequesting(
         url: 'delete-category',
         methode: METHODE.post,
-        isEndpoinAdmin: false,
         body: {
           'id': categoryId,
         },
@@ -121,7 +118,6 @@ class CategoryController extends GetxController {
       await _apiBaseHelper.onNetworkRequesting(
         url: 'add-category',
         methode: METHODE.post,
-        isEndpoinAdmin: false,
         body: {
           "category_name": title,
           "image": image,

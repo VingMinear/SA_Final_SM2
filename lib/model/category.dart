@@ -17,7 +17,7 @@ class Category {
     id = json['id'] ?? '';
     if (json['image'] != null && json['image'].isNotEmpty) {
       icon = ImageModel(
-          image: RxString("$baseurl${json['image']}"),
+          image: RxString("${json['image']}"),
           name: 'icon',
           photoViewBy: PhotoViewBy.network);
     }

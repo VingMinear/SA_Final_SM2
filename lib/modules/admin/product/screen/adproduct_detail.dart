@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/model/product_model.dart';
 import 'package:homework3/utils/Utilty.dart';
+import 'package:homework3/utils/api_base_helper.dart';
 import 'package:homework3/widgets/PhotoViewDetail.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
 import 'package:homework3/widgets/input_field.dart';
@@ -243,8 +244,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                                                         PhotoViewBy.network
                                                     ? DecorationImage(
                                                         image: NetworkImage(
-                                                          imageAsset.value.image
-                                                              .value,
+                                                          "$baseurl/${imageAsset.value.image.value}",
                                                         ),
                                                         fit: BoxFit.cover,
                                                       )

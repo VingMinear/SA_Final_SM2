@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,7 +7,9 @@ import 'package:homework3/constants/color.dart';
 import 'package:homework3/model/user_model.dart';
 import 'package:homework3/modules/admin/product/screen/adproduct_detail.dart';
 import 'package:homework3/modules/profile/screens/add_address_screen.dart';
+import 'package:homework3/utils/ReponseApiHandler.dart';
 import 'package:homework3/utils/Utilty.dart';
+import 'package:homework3/utils/api_base_helper.dart';
 import 'package:homework3/utils/image_picker.dart';
 import 'package:homework3/widgets/CustomCachedNetworkImage.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
@@ -220,7 +224,16 @@ class _EditAdminUserState extends State<EditAdminUser> {
                 var phone = phCon.text.trim();
                 var email = emailCon.text.trim();
                 if (name.isNotEmpty && phone.isNotEmpty && email.isNotEmpty) {
-                  await updateProfile(email, name, phone);
+                  if (email.isEmail) {
+                    await updateProfile(
+                      email,
+                      name,
+                      phone,
+                      useId: widget.user.id!,
+                    );
+                  } else {
+                    alertDialog(desc: 'Invalid Email please try again');
+                  }
                 } else {
                   alertDialog(desc: 'Please input all fields !');
                 }
@@ -232,30 +245,40 @@ class _EditAdminUserState extends State<EditAdminUser> {
     );
   }
 
-  Future<void> updateProfile(String email, String name, String phone) async {
-    loadingDialog();
-    var userInfo = user.value;
-
-    // await CloudFireStore()
-    //     .addUserInformation(
-    //   docId: userInfo.id!,
-    //   userInfo: UserModel(
-    //     email: email,
-    //     id: userInfo.id,
-    //     name: name,
-    //     phone: phone,
-    //     isAdmin: (userType.toLowerCase() == "admin"),
-    //     photo: userInfo.photo,
-    //     provide: 'email',
-    //   ),
-    // )
-    //     .then((value) async {
-    //   await CloudFireStore.getUser(docId: userInfo.id!).then((value) {
-    //     user(value);
-    //   });
-    //   showTaost("Account has been updated successfully 🎉✅");
-    //   Get.back();
-    //   Get.back();
-    // });
+  final _apiBaseHelper = ApiBaseHelper();
+  Future<void> updateProfile(
+    String email,
+    String name,
+    String phone, {
+    required String useId,
+  }) async {
+    try {
+      bool isTypeAdmin = false;
+      if (userType.isNotEmpty) {
+        if (userType.toLowerCase() == "admin") {
+          isTypeAdmin = true;
+        }
+      }
+      var res = await _apiBaseHelper.onNetworkRequesting(
+        url: 'users/$useId',
+        methode: METHODE.update,
+        body: {
+          "name": name.trim(),
+          "email": email.trim(),
+          "phone": phone.trim(),
+          "is_admin": isTypeAdmin,
+          "active": true,
+        },
+      );
+      var data = checkResponse(res);
+      if (data.isSuccess) {
+        Get.back();
+        showTaost('User has been updated');
+      }
+    } catch (error) {
+      log(
+        'CatchError while enableUser ( error message ) : >> $error',
+      );
+    }
   }
 }

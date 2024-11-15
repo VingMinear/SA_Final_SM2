@@ -278,10 +278,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.symmetric(
-                                            horizontal: paddingScreen())
-                                        .copyWith(
-                                            top: 10, bottom: paddingScreen()),
+                                    padding: const EdgeInsets.all(20),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

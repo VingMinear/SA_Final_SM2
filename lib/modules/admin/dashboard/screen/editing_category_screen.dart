@@ -13,6 +13,7 @@ import 'package:homework3/modules/admin/product/screen/adproduct_detail.dart';
 import 'package:homework3/modules/profile/screens/add_address_screen.dart';
 import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/utils/Utilty.dart';
+import 'package:homework3/utils/api_base_helper.dart';
 import 'package:homework3/utils/image_picker.dart';
 import 'package:homework3/widgets/CustomButton.dart';
 import 'package:homework3/widgets/CustomCachedNetworkImage.dart';
@@ -270,7 +271,7 @@ class _EditingCategoryScreenState extends State<EditingCategoryScreen> {
                                                       PhotoViewBy.network
                                                   ? DecorationImage(
                                                       image: NetworkImage(
-                                                        img.image.value,
+                                                        "$baseurl/${img.image.value}",
                                                       ),
                                                       fit: BoxFit.cover,
                                                     )

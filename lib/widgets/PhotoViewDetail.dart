@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
+import 'package:homework3/utils/api_base_helper.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../model/user_model.dart';
@@ -47,7 +48,7 @@ class PhotoViewDetail extends StatelessWidget {
                 maxScale: PhotoViewComputedScale.covered * 5,
                 imageProvider: imageUrl.isNotEmpty
                     ? CachedNetworkImageProvider(
-                        imageUrl,
+                        '$baseurl/$imageUrl',
                       )
                     : const CachedNetworkImageProvider(
                         defualtImage,

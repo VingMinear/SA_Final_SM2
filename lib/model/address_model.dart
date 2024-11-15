@@ -20,7 +20,7 @@ class AddressModel {
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    customerId = json['customer_id'];
+    customerId = (json['customer_id'] ?? 0).toString();
     receiverName = json['receiver_name'];
     phoneNumber = json['phone_number'];
     province = json['province'];

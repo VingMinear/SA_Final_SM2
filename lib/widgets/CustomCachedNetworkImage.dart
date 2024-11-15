@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:homework3/utils/api_base_helper.dart';
 
 import '../constants/Color.dart';
 
@@ -16,7 +17,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     log(imgUrl);
     return CachedNetworkImage(
-      imageUrl: imgUrl,
+      imageUrl: "$baseurl/$imgUrl",
       fit: BoxFit.cover,
       placeholder: (context, url) => const Center(
         child: CircularProgressIndicator(

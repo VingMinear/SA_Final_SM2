@@ -30,7 +30,7 @@ class ProductModel {
     categoryId = json['category_id'];
     categoryName = json['category_name'];
     if (json['image'] != null && json['image'].isNotEmpty) {
-      image = "$baseurl${json['image']}";
+      image = "${json['image']}";
     }
 
     priceIn = (json['price_in'] ?? 0).toDouble();

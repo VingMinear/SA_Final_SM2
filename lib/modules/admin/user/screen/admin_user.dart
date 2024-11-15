@@ -45,12 +45,13 @@ class _AdminUserState extends State<AdminUser> {
   }
 
   int touchedIndex = -1;
-  var user = GlobalClass().user.value;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: "Customer"),
+      appBar: customAppBar(title: "Users"),
       backgroundColor: AppColor.bgScaffold,
+      resizeToAvoidBottomInset: false,
       body: Obx(
         () => Column(
           children: [
@@ -272,7 +273,7 @@ class _AdminUserState extends State<AdminUser> {
                                                                         con.loading(
                                                                             true);
                                                                         await con.removeUser(
-                                                                            docId:
+                                                                            userID:
                                                                                 data.id ?? '');
                                                                         await fetchData();
                                                                       },
@@ -322,19 +323,11 @@ class _AdminUserState extends State<AdminUser> {
                                                             loadingDialog();
                                                             await con
                                                                 .enableUser(
-                                                              docId:
-                                                                  data.id ?? '',
+                                                              user: data,
                                                               enable:
                                                                   data.isActive,
                                                             );
-                                                            Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      200),
-                                                              () {
-                                                                Get.back();
-                                                              },
-                                                            );
+                                                            popLoadingDialog();
                                                           },
                                                         ),
                                                       ),

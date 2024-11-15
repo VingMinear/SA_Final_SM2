@@ -349,6 +349,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ph: phCon.text,
                         );
                         popLoadingDialog();
+                        if (widget.isAdmin) {
+                          Get.back();
+                        }
                       }
                     }
                   },

@@ -104,14 +104,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return 10;
     }
 
-    var gredient = const LinearGradient(
-      colors: [
-        Color(0xff4AB8F3),
-        Color(0xff9ADFF5),
-      ],
-      end: Alignment.topCenter,
-      begin: Alignment.bottomRight,
-    );
     var keyScaff = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: keyScaff,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/SingleTon.dart';
@@ -16,16 +17,19 @@ class HomeAppBar extends StatelessWidget {
             .copyWith(right: 0, top: 10),
         child: Row(
           children: [
-            Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey.shade200,
-              ),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: CustomCachedNetworkImage(
-                imgUrl: user.value.photo,
+            Visibility(
+              visible: GlobalClass().isUserLogin,
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.shade200,
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: CustomCachedNetworkImage(
+                  imgUrl: user.value.photo,
+                ),
               ),
             ),
             Expanded(
@@ -35,16 +39,20 @@ class HomeAppBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Welcome Back 👋',
-                      style: TextStyle(
+                    Text(
+                      GlobalClass().isUserLogin
+                          ? 'Welcome Back 👋'
+                          : 'Hey welcome 👋',
+                      style: const TextStyle(
                         color: Color(0xFF757575),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      user.value.name ?? 'Unknown',
+                      GlobalClass().isUserLogin
+                          ? (user.value.name ?? 'Unknown')
+                          : 'Looking for books?',
                       style: const TextStyle(
                         color: Color(0xFF212121),
                         fontWeight: FontWeight.bold,

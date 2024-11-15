@@ -5,9 +5,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/model/product_model.dart';
+import 'package:homework3/modules/auth/screens/login_screen.dart';
 import 'package:homework3/modules/cart/controllers/cart_controller.dart';
 import 'package:homework3/modules/cart/screens/check_out_screen.dart';
 import 'package:homework3/modules/home_screen/controller/product_controller.dart';
+import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/widgets/product_card.dart';
 
 import '../../../utils/Utilty.dart';
@@ -385,20 +387,24 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              var total = productDetail.priceOut! + cartCon.shippingCharge;
-              var subTotal = productDetail.priceOut!;
-              Get.to(
-                () => CheckOutScreen(
-                  listPro: [
-                    CartModel(
-                      product: productDetail,
-                      quantity: 1,
-                    )
-                  ],
-                  total: total.toString(),
-                  subTotal: subTotal.toString(),
-                ),
-              );
+              if (GlobalClass().isUserLogin) {
+                var total = productDetail.priceOut! + cartCon.shippingCharge;
+                var subTotal = productDetail.priceOut!;
+                Get.to(
+                  () => CheckOutScreen(
+                    listPro: [
+                      CartModel(
+                        product: productDetail,
+                        quantity: 1,
+                      )
+                    ],
+                    total: total.toString(),
+                    subTotal: subTotal.toString(),
+                  ),
+                );
+              } else {
+                Get.to(const LoginScreen());
+              }
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
@@ -422,9 +428,12 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              cartCon.addToCart(productDetail);
-
-              Get.back();
+              if (GlobalClass().isUserLogin) {
+                cartCon.addToCart(productDetail);
+                Get.back();
+              } else {
+                Get.to(const LoginScreen());
+              }
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),

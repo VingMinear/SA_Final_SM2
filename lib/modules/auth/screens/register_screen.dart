@@ -74,48 +74,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
               title: "Create Customer Account",
               backgroundColor: Colors.white,
             )
-          : null,
+          : AppBar(
+              backgroundColor: Colors.white,
+              title: Text(
+                'Register new account',
+                style: context.textTheme.headlineLarge,
+              ),
+            ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(24.0, 0.0, 24.0, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Visibility(
-                visible: !widget.isAdmin,
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Register new\naccount',
-                          style: context.textTheme.headlineLarge,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: 99,
-                          height: 4,
-                          child: Image.asset(
-                            'assets/images/accent.png',
-                            color: mainColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    const Logo(),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: widget.isAdmin,
-                child: const Center(child: Logo()),
-              ),
               const SizedBox(
-                height: 30,
+                height: 10,
+              ),
+              const Center(child: Logo()),
+              const SizedBox(
+                height: 20,
               ),
               Form(
                 child: Column(
@@ -376,6 +353,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       child: const Text(
                         'Login',
+                        style: TextStyle(color: mainColor),
                       ),
                     ),
                   ],

@@ -4,6 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/home_screen/components/card_favorite.dart';
+import 'package:homework3/modules/home_screen/components/card_product_horizontal.dart';
 import 'package:homework3/modules/home_screen/components/searching.dart';
 import 'package:homework3/modules/home_screen/screens/list_product.dart';
 import 'package:homework3/modules/home_screen/screens/product_detail.dart';
@@ -93,62 +94,6 @@ class _MainBodyState extends State<MainBody> {
 
                         const MyBanner(),
 
-                        const Text(
-                          "New Collections",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Container(
-                          height: 135,
-                          width: double.infinity,
-                          padding: EdgeInsets.zero,
-                          child: conPro.loadingNewCollection.value
-                              ? ListView.separated(
-                                  itemCount: 4,
-                                  scrollDirection: Axis.horizontal,
-                                  physics:
-                                      const AlwaysScrollableScrollPhysics(),
-                                  itemBuilder: (context, index) => SizedBox(
-                                    width: context.width * 0.85,
-                                    child: const ListShimmer(),
-                                  ),
-                                  separatorBuilder: (context, index) =>
-                                      const SizedBox(width: 10),
-                                )
-                              : conPro.listCollectionProduct.isEmpty
-                                  ? const Center(
-                                      child: Text("No Product found"))
-                                  : FadeInDown(
-                                      from: 5,
-                                      duration:
-                                          const Duration(milliseconds: 400),
-                                      child: ListView.separated(
-                                        itemCount:
-                                            conPro.listCollectionProduct.length,
-                                        scrollDirection: Axis.horizontal,
-                                        physics:
-                                            const AlwaysScrollableScrollPhysics(),
-                                        itemBuilder: (context, index) =>
-                                            AnimationConfiguration
-                                                .staggeredList(
-                                          position: index,
-                                          child: SizedBox(
-                                            width: context.width * 0.85,
-                                            child: CardListProduct(
-                                              product: conPro
-                                                  .listCollectionProduct[index],
-                                            ),
-                                          ),
-                                        ),
-                                        separatorBuilder: (context, index) =>
-                                            const SizedBox(width: 10),
-                                      ),
-                                    ),
-                        ),
-                        const SizedBox(height: 20),
                         const Text(
                           "Categories",
                           style: TextStyle(
@@ -272,7 +217,7 @@ class _MainBodyState extends State<MainBody> {
                         const MidleText(),
 
                         const SizedBox(
-                          height: 20,
+                          height: 15,
                         ),
 
                         conPro.loadingNewCollection.value
@@ -280,16 +225,9 @@ class _MainBodyState extends State<MainBody> {
                             : conPro.listRecommentProduct.isEmpty
                                 ? const Center(child: Text("No Product found"))
                                 : AnimationLimiter(
-                                    child: GridView.builder(
+                                    child: ListView.separated(
                                       itemCount:
                                           conPro.listRecommentProduct.length,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        mainAxisSpacing: 15,
-                                        crossAxisSpacing: 15,
-                                        mainAxisExtent: 245,
-                                      ),
                                       shrinkWrap: true,
                                       padding:
                                           const EdgeInsets.only(bottom: 20),
@@ -299,24 +237,17 @@ class _MainBodyState extends State<MainBody> {
                                         var data =
                                             conPro.listRecommentProduct[index];
                                         return AnimationConfiguration
-                                            .staggeredGrid(
-                                          columnCount: 2,
+                                            .staggeredList(
                                           position: index,
                                           duration:
                                               const Duration(milliseconds: 375),
                                           child: FadeInAnimation(
-                                            child: ProductCard(
-                                              data: data,
-                                              isAdmin: false,
-                                              ontap: (data) {
-                                                Get.to(
-                                                  ProductDetailsView(
-                                                      product: data),
-                                                );
-                                              },
-                                            ),
-                                          ),
+                                              child: CardProductHorizontal(
+                                                  product: data)),
                                         );
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return const SizedBox(height: 10);
                                       },
                                     ),
                                   ),

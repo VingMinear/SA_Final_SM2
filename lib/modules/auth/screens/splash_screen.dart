@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Future.delayed(
-        const Duration(milliseconds: 1500),
+        const Duration(milliseconds: 1800),
         () {
           checkUser();
         },
@@ -35,8 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   var scale = 1.0;
 
   checkUser() async {
-    var token = LocalStorage.getStringData(key: 'token');
-    if (token.isNotEmpty) {
+    if (GlobalClass().isUserLogin) {
       await AuthController().getUser();
       scale = 0;
       setState(() {});
@@ -53,12 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       scale = 0;
       setState(() {});
-      Future.delayed(
-        const Duration(milliseconds: 310),
-        () {
-          Get.offAll(const LoginScreen());
-        },
-      );
+      Get.offAll(const BottomNavigationBarScreen());
     }
   }
 
@@ -85,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Column(
                 children: [
                   Lottie.asset(
-                    'images/splash_screen.json',
+                    'assets/splashscreen.json',
                     width: 350,
                   ),
                   FadeIn(
@@ -96,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         child: AnimatedTextKit(
                           animatedTexts: [
                             ColorizeAnimatedText(
-                              'Fashion Store',
+                              'SS5 Reads',
                               textStyle: colorizeTextStyle,
                               colors: colorizeColors,
                             ),

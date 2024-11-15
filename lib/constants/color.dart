@@ -12,7 +12,7 @@ class HexColor extends Color {
   HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }
 
-const mainColor = Color.fromARGB(255, 85, 181, 223);
+const mainColor = Color(0xFFFEC800);
 Color primaryColor = const Color(0xFFF7F7F7);
 Color deepGrey = HexColor('#4E4E4E');
 Color scaffoldColor = const Color(0xFFF7F7F7);
@@ -32,6 +32,14 @@ var gradient = const LinearGradient(
     Color(0xffFBE9D7),
   ],
 );
+LinearGradient get gredient => LinearGradient(
+      colors: [
+        HexColor('FFD368'),
+        mainColor.withOpacity(0.8),
+      ],
+      end: Alignment.topCenter,
+      begin: Alignment.bottomRight,
+    );
 var gradientBtn = const LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomCenter,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/model/product_model.dart';
+import 'package:homework3/modules/auth/screens/login_screen.dart';
 import 'package:homework3/modules/home_screen/screens/product_detail.dart';
+import 'package:homework3/utils/SingleTon.dart';
 
 import '../../cart/controllers/cart_controller.dart';
 import '../../../widgets/CustomCachedNetworkImage.dart';
@@ -48,7 +50,6 @@ class _CartWidgetState extends State<CardListProduct>
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.white,
-                    border: Border.all(color: Colors.white, width: 1.5),
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 4,
@@ -58,9 +59,10 @@ class _CartWidgetState extends State<CardListProduct>
                       ),
                     ],
                   ),
-                  clipBehavior: Clip.hardEdge,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   child: CustomCachedNetworkImage(
-                      imgUrl: widget.product.image ?? ''),
+                    imgUrl: widget.product.image ?? '',
+                  ),
                 ),
                 const SizedBox(width: 15),
                 Expanded(
@@ -80,8 +82,8 @@ class _CartWidgetState extends State<CardListProduct>
                       ),
                       Text(
                         widget.product.categoryName.toString(),
-                        style:
-                            const TextStyle(fontSize: 13, color: Color(0xff8F8F8F)),
+                        style: const TextStyle(
+                            fontSize: 13, color: Color(0xff8F8F8F)),
                       ),
                       Text(
                         "\$ ${widget.product.priceOut}",
@@ -113,7 +115,11 @@ class _CartWidgetState extends State<CardListProduct>
               bottom: 0,
               child: GestureDetector(
                 onTap: () {
-                  Get.put(CartController()).addToCart(widget.product);
+                  if (GlobalClass().isUserLogin) {
+                    Get.put(CartController()).addToCart(widget.product);
+                  } else {
+                    Get.to(const LoginScreen());
+                  }
                 },
                 child: Container(
                   decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/home_screen/screens/list_product.dart';
 
 class MidleText extends StatelessWidget {
@@ -17,13 +18,13 @@ class MidleText extends StatelessWidget {
             Text(
               "I",
               style: TextStyle(
-                color: Colors.black,
+                color: mainColor,
                 fontWeight: FontWeight.w900,
                 fontSize: 20,
               ),
             ),
             Text(
-              " Popular Products",
+              " RECOMMEND",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,

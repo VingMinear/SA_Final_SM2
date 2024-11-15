@@ -110,7 +110,6 @@ class ProductController extends GetxController {
     return products;
   }
 
-  var listCollectionProduct = <ProductModel>[];
   var listRecommentProduct = <ProductModel>[];
   var loadingNewCollection = true.obs;
 
@@ -126,7 +125,6 @@ class ProductController extends GetxController {
 
   Future<void> getRecommentProducts() async {
     loadingNewCollection(true);
-    listCollectionProduct.clear();
     listRecommentProduct.clear();
     var listPro = <ProductModel>[];
     try {
@@ -142,21 +140,17 @@ class ProductController extends GetxController {
           }
         }
         listPro.shuffle();
-
-        for (int i = 0; i < listPro.length; i++) {
-          if (listPro[i].sold > 1) {
-            listRecommentProduct.add(listPro[i]);
-          }
-          if (listPro.length >= 5) {
-            if (i > listPro.length - 5) {
-              listCollectionProduct.add(listPro[i]);
-            }
-          } else if (listPro.length <= 5) {
-            if (i > listPro.length - 3) {
-              listCollectionProduct.add(listPro[i]);
+        var isHas = listPro.any((element) => element.sold > 2);
+        if (isHas) {
+          for (int i = 0; i < listPro.length; i++) {
+            if (listPro[i].sold > 2) {
+              listRecommentProduct.add(listPro[i]);
             }
           }
+        } else {
+          listRecommentProduct = listPro.toList();
         }
+
         productsRecommend = listPro;
         listSearch.clear();
         for (var element in listRecommentProduct) {

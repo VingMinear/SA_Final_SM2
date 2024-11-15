@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:722001884220:android:eec31c227469fbb480bf39",
         "android_client_info": {
-          "package_name": "com.example.homework3"
+          "package_name": "com.ss5.reads"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "722001884220-bgo8d7t5o3mh69h5s8jgna7aqj11prmv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.homework3",
+            "package_name": "com.ss5.reads",
             "certificate_hash": "5d19762b6d82f2e2b109d5df1ea46ae1f883dba8"
           }
         },
@@ -43,7 +43,7 @@
               "client_id": "722001884220-hde8u7qvm2gqinnpvf8g0g8623oe2ih5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.homework3"
+                "bundle_id": "com.ss5.reads"
               }
             }
           ]
@@ -87,7 +87,7 @@
               "client_id": "722001884220-hde8u7qvm2gqinnpvf8g0g8623oe2ih5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.homework3"
+                "bundle_id": "com.ss5.reads"
               }
             }
           ]
@@ -98,7 +98,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:722001884220:android:7d59d5e8dd5c62a280bf39",
         "android_client_info": {
-          "package_name": "com.example.homework3"
+          "package_name": "com.ss5.reads"
         }
       },
       "oauth_client": [
@@ -106,7 +106,7 @@
           "client_id": "722001884220-m4tmofqqqmphi4m24kpp31hi440a2cib.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.homework3",
+            "package_name": "com.ss5.reads",
             "certificate_hash": "b54e6fe25f6cbf8d9c1da3db1f681297d3d97db7"
           }
         },
@@ -131,7 +131,7 @@
               "client_id": "722001884220-hde8u7qvm2gqinnpvf8g0g8623oe2ih5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.homework3"
+                "bundle_id": "com.ss5.reads"
               }
             }
           ]

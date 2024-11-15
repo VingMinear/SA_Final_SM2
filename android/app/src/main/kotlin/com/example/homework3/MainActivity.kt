@@ -1,4 +1,4 @@
-package com.example.homework3
+package com.ss5.reads
 
 import io.flutter.embedding.android.FlutterActivity
 

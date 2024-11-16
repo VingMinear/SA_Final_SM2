@@ -11,7 +11,6 @@ class GridShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     const borderRadius = BorderRadius.all(Radius.circular(15));
     return Container(
-        child: Container(
       decoration: BoxDecoration(
         boxShadow: shadow,
         color: whiteColor,
@@ -81,6 +80,6 @@ class GridShimmer extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }

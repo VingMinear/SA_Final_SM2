@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/auth/controller/auth_controller.dart';
-import 'package:homework3/modules/auth/screens/ForgetPassord.dart';
 import 'package:homework3/modules/auth/screens/register_screen.dart';
 import 'package:homework3/modules/profile/screens/contact_us.dart';
 

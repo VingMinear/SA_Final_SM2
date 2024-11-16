@@ -145,7 +145,7 @@ class _OrderDetailState extends State<OrderDetail> {
           children: [
             Expanded(
               child: CustomButton(
-                backgroundColor: Colors.red,
+                backgroundColor: AppColor.errorColor,
                 onPress: () {
                   showDialogReject();
                 },
@@ -181,7 +181,7 @@ class _OrderDetailState extends State<OrderDetail> {
                   await con.fetchOrderDetail(widget.data.orderId);
                   loading(false);
                 },
-                backgroundColor: AppColor.successColor,
+                backgroundColor: Colors.green,
                 title: status == OrderStatus.processing
                     ? 'Mark as Shipped'
                     : 'Confirm',

@@ -15,16 +15,18 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(imgUrl);
+    log("$baseurl$imgUrl");
     return CachedNetworkImage(
-      imageUrl: "$baseurl/$imgUrl",
+      imageUrl: "$baseurl$imgUrl",
       fit: BoxFit.cover,
-      placeholder: (context, url) => const Center(
-        child: CircularProgressIndicator(
-          color: mainColor,
-          strokeWidth: 1,
-        ),
-      ),
+      placeholder: (context, url) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: mainColor,
+            strokeWidth: 1,
+          ),
+        );
+      },
       errorWidget: (context, url, error) => Image.asset(
         'images/empty.jpg',
         fit: BoxFit.cover,

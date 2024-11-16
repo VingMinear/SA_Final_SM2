@@ -1,15 +1,14 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:homework3/main.dart';
 import 'package:homework3/modules/auth/screens/splash_screen.dart';
-import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/utils/style.dart';
 import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../constants/color.dart';
-import '../model/user_model.dart';
 import '../widgets/CustomButton.dart';
 import '../widgets/primary_button.dart';
 import 'LocalStorage.dart';
@@ -171,9 +170,8 @@ alertDialogConfirmation({
 
 void logOut() async {
   LocalStorage.removeData(key: "token");
-  GlobalClass().user.value = UserModel();
-
-  Get.offAll(const SplashScreen());
+  FirebaseMessaging.instance.unsubscribeFromTopic('order');
+  Get.offAll(const SplashScreen(logout: true));
 }
 
 Future<void> alertDialog({

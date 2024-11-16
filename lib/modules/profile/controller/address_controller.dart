@@ -38,8 +38,8 @@ class AddressController extends GetxController {
   Future<void> addAddress(
     Address address,
   ) async {
+    loadingDialog();
     try {
-      loadingDialog();
       await _apiBaseHelper.onNetworkRequesting(
         url: 'add-address',
         methode: METHODE.post,
@@ -62,16 +62,16 @@ class AddressController extends GetxController {
         }
       });
     } catch (error) {
-      Get.back();
       debugPrint(
         'CatchError when addAddress this is error : >> $error',
       );
     }
+    popLoadingDialog();
   }
 
   Future<void> updAddress(Address address, int id) async {
+    loadingDialog();
     try {
-      loadingDialog();
       await _apiBaseHelper.onNetworkRequesting(
         url: 'upd-address',
         methode: METHODE.post,
@@ -86,8 +86,8 @@ class AddressController extends GetxController {
         },
       ).then((value) async {
         if (value['code'] == 200) {
-          showTaost('Address has been updated');
           await getAddress();
+          showTaost('Address has been updated');
           Get.back();
         }
       });
@@ -96,19 +96,21 @@ class AddressController extends GetxController {
         'CatchError when updAddress this is error : >> $error',
       );
     }
+    popLoadingDialog();
   }
 
   Future<void> deleleAddress(
     int id,
   ) async {
+    loadingDialog();
     try {
-      loadingDialog();
       await _apiBaseHelper.onNetworkRequesting(
           url: 'delete-address',
           methode: METHODE.post,
           body: {"id": id}).then((value) async {
         if (value['code'] == 200) {
           await getAddress();
+          Get.back();
           showTaost('Address has been deleted');
         }
       });
@@ -117,5 +119,6 @@ class AddressController extends GetxController {
         'CatchError when deleleAddress this is error : >> $error',
       );
     }
+    popLoadingDialog();
   }
 }

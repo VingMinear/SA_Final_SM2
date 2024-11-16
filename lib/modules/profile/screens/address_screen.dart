@@ -51,7 +51,6 @@ class AddressScreen extends StatelessWidget {
                                           desc:
                                               'You want to delete this address?',
                                           onConfirm: () async {
-                                            Get.back();
                                             await con.deleleAddress(item.id!);
                                           },
                                         );

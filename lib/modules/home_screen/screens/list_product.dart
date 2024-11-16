@@ -5,6 +5,7 @@ import 'package:homework3/model/product_model.dart';
 import 'package:homework3/modules/home_screen/controller/product_controller.dart';
 import 'package:homework3/widgets/EmptyProduct.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
+import 'package:homework3/widgets/list_card_shimmer.dart';
 
 import '../../bottom_navigation_bar/bottom_navigatin_bar.dart';
 import '../../cart/screens/cart_screen.dart';
@@ -86,8 +87,28 @@ class _ListProductsState extends State<ListProducts> {
                 spaceLeft: 15,
               ),
         body: loading.value
-            ? const Center(
-                child: CircularProgressIndicator(),
+            ? AnimationLimiter(
+                child: ListView.separated(
+                  itemCount: 4,
+                  padding: const EdgeInsets.only(
+                      top: 20, bottom: 20, left: 15, right: 15),
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemBuilder: (context, index) =>
+                      AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 600),
+                    child: const FadeInAnimation(
+                      duration: Duration(milliseconds: 200),
+                      child: SizedBox(
+                        child: ListShimmer(
+                          height: 80,
+                        ),
+                      ),
+                    ),
+                  ),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 20),
+                ),
               )
             : Column(
                 children: [
@@ -98,7 +119,8 @@ class _ListProductsState extends State<ListProducts> {
                           await getProducts();
                         },
                         child: listProducts.isEmpty
-                            ? const EmptyProduct(desc: 'No product found in stocks')
+                            ? const EmptyProduct(
+                                desc: 'No product found in stocks')
                             : ListView.separated(
                                 itemCount: listProducts.length,
                                 physics: const AlwaysScrollableScrollPhysics(),
@@ -111,8 +133,8 @@ class _ListProductsState extends State<ListProducts> {
                                   child: FadeInAnimation(
                                     duration: const Duration(milliseconds: 600),
                                     child: Container(
-                                      margin:
-                                          const EdgeInsets.symmetric(horizontal: 15),
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 15),
                                       child: CardListProduct(
                                         product: listProducts[index],
                                       ),

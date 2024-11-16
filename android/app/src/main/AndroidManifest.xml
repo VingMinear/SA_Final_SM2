@@ -20,7 +20,7 @@
             <data android:scheme="tel" />
         </intent>
     </queries>
-    <application android:usesCleartextTraffic="true" android:requestLegacyExternalStorage="true" android:label="Fashion Store" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:name="${applicationName}" android:icon="@mipmap/app_logo">
+    <application android:usesCleartextTraffic="true" android:requestLegacyExternalStorage="true" android:label="SS5 Reads" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:name="${applicationName}" android:icon="@mipmap/app_logo">
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA1wo0O1H2_6VmXc-hQ2e628TeB0qVlRuU"/>
         <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="high_importance_channel" android:resource="@drawable/app_logo" />
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">

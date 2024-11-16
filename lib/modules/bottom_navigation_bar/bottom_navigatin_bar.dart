@@ -27,12 +27,12 @@ class BottomNavigationBarScreen extends StatefulWidget {
 }
 
 class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
-  static List<Widget> get pages => <Widget>[
-        const HomePage(),
-        const FavoriteScreen(),
-        const CartScreen(),
-        GlobalClass().isUserLogin ? const ProfileScreen() : const LoginScreen(),
-      ];
+  static List<Widget> pages = <Widget>[
+    const HomePage(),
+    const FavoriteScreen(),
+    const CartScreen(),
+    const ProfileScreen(),
+  ];
   int selected = 0;
   var pageController = PageController();
   int currentIndex = 0;

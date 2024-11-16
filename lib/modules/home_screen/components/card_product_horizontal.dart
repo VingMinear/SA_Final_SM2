@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:homework3/model/product_model.dart';
 import 'package:homework3/modules/auth/screens/login_screen.dart';
@@ -9,6 +6,8 @@ import 'package:homework3/modules/cart/controllers/cart_controller.dart';
 import 'package:homework3/modules/home_screen/screens/product_detail.dart';
 import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/widgets/CustomCachedNetworkImage.dart';
+
+import '../../../constants/color.dart';
 
 class CardProductHorizontal extends StatelessWidget {
   const CardProductHorizontal({super.key, required this.product});
@@ -88,9 +87,7 @@ class CardProductHorizontal extends StatelessWidget {
                       ),
                       ElevatedButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color(0xffFED352),
-                          ),
+                          backgroundColor: MaterialStateProperty.all(mainColor),
                           elevation: MaterialStateProperty.all(0),
                           shape: MaterialStateProperty.all(
                             const RoundedRectangleBorder(

@@ -13,8 +13,11 @@ class EmptyProduct extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('images/out-of-stock.png', width: 100),
-            const SizedBox(height: 20),
+            Image.asset(
+              'images/out-of-stock.png',
+              width: 80,
+              height: 90,
+            ),
             Text(
               desc,
               style: const TextStyle(fontSize: 15),

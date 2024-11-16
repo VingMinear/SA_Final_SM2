@@ -8,7 +8,6 @@ import 'package:homework3/modules/admin/product/screen/adproduct_screen.dart';
 import 'package:homework3/modules/admin/user/controller/admin_user_con.dart';
 import 'package:homework3/modules/admin/user/screen/edit_admin_user.dart';
 import 'package:homework3/modules/auth/screens/register_screen.dart';
-import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/utils/style.dart';
 import 'package:homework3/widgets/CustomCachedNetworkImage.dart';

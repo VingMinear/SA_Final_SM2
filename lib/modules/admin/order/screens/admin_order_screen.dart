@@ -63,6 +63,8 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
                       await con.onRefresh();
                     });
                   },
+                  overlayColor:
+                      const MaterialStatePropertyAll(Colors.transparent),
                   tabs: List.generate(
                     con.lsTabOrder.length,
                     (index) {
@@ -144,7 +146,8 @@ class _AdminOrderScreenState extends State<AdminOrderScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.5, horizontal: 14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: isSelected ? mainColor : AppColor.greyBtn,
+        color: isSelected ? null : AppColor.greyBtn,
+        gradient: isSelected ? gradientBtn : null,
       ),
       alignment: Alignment.center,
       child: Builder(builder: (context) {

@@ -1,4 +1,3 @@
-import '../utils/api_base_helper.dart';
 
 class ProductModel {
   int? productId;

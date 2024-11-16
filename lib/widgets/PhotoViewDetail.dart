@@ -48,7 +48,7 @@ class PhotoViewDetail extends StatelessWidget {
                 maxScale: PhotoViewComputedScale.covered * 5,
                 imageProvider: imageUrl.isNotEmpty
                     ? CachedNetworkImageProvider(
-                        '$baseurl/$imageUrl',
+                        '$baseurl$imageUrl',
                       )
                     : const CachedNetworkImageProvider(
                         defualtImage,

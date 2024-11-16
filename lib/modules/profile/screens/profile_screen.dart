@@ -1,9 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:homework3/modules/auth/screens/ForgetPassord.dart';
 import 'package:homework3/modules/auth/screens/change_pwd.dart';
+import 'package:homework3/modules/auth/screens/login_screen.dart';
 import 'package:homework3/modules/profile/screens/edit_profile_screen.dart';
+import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
 
@@ -69,33 +70,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: customAppBar(
-        title: "Profile",
-        useLeadingCustom: false,
-        showNotification: false,
-      ),
-      body: ListView(
-        children: [
-          FadeIn(
-            child: const Padding(
-              padding:
-                  EdgeInsets.only(top: 30, left: 20, right: 10, bottom: 40),
-              child: ProfileHeader(),
+    return GlobalClass().isUserLogin
+        ? Scaffold(
+            appBar: customAppBar(
+              title: "Profile",
+              useLeadingCustom: false,
+              showNotification: false,
             ),
-          ),
-          _buildBody(),
-          const SizedBox(height: 40),
-          FadeIn(
-            child: const Center(
-                child: Text(
-              'App Version : 1.0 | Copyright © by SS5',
-              style: TextStyle(fontSize: 13),
-            )),
+            body: ListView(
+              children: [
+                FadeIn(
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                        top: 30, left: 20, right: 10, bottom: 40),
+                    child: ProfileHeader(),
+                  ),
+                ),
+                _buildBody(),
+                const SizedBox(height: 40),
+                FadeIn(
+                  child: const Center(
+                      child: Text(
+                    'App Version : 1.0 | Copyright © by SS5',
+                    style: TextStyle(fontSize: 13),
+                  )),
+                )
+              ],
+            ),
           )
-        ],
-      ),
-    );
+        : const LoginScreen();
   }
 
   Widget _buildBody() {

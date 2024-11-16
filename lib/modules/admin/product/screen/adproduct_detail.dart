@@ -244,7 +244,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                                                         PhotoViewBy.network
                                                     ? DecorationImage(
                                                         image: NetworkImage(
-                                                          "$baseurl/${imageAsset.value.image.value}",
+                                                          "$baseurl${imageAsset.value.image.value}",
                                                         ),
                                                         fit: BoxFit.cover,
                                                       )

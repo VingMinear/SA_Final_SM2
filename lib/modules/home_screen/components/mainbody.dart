@@ -3,21 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
-import 'package:homework3/modules/home_screen/components/card_favorite.dart';
 import 'package:homework3/modules/home_screen/components/card_product_horizontal.dart';
 import 'package:homework3/modules/home_screen/components/searching.dart';
 import 'package:homework3/modules/home_screen/screens/list_product.dart';
-import 'package:homework3/modules/home_screen/screens/product_detail.dart';
 import 'package:homework3/widgets/CustomCachedNetworkImage.dart';
+import 'package:homework3/widgets/EmptyProduct.dart';
 import 'package:homework3/widgets/list_card_shimmer.dart';
 import 'package:homework3/widgets/search.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../model/category.dart';
 import '../../../widgets/bannerslide.dart';
-import '../../../widgets/grid_card_shimmer.dart';
 import '../../../widgets/midletext.dart';
-import '../../../widgets/product_card.dart';
 import '../controller/home_controller.dart';
 import '../controller/product_controller.dart';
 import 'hearder.dart';
@@ -38,6 +35,7 @@ class _MainBodyState extends State<MainBody> {
   var con = Get.put(HomeController());
   var conPro = Get.put(ProductController());
   var categoryCon = Get.put(CategoryController());
+  var loadingCategory = true.obs;
   @override
   void initState() {
     pageController = PageController(
@@ -45,10 +43,16 @@ class _MainBodyState extends State<MainBody> {
       //viewportFraction: 0.92,
     );
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await categoryCon.fetchCategory();
+      await _getCategory();
       await conPro.getRecommentProducts();
     });
     super.initState();
+  }
+
+  Future<void> _getCategory() async {
+    loadingCategory(true);
+    await categoryCon.fetchCategory();
+    loadingCategory(false);
   }
 
   @override
@@ -56,6 +60,7 @@ class _MainBodyState extends State<MainBody> {
     return RefreshIndicator(
       onRefresh: () async {
         await conPro.getRecommentProducts();
+        await _getCategory();
         setState(() {});
       },
       child: Obx(
@@ -92,7 +97,9 @@ class _MainBodyState extends State<MainBody> {
                           height: 3,
                         ),
 
-                        const MyBanner(),
+                        MyBanner(
+                          banner: con.slidesBanner,
+                        ),
 
                         const Text(
                           "Categories",
@@ -121,7 +128,7 @@ class _MainBodyState extends State<MainBody> {
                           itemBuilder: ((context, index) {
                             final data = categoryCon.homeCategries[index];
 
-                            return conPro.loadingNewCollection.value
+                            return loadingCategory.value
                                 ? Shimmer.fromColors(
                                     baseColor: Colors.grey.shade200,
                                     highlightColor: Colors.grey.shade100,
@@ -223,7 +230,13 @@ class _MainBodyState extends State<MainBody> {
                         conPro.loadingNewCollection.value
                             ? buildShimmerGrid()
                             : conPro.listRecommentProduct.isEmpty
-                                ? const Center(child: Text("No Product found"))
+                                ? const Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 40),
+                                      child: EmptyProduct(
+                                          desc: 'No product found'),
+                                    ),
+                                  )
                                 : AnimationLimiter(
                                     child: ListView.separated(
                                       itemCount:
@@ -263,21 +276,16 @@ class _MainBodyState extends State<MainBody> {
     );
   }
 
-  GridView buildShimmerGrid() {
-    return GridView.builder(
+  Widget buildShimmerGrid() {
+    return ListView.separated(
       itemCount: 6,
       padding: const EdgeInsets.only(bottom: 20),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 15,
-        crossAxisSpacing: 15,
-        mainAxisExtent: 245,
-      ),
+      separatorBuilder: (context, index) => const SizedBox(height: 10),
       itemBuilder: (context, index) {
-        return const GridShimmer(
-          isAdmin: false,
+        return const ListShimmer(
+          height: 90,
         );
       },
     );

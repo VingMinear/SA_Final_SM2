@@ -2,18 +2,17 @@ import 'package:animate_do/animate_do.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homework3/model/user_model.dart';
 import 'package:homework3/modules/auth/controller/auth_controller.dart';
-import 'package:homework3/utils/LocalStorage.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/SingleTon.dart';
 import '../../admin/dashboard/screen/dashboard_screen.dart';
 import '../../bottom_navigation_bar/bottom_navigatin_bar.dart';
-import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
+  const SplashScreen({super.key, this.logout = false});
+  final bool logout;
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -22,6 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (widget.logout) {
+        GlobalClass().user.value = UserModel();
+      }
       Future.delayed(
         const Duration(milliseconds: 1800),
         () {

@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
@@ -8,11 +9,13 @@ import 'package:homework3/model/category.dart';
 import 'package:homework3/modules/admin/dashboard/controller/dashboard_con.dart';
 import 'package:homework3/modules/admin/dashboard/screen/editing_category_screen.dart';
 import 'package:homework3/modules/admin/product/screen/adproduct_screen.dart';
+import 'package:homework3/modules/admin/slides/screens/slide_screen.dart';
 import 'package:homework3/modules/auth/screens/change_pwd.dart';
 import 'package:homework3/modules/profile/screens/contact_us.dart';
 import 'package:homework3/modules/profile/screens/edit_profile_screen.dart';
 import 'package:homework3/modules/profile/screens/profile_screen.dart';
 import 'package:homework3/utils/SingleTon.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../utils/Date.dart';
@@ -107,117 +110,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     var keyScaff = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: keyScaff,
-      backgroundColor: AppColor.bgScaffold,
-      drawer: Drawer(
-        child: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(height: 15),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  color: Colors.transparent,
-                  padding: const EdgeInsets.all(10),
-                  child: Obx(() {
-                    return Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              PhotoViewDetail(
-                                imageUrl: GlobalClass().user.value.photo,
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey.shade200,
-                            ),
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            child: CustomCachedNetworkImage(
-                              imgUrl: GlobalClass().user.value.photo,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${'Welcome Back'.tr} 👋🏻',
-                            ),
-                            Text(
-                              "${GlobalClass().user.value.name}",
-                              style: AppText.txt16.copyWith(
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    );
-                  }),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    var item = datas[index];
-                    return ListTile(
-                      leading: Image.asset(
-                        item.icon,
-                        width: 20,
-                      ),
-                      minLeadingWidth: 20,
-                      title: Text(
-                        item.title,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: item.titleColor),
-                      ),
-                      onTap: () {
-                        if (index != 4) Get.back();
-                        switch (index) {
-                          case 0:
-                            Get.to(const EditProfileScreen());
-                            break;
-                          case 1:
-                            Get.to(const AdminOrderScreen());
-                            break;
-                          case 2:
-                            Get.to(const ChangePwdScreen());
-                            break;
-                          case 3:
-                            Get.to(const ContactUsScreen());
-                            break;
-                          case 4:
-                            alertDialogConfirmation(
-                              title: "Logout",
-                              desc: "Are you sure you want to Logout ?",
-                              onConfirm: () {
-                                logOut();
-                              },
-                            );
-                            break;
-                        }
-                      },
-                    );
-                  },
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 0),
-                  itemCount: datas.length,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: _drawer(),
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         leading: IconButton(
           icon: Image.asset(
             'assets/icons/home/menu.png',
@@ -255,10 +150,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         // header
                         Container(
-                          decoration: BoxDecoration(
-                            gradient: gredient,
-                            borderRadius: const BorderRadius.vertical(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.vertical(
                               bottom: Radius.circular(20),
+                            ),
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(0xff41497A),
+                                Color(0xff333B7A),
+                              ],
+                              end: Alignment.topCenter,
+                              begin: Alignment.bottomRight,
                             ),
                           ),
                           child: SafeArea(
@@ -427,6 +329,53 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             );
                           },
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(() => const SlideScreen());
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: gredient,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    spreadRadius: 0,
+                                    offset: const Offset(3, 3),
+                                    blurRadius: 1,
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 20),
+                              alignment: Alignment.center,
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Iconsax.slider,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                  SizedBox(width: 20),
+                                  Flexible(
+                                    child: Text(
+                                      "Slides Banner",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -442,6 +391,117 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Drawer _drawer() {
+    return Drawer(
+      child: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 15),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                color: Colors.transparent,
+                padding: const EdgeInsets.all(10),
+                child: Obx(() {
+                  return Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(
+                            PhotoViewDetail(
+                              imageUrl: GlobalClass().user.value.photo,
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.grey.shade200,
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: CustomCachedNetworkImage(
+                            imgUrl: GlobalClass().user.value.photo,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${'Welcome Back'.tr} 👋🏻',
+                          ),
+                          Text(
+                            "${GlobalClass().user.value.name}",
+                            style: AppText.txt16.copyWith(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  );
+                }),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  var item = datas[index];
+                  return ListTile(
+                    leading: Image.asset(
+                      item.icon,
+                      width: 20,
+                    ),
+                    minLeadingWidth: 20,
+                    title: Text(
+                      item.title,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: item.titleColor),
+                    ),
+                    onTap: () {
+                      if (index != 4) Get.back();
+                      switch (index) {
+                        case 0:
+                          Get.to(const EditProfileScreen());
+                          break;
+                        case 1:
+                          Get.to(const AdminOrderScreen());
+                          break;
+                        case 2:
+                          Get.to(const ChangePwdScreen());
+                          break;
+                        case 3:
+                          Get.to(const ContactUsScreen());
+                          break;
+                        case 4:
+                          alertDialogConfirmation(
+                            title: "Logout",
+                            desc: "Are you sure you want to Logout ?",
+                            onConfirm: () {
+                              logOut();
+                            },
+                          );
+                          break;
+                      }
+                    },
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 0),
+                itemCount: datas.length,
+              ),
+            ),
+          ],
         ),
       ),
     );

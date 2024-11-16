@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:homework3/modules/cart/screens/success_order.dart';
+import 'package:homework3/utils/ReponseApiHandler.dart';
 import 'package:homework3/utils/Utilty.dart';
 
 import '../../../model/product_model.dart';
@@ -55,12 +56,11 @@ class CartController extends GetxController {
           };
         }).toList(),
       }).then((value) {
-        if (value['code'] == 200) {
+        var res = checkResponse(value);
+        if (res.isSuccess) {
           shoppingCart.clear();
           update();
           Get.off(const SuccessScreenOrder());
-        } else {
-          alertDialog(desc: value['product'] ?? '');
         }
       });
     } catch (error) {

@@ -35,7 +35,7 @@ class AuthController extends GetxController {
           key: 'token',
           value: data['token'] ?? '',
         );
-        print('store token ${LocalStorage.getStringData(key: 'token')}');
+
         if (GlobalClass().user.value.isAdmin) {
           await FirebaseMessaging.instance.subscribeToTopic('order');
           Get.offAll(() => const DashboardScreen());

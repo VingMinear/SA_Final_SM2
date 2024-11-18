@@ -64,7 +64,6 @@ dependencies:
   fluttertoast: ^8.2.2
   shimmer: ^3.0.0
   dotted_decoration: ^2.0.0
-  flutter_native_splash: ^2.2.19
   lit_starfield: ^0.1.1
   firebase_messaging: ^14.7.2
   flutter_local_notifications: ^16.1.0
@@ -79,12 +78,6 @@ dependencies:
   path: any
   loader_overlay: ^4.0.3
   glassmorphism_ui: ^0.3.0
-flutter_native_splash:
-  android: true
-  ios: true
-  background_image: assets/images/splash.png
-  android_12:
-    background_image: assets/images/splash.png
 
 dev_dependencies:
   flutter_test:

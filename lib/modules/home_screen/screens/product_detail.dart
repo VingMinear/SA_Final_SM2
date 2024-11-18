@@ -10,6 +10,7 @@ import 'package:homework3/modules/cart/controllers/cart_controller.dart';
 import 'package:homework3/modules/cart/screens/check_out_screen.dart';
 import 'package:homework3/modules/home_screen/controller/product_controller.dart';
 import 'package:homework3/utils/SingleTon.dart';
+import 'package:homework3/widgets/EmptyProduct.dart';
 import 'package:homework3/widgets/product_card.dart';
 
 import '../../../utils/Utilty.dart';
@@ -192,47 +193,56 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           products.removeWhere((element) =>
                               element.productId == widget.product.productId);
                           products.shuffle();
-                          return AnimationLimiter(
-                            child: GridView.builder(
-                              itemCount: products.length,
-                              padding: const EdgeInsets.only(
-                                  bottom: 20, left: 20, right: 20, top: 20),
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                mainAxisSpacing: 15,
-                                crossAxisSpacing: 15,
-                                mainAxisExtent: 245,
+                          if (products.isEmpty) {
+                            return const SizedBox(
+                              height: 100,
+                              child: Center(
+                                child: Text("No product found"),
                               ),
-                              itemBuilder: (context, index) {
-                                var data = products[index];
+                            );
+                          } else {
+                            return AnimationLimiter(
+                              child: GridView.builder(
+                                itemCount: products.length,
+                                padding: const EdgeInsets.only(
+                                    bottom: 20, left: 20, right: 20, top: 20),
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 15,
+                                  crossAxisSpacing: 15,
+                                  mainAxisExtent: 245,
+                                ),
+                                itemBuilder: (context, index) {
+                                  var data = products[index];
 
-                                return AnimationConfiguration.staggeredGrid(
-                                  columnCount: 2,
-                                  position: index,
-                                  duration: const Duration(milliseconds: 375),
-                                  child: FadeInAnimation(
-                                    child: ProductCard(
-                                      data: data,
-                                      isAdmin: false,
-                                      ontap: (data) {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ProductDetailsView(
-                                                    product: data),
-                                          ),
-                                        );
-                                      },
+                                  return AnimationConfiguration.staggeredGrid(
+                                    columnCount: 2,
+                                    position: index,
+                                    duration: const Duration(milliseconds: 375),
+                                    child: FadeInAnimation(
+                                      child: ProductCard(
+                                        data: data,
+                                        isAdmin: false,
+                                        ontap: (data) {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ProductDetailsView(
+                                                      product: data),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ),
-                          );
+                                  );
+                                },
+                              ),
+                            );
+                          }
                         }
                       },
                     ),
@@ -305,43 +315,46 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             ),
             const SizedBox(width: 16),
             const Spacer(),
-            IconButton(
-              style: ElevatedButton.styleFrom(
-                elevation: 1,
-                shadowColor: grey,
-                backgroundColor: whiteColor,
-              ),
-              onPressed: () async {
-                if (productDetail.isFav) {
-                  // removed
-                  con
-                      .updFavorite(
-                    proId: productDetail.productId!,
-                    isFav: productDetail.isFav,
-                  )
-                      .then((value) {
-                    _showTaost(true);
-                  });
-                } else {
-                  //add
-                  con
-                      .addFavorite(
-                    proId: productDetail.productId!,
-                  )
-                      .then((value) {
-                    _showTaost(false);
-                  });
-                }
+            Visibility(
+              visible: GlobalClass().isUserLogin,
+              child: IconButton(
+                style: ElevatedButton.styleFrom(
+                  elevation: 1,
+                  shadowColor: grey,
+                  backgroundColor: whiteColor,
+                ),
+                onPressed: () async {
+                  if (productDetail.isFav) {
+                    // removed
+                    con
+                        .updFavorite(
+                      proId: productDetail.productId!,
+                      isFav: productDetail.isFav,
+                    )
+                        .then((value) {
+                      _showTaost(true);
+                    });
+                  } else {
+                    //add
+                    con
+                        .addFavorite(
+                      proId: productDetail.productId!,
+                    )
+                        .then((value) {
+                      _showTaost(false);
+                    });
+                  }
 
-                productDetail.isFav = !productDetail.isFav;
-                setState(() {});
-              },
-              icon: Icon(
-                productDetail.isFav
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_border_rounded,
-                color: mainColor,
-                size: 25,
+                  productDetail.isFav = !productDetail.isFav;
+                  setState(() {});
+                },
+                icon: Icon(
+                  productDetail.isFav
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded,
+                  color: mainColor,
+                  size: 25,
+                ),
               ),
             ),
           ],

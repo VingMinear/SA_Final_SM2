@@ -71,7 +71,7 @@ dependencies:
   dropdown_button2: ^2.3.9
   flutter_typeahead: ^4.8.0
   flutter_echarts: ^2.5.0
-  flutter_stripe: ^10.2.0
+  flutter_stripe: ^11.2.0
   flutter_dotenv: ^5.1.0
   flutter_lints: ^4.0.0
 

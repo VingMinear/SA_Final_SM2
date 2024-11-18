@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/auth/screens/splash_screen.dart';
@@ -21,6 +22,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Stripe.publishableKey =
+      'pk_test_51PVAzHLRxnMedF0lJIyzjwMxm4VbYhbNQTIag4V8jcRP3cZyC0VwADRMvFbEsXY34gGpDvQ6Eln56qv60l68ZfaO00npQFRFMF';
+
   await LocalNotificationHandler.initLocalNotification();
   await NotificationHandler().initNotification();
   await LocalStorage.init();

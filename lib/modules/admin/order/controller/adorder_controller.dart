@@ -20,6 +20,7 @@ class AdminOrderModel {
   String province = '';
   String commune = '';
   String district = '';
+  String paymentType = '';
   String house = '';
   LatLng? latLng;
   bool enabledConfirm = false;
@@ -74,6 +75,7 @@ class AdminOrderModel {
     date = json['date'] ?? '';
     phoneNumber = json['phone_number'] ?? '';
     receiverName = json['receiver_name'] ?? '';
+    paymentType = json['payment_type'] ?? '';
     province = json['province'] ?? '';
     commune = json['commune'] ?? '';
     district = json['district'] ?? '';

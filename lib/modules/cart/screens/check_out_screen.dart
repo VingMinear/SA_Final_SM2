@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/profile/screens/address_screen.dart';
+import 'package:homework3/utils/StripeHandler.dart';
 
 import '../../../model/address_model.dart';
 import '../../../utils/Utilty.dart';
@@ -65,14 +66,29 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             textColor: Colors.white,
             onPressed: () async {
               if (address.value.id != null) {
-                loadingDialog();
-                await cartController.checkOutOrder(
-                  pymType: currentOpt.value,
-                  addressId: address.value.id ?? 0,
-                  total: cartController.cartTotal,
-                  products: cartController.shoppingCart,
-                );
-                popLoadingDialog();
+                if (currentOpt.value == 'Credit / Debit Card') {
+                  var isSuccess = await StripePaymentHandle()
+                      .stripeMakePayment(amount: widget.total);
+                  if (isSuccess) {
+                    loadingDialog();
+                    await cartController.checkOutOrder(
+                      pymType: currentOpt.value,
+                      addressId: address.value.id ?? 0,
+                      total: cartController.cartTotal,
+                      products: cartController.shoppingCart,
+                    );
+                    popLoadingDialog();
+                  }
+                } else {
+                  loadingDialog();
+                  await cartController.checkOutOrder(
+                    pymType: currentOpt.value,
+                    addressId: address.value.id ?? 0,
+                    total: cartController.cartTotal,
+                    products: cartController.shoppingCart,
+                  );
+                  popLoadingDialog();
+                }
               }
             },
           ),

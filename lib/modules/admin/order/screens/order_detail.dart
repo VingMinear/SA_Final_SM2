@@ -126,11 +126,61 @@ class _OrderDetailState extends State<OrderDetail> {
                     const SizedBox(height: 20),
                     cardAddress(con.orderDetail.value),
                     const SizedBox(height: 20),
+                    buildPaymentMethod(),
+                    const SizedBox(height: 20),
                     cardOrder(),
                   ],
                 ),
               ),
         bottomNavigationBar: loading.value ? const SizedBox.shrink() : button(),
+      ),
+    );
+  }
+
+  Widget buildPaymentMethod() {
+    return Container(
+      decoration: cardDecoration(),
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/profile/wallet@2x.png',
+                scale: 1.5,
+              ),
+              const SizedBox(width: 15),
+              const Text(
+                "Payment Methods",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Text(
+                widget.data.paymentType,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                ),
+              ),
+              const Spacer(),
+              Image.asset(
+                widget.data.paymentType == 'Credit / Debit Card'
+                    ? 'assets/icons/credit.png'
+                    : 'assets/icons/cash.png',
+                width:
+                    widget.data.paymentType == 'Credit / Debit Card' ? 50 : 40,
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

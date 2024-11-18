@@ -58,7 +58,7 @@ class CardProductHorizontal extends StatelessWidget {
                   ),
                   Text(
                     product.desc ?? '',
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style:
                         const TextStyle(fontSize: 13, color: Color(0xff8F8F8F)),
@@ -125,7 +125,7 @@ class CardProductHorizontal extends StatelessWidget {
             left: 10,
             child: Container(
               width: 110,
-              height: 135,
+              height: 125,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),

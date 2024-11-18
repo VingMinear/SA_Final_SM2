@@ -21,9 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (widget.logout) {
-        GlobalClass().user.value = UserModel();
-      }
       Future.delayed(
         const Duration(milliseconds: 1800),
         () {
@@ -37,6 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
   var scale = 1.0;
 
   checkUser() async {
+    if (widget.logout) {
+      GlobalClass().user.value = UserModel();
+    }
     if (GlobalClass().isUserLogin) {
       await AuthController().getUser();
       scale = 0;

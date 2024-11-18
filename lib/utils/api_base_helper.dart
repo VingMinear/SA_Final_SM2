@@ -17,7 +17,7 @@ enum METHODE {
   update,
 }
 
-String baseurl = "http://10.0.2.2:8080/";
+String baseurl = "http://ss5reads.jonward.com/";
 // final String baseurl = "http://192.168.3.2:8080/";
 
 class ApiBaseHelper extends GetConnect {

@@ -79,12 +79,12 @@ dependencies:
   path: any
   loader_overlay: ^4.0.3
   glassmorphism_ui: ^0.3.0
-# flutter_native_splash:
-#   android: true
-#   ios: true
-#   background_image: assets/images/splash.png
-#   android_12:
-#     background_image: assets/images/splash.png
+flutter_native_splash:
+  android: true
+  ios: true
+  background_image: assets/images/splash.png
+  android_12:
+    background_image: assets/images/splash.png
 
 dev_dependencies:
   flutter_test:

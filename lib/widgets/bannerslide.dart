@@ -111,7 +111,7 @@ class _MyBannerState extends State<MyBanner> {
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomCenter,
                                 colors: [
-                                  HexColor('FFD368'),
+                                  mainColor,
                                   mainColor.withOpacity(0.8),
                                 ],
                               ),
@@ -135,7 +135,7 @@ class _MyBannerState extends State<MyBanner> {
               effect: WormEffect(
                 dotWidth: 10,
                 dotHeight: 10,
-                activeDotColor: HexColor('FFD368'),
+                activeDotColor: mainColor,
                 dotColor: Colors.grey.shade300,
               ),
             )

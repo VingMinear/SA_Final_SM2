@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/auth/screens/splash_screen.dart';
@@ -10,6 +11,7 @@ import 'package:homework3/utils/DismissKeyboard.dart';
 import 'package:homework3/utils/LocalNotificationHandler.dart';
 import 'package:homework3/utils/LocalStorage.dart';
 import 'package:homework3/utils/NotificationHandler.dart';
+import 'package:homework3/utils/api_base_helper.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
 import 'firebase_options.dart';
@@ -25,8 +27,13 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-
-  FlutterNativeSplash.remove();
+  if (!kDebugMode) {
+    await CloudFireStore.getServerURl().then((value) {
+      if (value.isNotEmpty) {
+        baseurl = value;
+      }
+    });
+  }
   runApp(const MyApp());
 }
 
@@ -72,5 +79,22 @@ class MyApp extends StatelessWidget {
         home: const SplashScreen(),
       ),
     );
+  }
+}
+
+class CloudFireStore extends GetxController {
+  static final CollectionReference _server =
+      FirebaseFirestore.instance.collection("serverurl");
+
+  static Future<String> getServerURl() async {
+    var result = '';
+    try {
+      await _server.doc('url').get().then((value) {
+        result = value['serverUrl'];
+      });
+    } catch (e) {
+      print("error in get User :$e");
+    }
+    return result;
   }
 }

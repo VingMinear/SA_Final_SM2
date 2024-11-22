@@ -12,6 +12,7 @@ class StripePaymentHandle {
   Future<bool> stripeMakePayment({required String amount}) async {
     var isSuccess = false;
     try {
+      loadingDialog();
       paymentIntent = await createPaymentIntent(amount, 'USD');
       await Stripe.instance
           .initPaymentSheet(
@@ -37,8 +38,10 @@ class StripePaymentHandle {
     var isSccess = false;
     try {
       // Display the payment sheet
+      popLoadingDialog();
       await Stripe.instance.presentPaymentSheet();
       isSccess = true;
+
       // Notify the user of successful payment
       Fluttertoast.showToast(msg: 'Payment completed successfully.');
     } on Exception catch (e) {

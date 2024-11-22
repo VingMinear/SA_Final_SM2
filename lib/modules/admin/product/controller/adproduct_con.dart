@@ -97,6 +97,7 @@ class AdminProductController extends GetxController {
 
   Future<void> addProduct(
       {required String pname,
+      required String desc,
       required double priceIn,
       required double priceout,
       required int qty,
@@ -120,12 +121,14 @@ class AdminProductController extends GetxController {
                 "qty": qty,
                 "category_id": categoryId,
                 "image": img,
+                "desc": desc,
                 "price_in": priceIn,
                 "price_out": priceout
               }
             : {
                 "product_name": pname,
                 "qty": qty,
+                "desc": desc,
                 "category_id": categoryId,
                 "price_in": priceIn,
                 "price_out": priceout
@@ -144,14 +147,16 @@ class AdminProductController extends GetxController {
     }
   }
 
-  Future<void> updateProduct(
-      {required int pid,
-      required String pname,
-      required double priceIn,
-      required double priceout,
-      required int qty,
-      required ImageModel image,
-      required int categoryId}) async {
+  Future<void> updateProduct({
+    required int pid,
+    required String pname,
+    required String desc,
+    required double priceIn,
+    required double priceout,
+    required int qty,
+    required ImageModel image,
+    required int categoryId,
+  }) async {
     try {
       var img = image.image.value.replaceAll("${baseurl}image/", '');
       if (image.photoViewBy == PhotoViewBy.file &&
@@ -168,6 +173,7 @@ class AdminProductController extends GetxController {
           "product_id": pid,
           "product_name": pname,
           "qty": qty,
+          "desc": desc,
           "category_id": categoryId,
           "image": img,
           "price_in": priceIn,

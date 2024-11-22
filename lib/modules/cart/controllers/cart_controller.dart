@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:homework3/modules/cart/screens/success_order.dart';
 import 'package:homework3/utils/ReponseApiHandler.dart';
 import 'package:homework3/utils/Utilty.dart';
@@ -13,6 +15,32 @@ import '../models/cart_model.dart';
 class CartController extends GetxController {
   var shoppingCart = <CartModel>[].obs;
   final _apiBaseHelper = ApiBaseHelper();
+  static const _cartKey = 'shopping_cart';
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadCartFromStorage();
+  }
+
+  // Save cart to local storage
+  Future<void> saveCartToStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cartJson = json.encode(shoppingCart.map((e) => e.toJson()).toList());
+    await prefs.setString(_cartKey, cartJson);
+  }
+
+  // Load cart from local storage
+  Future<void> loadCartFromStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cartJson = prefs.getString(_cartKey);
+    if (cartJson != null) {
+      final List<dynamic> cartData = json.decode(cartJson);
+      shoppingCart.value = cartData.map((e) => CartModel.fromJson(e)).toList();
+    }
+    update();
+  }
+
   void addToCart(ProductModel product) {
     showTaost('Product has been added to cart');
     var isExist = shoppingCart
@@ -25,6 +53,7 @@ class CartController extends GetxController {
     } else {
       isExist.first.quantity += 1;
     }
+    saveCartToStorage();
     update();
   }
 
@@ -59,6 +88,7 @@ class CartController extends GetxController {
         var res = checkResponse(value);
         if (res.isSuccess) {
           shoppingCart.clear();
+          saveCartToStorage();
           update();
           Get.off(const SuccessScreenOrder());
         }
@@ -73,6 +103,7 @@ class CartController extends GetxController {
 
   void removeItem(CartModel productId) {
     shoppingCart.removeWhere((element) => element == productId);
+    saveCartToStorage();
     update();
   }
 
@@ -80,6 +111,7 @@ class CartController extends GetxController {
     CartModel item =
         shoppingCart.where((element) => element == productId).first;
     item.quantity++;
+    saveCartToStorage();
     update();
   }
 
@@ -92,6 +124,7 @@ class CartController extends GetxController {
     } else {
       shoppingCart.remove(item);
     }
+    saveCartToStorage();
     update();
   }
 
@@ -107,4 +140,34 @@ class CartController extends GetxController {
   double get cartSubTotal => getCartTotal();
   double get shippingCharge => 2;
   double get cartTotal => cartSubTotal + shippingCharge;
+}
+
+// Extensions for JSON serialization
+extension CartModelSerialization on CartModel {
+  Map<String, dynamic> toJson() => {
+        'product': product.toJson(),
+        'quantity': quantity,
+      };
+
+  static CartModel fromJson(Map<String, dynamic> json) => CartModel(
+        product: ProductModel.fromJson(json['product']),
+        quantity: json['quantity'],
+      );
+}
+
+extension ProductModelSerialization on ProductModel {
+  Map<String, dynamic> toJson() => {
+        'product_id': productId,
+        'product_name': productName,
+        'qty': qty,
+        'desc': desc,
+        'category_id': categoryId,
+        'category_name': categoryName,
+        'image': image,
+        'price_in': priceIn,
+        'price_out': priceOut,
+        'isfav': isFav ? 1 : 0,
+        'sold': sold,
+        'amount': amount,
+      };
 }

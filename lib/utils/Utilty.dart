@@ -171,6 +171,7 @@ alertDialogConfirmation({
 void logOut() async {
   LocalStorage.removeData(key: "token");
   FirebaseMessaging.instance.unsubscribeFromTopic('order');
+  LocalStorage.removeData(key: 'shopping_cart');
   Get.offAll(const SplashScreen(logout: true));
 }
 

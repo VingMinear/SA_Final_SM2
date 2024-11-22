@@ -9,6 +9,7 @@ import 'package:homework3/constants/color.dart';
 import 'package:homework3/model/product_model.dart';
 import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/utils/api_base_helper.dart';
+import 'package:homework3/utils/style.dart';
 import 'package:homework3/widgets/PhotoViewDetail.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
 import 'package:homework3/widgets/input_field.dart';
@@ -36,6 +37,8 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
   var txtProNameCon = TextEditingController();
   var txtPricein = TextEditingController();
   var txtPriceOut = TextEditingController();
+  var txtDesc = TextEditingController();
+
   var txtQty = TextEditingController();
   var imageAsset = ImageModel.instance.obs;
   var proCon = Get.put(AdminProductController());
@@ -44,6 +47,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
     txtProNameCon = TextEditingController();
     txtPricein = TextEditingController();
     txtQty = TextEditingController();
+    txtDesc = TextEditingController();
     txtPriceOut.clear();
     imageAsset = ImageModel.instance.obs;
   }
@@ -64,6 +68,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
         txtProNameCon.text = result.productName ?? '';
         txtPricein.text = result.priceIn.toString();
         txtPriceOut.text = result.priceOut.toString();
+        txtDesc.text = result.desc ?? '';
         txtQty.text = result.qty.toString();
         for (var cate in listCategory) {
           if (result.categoryId == cate.id) {
@@ -94,7 +99,6 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
           elevation: 1,
         ),
         backgroundColor: Colors.white,
-        resizeToAvoidBottomInset: false,
         body: loading.value
             ? const Center(
                 child: CircularProgressIndicator(
@@ -161,6 +165,33 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                           ),
                         ),
                       ],
+                    ),
+                    Row(
+                      children: [
+                        FadeInLeft(
+                          from: 10,
+                          child: const Text("Description"),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      minLines: 2,
+                      maxLines: 5,
+                      controller: txtDesc,
+                      keyboardType: TextInputType.multiline,
+                      decoration: InputDecoration(
+                        hintText: 'describe your product',
+                        hintStyle: hintStyle(),
+                        fillColor: grey.withOpacity(0.4),
+                        filled: true,
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -300,6 +331,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -378,6 +410,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                                 await proCon.updateProduct(
                                   pid: widget.pId,
                                   pname: proName,
+                                  desc: txtDesc.text,
                                   priceIn: double.parse(priceIn),
                                   priceout: double.parse(priceout),
                                   qty: int.parse(qty),
@@ -387,6 +420,7 @@ class _AdminProductDetailState extends State<AdminProductDetail> {
                               } else {
                                 await proCon.addProduct(
                                   pname: proName,
+                                  desc: txtDesc.text,
                                   priceIn: double.parse(priceIn),
                                   priceout: double.parse(priceout),
                                   qty: int.parse(qty),

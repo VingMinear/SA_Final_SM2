@@ -28,13 +28,13 @@ class _AdminProductScreenState extends State<AdminProductScreen> {
   late final PageController pageController;
 
   int pageNum = 0;
-
-  var loading = false.obs;
+  var loading = true.obs;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      await categoryCon.fetchCategory();
       await con.fetchProduct();
+      await categoryCon.fetchCategory();
+      loading(false);
     });
     super.initState();
   }

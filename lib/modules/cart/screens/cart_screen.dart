@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/cart/controllers/cart_controller.dart';
+import 'package:homework3/utils/Utilty.dart';
 import 'package:homework3/widgets/custom_appbar.dart';
 
 import '../components/cart_item.dart';
@@ -112,10 +113,10 @@ class _CartScreenState extends State<CartScreen> {
                               onPressed: () {
                                 Get.to(() => CheckOutScreen(
                                       listPro: cartController.shoppingCart,
-                                      subTotal: cartController.cartSubTotal
-                                          .toString(),
-                                      total:
-                                          cartController.cartTotal.toString(),
+                                      subTotal: cartController
+                                          .cartSubTotal.formatCurrency,
+                                      total: cartController
+                                          .cartTotal.formatCurrency,
                                     ));
                               },
                               style: ElevatedButton.styleFrom(
@@ -168,7 +169,7 @@ class _CartScreenState extends State<CartScreen> {
                         style: TextStyle(),
                       ),
                       Text(
-                        "\$${cartController.cartSubTotal}",
+                        "\$${cartController.cartSubTotal.formatCurrency}",
                         style: const TextStyle(),
                       ),
                     ],
@@ -221,7 +222,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ),
                       Text(
-                        "\$${cartController.cartTotal}",
+                        "\$${cartController.cartTotal.formatCurrency}",
                         style: const TextStyle(
                           fontWeight: FontWeight.w500,
                         ),

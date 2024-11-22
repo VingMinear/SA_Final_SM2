@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_echarts/flutter_echarts.dart';
+
 import 'package:get/get.dart';
 import 'package:homework3/modules/admin/report/components/card_report.dart';
 import 'package:homework3/modules/admin/report/controller/report_controller.dart';
@@ -74,50 +74,50 @@ class _ReportState extends State<Report> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 230,
-                            child: Echarts(
-                              option: '''
-                      {
-                    tooltip: {
-                      trigger: 'item'
-                    },
-                    legend: {
-                      top: '0%',
-                      left: 'center'
-                    },
-                    series: [
-                      {
-                        name: 'Reports',
-                        type: 'pie',
-                        radius: ['40%', '60%'],
-                        avoidLabelOverlap: false,
-                        label: {
-                          show: false,
-                          position: 'center'
-                        },
-                        emphasis: {
-                          label: {
-                    show: true,
-                    fontSize: 15,
-                    fontWeight: 'bold'
-                          }
-                        },
-                        labelLine: {
-                          show: false
-                        },
-                        data: [
-                          { value: ${con.totalUser}, name: 'Users' },
-                          { value: ${con.stock}, name: 'Stock Products' },
-                         { value: ${widget.totalOrder},name: 'Orders' }
-                        ]
-                      }
-                    ]
-                        }
-                    ''',
-                            ),
-                          ),
+                          //       SizedBox(
+                          //         width: double.infinity,
+                          //         height: 230,
+                          //         child: Echarts(
+                          //           option: '''
+                          //   {
+                          // tooltip: {
+                          //   trigger: 'item'
+                          // },
+                          // legend: {
+                          //   top: '0%',
+                          //   left: 'center'
+                          // },
+                          // series: [
+                          //   {
+                          //     name: 'Reports',
+                          //     type: 'pie',
+                          //     radius: ['40%', '60%'],
+                          //     avoidLabelOverlap: false,
+                          //     label: {
+                          //       show: false,
+                          //       position: 'center'
+                          //     },
+                          //     emphasis: {
+                          //       label: {
+                          // show: true,
+                          // fontSize: 15,
+                          // fontWeight: 'bold'
+                          //       }
+                          //     },
+                          //     labelLine: {
+                          //       show: false
+                          //     },
+                          //     data: [
+                          //       { value: ${con.totalUser}, name: 'Users' },
+                          //       { value: ${con.stock}, name: 'Stock Products' },
+                          //      { value: ${widget.totalOrder},name: 'Orders' }
+                          //     ]
+                          //   }
+                          // ]
+                          //     }
+                          // ''',
+                          //         ),
+                          //       ),
                         ],
                       ),
                     ),

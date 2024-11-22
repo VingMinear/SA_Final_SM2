@@ -1,16 +1,12 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:homework3/constants/color.dart';
-import 'package:homework3/modules/auth/screens/login_screen.dart';
 import 'package:homework3/modules/bottom_navigation_bar/bottom_controller.dart';
 import 'package:homework3/modules/cart/screens/cart_screen.dart';
 import 'package:homework3/modules/favorite/screens/favorite_screen.dart';
-import 'package:homework3/utils/SingleTon.dart';
 import 'package:homework3/widgets/google_map.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -36,16 +32,6 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   int selected = 0;
   var pageController = PageController();
   int currentIndex = 0;
-  List label = [
-    "Home",
-    "Borrow",
-    "Personal",
-  ];
-  List<IconData> icon = [
-    Boxicons.bx_home,
-    Boxicons.bx_book,
-    CupertinoIcons.person,
-  ];
 
   // ignore: unused_field
   static TextStyle optionStyle =

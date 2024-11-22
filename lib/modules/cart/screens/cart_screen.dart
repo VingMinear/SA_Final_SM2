@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:homework3/constants/color.dart';
 import 'package:homework3/modules/cart/controllers/cart_controller.dart';
 import 'package:homework3/utils/Utilty.dart';
@@ -130,7 +129,7 @@ class _CartScreenState extends State<CartScreen> {
                               child: Center(
                                 child: Text(
                                   "Checkout (\$${cartController.cartTotal})",
-                                  style: GoogleFonts.roboto(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),

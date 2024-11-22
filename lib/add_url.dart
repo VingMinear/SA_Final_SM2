@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:homework3/widgets/CustomButton.dart';
-import 'package:lit_starfield/lit_starfield.dart';
 
 class AddServerUrl extends StatefulWidget {
   const AddServerUrl({super.key});
@@ -24,7 +23,6 @@ class _AddServerUrlState extends State<AddServerUrl> {
         body: Obx(
           () => Stack(
             children: [
-              const LitStarfieldContainer(),
               SafeArea(
                 child: Container(
                   alignment: Alignment.center,

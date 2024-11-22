@@ -31,6 +31,9 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  if (LocalStorage.getStringData(key: 'token').isEmpty) {
+    LocalStorage.removeData(key: 'shopping_cart');
+  }
   if (!kDebugMode) {
     await CloudFireStore.getServerURl().then((value) {
       if (value.isNotEmpty) {

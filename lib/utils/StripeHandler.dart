@@ -24,11 +24,14 @@ class StripePaymentHandle {
             ),
           )
           .then((value) {});
-
+      // Display the payment sheet
+      popLoadingDialog();
       //STEP 3: Display Payment sheet
       isSuccess = await displayPaymentSheet();
     } catch (e) {
       print(e.toString());
+      // Display the payment sheet
+      popLoadingDialog();
       Fluttertoast.showToast(msg: e.toString());
     }
     return isSuccess;
@@ -37,8 +40,6 @@ class StripePaymentHandle {
   Future<bool> displayPaymentSheet() async {
     var isSccess = false;
     try {
-      // Display the payment sheet
-      popLoadingDialog();
       await Stripe.instance.presentPaymentSheet();
       isSccess = true;
 

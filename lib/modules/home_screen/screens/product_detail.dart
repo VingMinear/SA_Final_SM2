@@ -1,4 +1,3 @@
-import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,7 +9,6 @@ import 'package:homework3/modules/cart/controllers/cart_controller.dart';
 import 'package:homework3/modules/cart/screens/check_out_screen.dart';
 import 'package:homework3/modules/home_screen/controller/product_controller.dart';
 import 'package:homework3/utils/SingleTon.dart';
-import 'package:homework3/widgets/EmptyProduct.dart';
 import 'package:homework3/widgets/product_card.dart';
 
 import '../../../utils/Utilty.dart';
@@ -382,12 +380,10 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
       const Text('Description',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
       const SizedBox(height: 8),
-      ExpandableText(
+      Text(
         productDetail.desc ?? 'No description',
-        expandText: 'view more',
-        collapseText: 'view less',
         maxLines: 5,
-        linkStyle: const TextStyle(
+        style: const TextStyle(
             color: Color(0xFF424242), fontWeight: FontWeight.bold),
       ),
     ];
